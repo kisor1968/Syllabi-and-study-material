@@ -49,14 +49,13 @@ st.markdown(f"""
         border-radius: 12px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         border: 1px solid #E2E8F0;
-        border-top: 4px solid #FF9933; /* Saffron/Orange Accent */
+        border-top: 4px solid #FF9933;
         border-top-width: 4px;
         position: relative;
         margin-bottom: 1.2rem;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
     }}
     
-    /* Pseudo-element to make the top accent cover exactly half (50%) of the box */
     .card-item::before {{
         content: "";
         position: absolute;
@@ -64,7 +63,7 @@ st.markdown(f"""
         left: 0;
         width: 50%;
         height: 4px;
-        background-color: #FF7700; /* Rich Saffron */
+        background-color: #FF7700;
         border-top-left-radius: 12px;
     }}
 
@@ -268,7 +267,7 @@ with tab_upload:
 st.markdown("""
     <div class="institutional-footer">
         <p>© Prabhu Jagatbandhu College | Academic Repository Management</p>
-        <p>Maintained by <strong>Dr. Kisor Mukhopadhyay</strong> (Teacher Council Secretary)</p>
+        <p>Created & Maintained by: <strong>Dr. Kisor Mukhopadhyay</strong>, Associate Professor, Department of Physics & Teachers' Council Secretary, Prabhu Jagatbandhu College</p>
         <div class="visitor-counter">
             <img src="https://visitor-badge.laobi.icu/badge?page_id=pjc_academic_repository_portal" alt="Visitor Counter">
         </div>
