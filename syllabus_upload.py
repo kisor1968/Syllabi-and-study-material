@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 from pathlib import Path
 
 # --- PAGE CONFIGURATION ---
@@ -28,7 +29,7 @@ st.markdown("""
     
     .card {
         background-color: #FFFFFF;
-        padding: 1.5rem;
+        padding: 1.2rem 1.5rem;
         border-radius: 10px;
         box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
         border: 1px solid #E2E8F0;
@@ -70,34 +71,107 @@ with col_title:
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-# --- FOLDER ID CONFIGURATION ---
-SYLLABI_FOLDER_ID = "1LTh4Wag8BU1VTLACnYir-0voANQSD9Ky"
-DEPARTMENT_FOLDERS = {
-    "Bengali": "1vGTsX5d8drocNRfXG_DZjKkB3egI8TLd",
-    "English": "1HT6QEjsar1Si0cjF9Ou0Uxpm1rtnXq9z",
-    "Philosophy": "1beouAOzkdErQsw3E-jf4Ad0jqZhcm3dW",
-    "History": "1mDYg41Y3p7lA72Gb3zWXXmMo8tjU4Yn1",
-    "Geography": "1-SKW32KjgG-11yVZZLni285cUotkjPQq",
-    "Economics": "1L1jUNuNewZ8obzlRGCNRrXe-RvuncmuZ",
-    "Physical Education": "1RkL0Kyt48YI1mbhmH_kzubK9sVShMIA4",
-    "Physics": "1Ss1vtjtXsjq1CNnWMumxWLsQLe84MBhG",
-    "Chemistry": "1DQtkS-Te4RYtJ7AcAd228ZUWM13HT_Fv",
-    "Mathematics": "1NJl9U9cGVdEPwz--vV3Di2kgzP8iipYW",
-    "Commerce": "18C0tTTyywNvdGfsSjTcg9oWEsjybjGM0"
-}
+DEPARTMENT_FOLDERS = [
+    "Bengali", "English", "Philosophy", "History", "Geography", 
+    "Economics", "Physical Education", "Physics", "Chemistry", "Mathematics", "Commerce"
+]
+
+# --- PUBLISHED GOOGLE SHEET CSV URL ---
+# Replace this URL with your published CSV link from Step 2
+SHEET_CSV_URL = "import streamlit as st
+import pandas as pd
+from pathlib import Path
+
+# --- PAGE CONFIGURATION ---
+st.set_page_config(
+    page_title="PJC Academic Material Repository Portal",
+    page_icon="📚",
+    layout="wide"
+)
+
+# --- CUSTOM STYLING & INSTITUTIONAL THEME ---
+st.markdown("""
+    <style>
+    .stApp { background-color: #F1F5F9; }
+    
+    .portal-header {
+        background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
+        padding: 2rem 1.5rem;
+        border-radius: 12px;
+        color: #FFFFFF;
+        text-align: center;
+        margin-bottom: 2rem;
+        box-shadow: 0 6px 15px -3px rgba(30, 58, 138, 0.3);
+        border-bottom: 4px solid #F59E0B;
+    }
+    .portal-header h1 { color: #FFFFFF !important; margin: 0; font-size: 2.2rem; font-weight: 800; }
+    .portal-header p { color: #E2E8F0; margin-top: 0.5rem; margin-bottom: 0; font-size: 1.1rem; }
+    
+    .card {
+        background-color: #FFFFFF;
+        padding: 1.2rem 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        border: 1px solid #E2E8F0;
+        margin-bottom: 1rem;
+    }
+    
+    .institutional-footer {
+        background-color: #1E3A8A;
+        color: #FFFFFF;
+        text-align: center;
+        padding: 1.5rem 1rem;
+        border-radius: 10px;
+        margin-top: 3rem;
+        box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+        border-top: 3px solid #F59E0B;
+    }
+    .institutional-footer p { margin: 0.3rem 0; color: #F8FAFC; font-size: 0.9rem; }
+    .visitor-counter { margin-top: 0.8rem; }
+    </style>
+""", unsafe_allow_html=True)
+
+# --- HEADER WITH LOGO ---
+col_logo, col_title = st.columns([1, 5])
+
+with col_logo:
+    logo_path = Path("logo_pjc copy.jpg")
+    if logo_path.exists():
+        st.image(str(logo_path), width=110)
+    else:
+        st.markdown("### 🏛️ PJC")
+
+with col_title:
+    st.markdown("""
+        <div class="portal-header" style="margin-bottom: 0; padding: 1.2rem;">
+            <h1>Prabhu Jagatbandhu College</h1>
+            <p>Academic Repository & Syllabus Management Portal</p>
+        </div>
+    """, unsafe_allow_html=True)
+
+st.markdown("<br>", unsafe_allow_html=True)
+
+DEPARTMENT_FOLDERS = [
+    "Bengali", "English", "Philosophy", "History", "Geography", 
+    "Economics", "Physical Education", "Physics", "Chemistry", "Mathematics", "Commerce"
+]
+
+# --- PUBLISHED GOOGLE SHEET CSV URL ---
+# Replace this URL with your published CSV link from Step 2
+SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/YOUR_PUBLISHED_SHEET_ID/pub?output=csv"
+
+@st.cache_data(ttl=60)  # Caches data for 60 seconds to enable auto-refreshing
+def load_uploaded_files():
+    try:
+        df = pd.read_csv(SHEET_CSV_URL)
+        # Standardize expected column names: Date, Department, Category, Title, FileId
+        df.columns = [col.strip().title() for col in df.columns]
+        return df
+    except Exception:
+        return pd.DataFrame()
 
 # --- NAVIGATION TABS ---
 tab_browse, tab_upload = st.tabs(["📂 Browse Repository & Syllabi", "📤 Upload New Materials"])
-
-# Helper function to generate view and download URLs for Google Drive files & folders
-def generate_drive_urls(item_id, is_folder=False):
-    if is_folder:
-        view_url = f"https://drive.google.com/drive/folders/{item_id}?usp=sharing"
-        download_url = f"https://drive.google.com/drive/folders/{item_id}?usp=sharing"
-    else:
-        view_url = f"https://drive.google.com/file/d/{item_id}/view?usp=sharing"
-        download_url = f"https://drive.google.com/uc?export=download&id={item_id}"
-    return view_url, download_url
 
 # --- TAB 1: BROWSE REPOSITORY ---
 with tab_browse:
@@ -107,42 +181,56 @@ with tab_browse:
     with f_col1:
         selected_category = st.selectbox("Select Category", ["All", "Syllabus", "Study Material"])
     with f_col2:
-        selected_dept = st.selectbox("Select Department", ["All Departments"] + list(DEPARTMENT_FOLDERS.keys()))
+        selected_dept = st.selectbox("Select Department", ["All Departments"] + DEPARTMENT_FOLDERS)
     
     st.markdown("---")
-    st.info(f"📁 Repository View: **{selected_dept}** ({selected_category})")
 
-    # Dynamic lookup map
-    target_folder_id = SYLLABI_FOLDER_ID if selected_category == "Syllabus" else DEPARTMENT_FOLDERS.get(selected_dept, SYLLABI_FOLDER_ID)
-    
-    view_link, download_link = generate_drive_urls(target_folder_id, is_folder=True)
+    df_files = load_uploaded_files()
 
-    st.markdown(f"""
-        <div class="card">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                    <span style="background: #1E3A8A; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85rem;">
-                        {selected_dept if selected_dept != 'All Departments' else 'All Departments'}
-                    </span>
-                    <span style="background: #059669; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85rem; margin-left: 6px;">
-                        {selected_category}
-                    </span>
-                    <h3 style="margin: 0.6rem 0 0.3rem 0; color: #1E293B;">
-                        CCF Physics Syllabus / Departmental Repository
-                    </h3>
-                    <p style="color: #64748B; font-size: 0.9rem; margin: 0;">
-                        Official Calcutta University CCF Syllabus & Departmental Study Material Directory
-                    </p>
-                </div>
-            </div>
-        </div>
-    """, unsafe_allow_html=True)
-    
-    b_col1, b_col2, b_col3 = st.columns([1.2, 1.2, 2.6])
-    with b_col1:
-        st.link_button("👁️ Open / Preview Folder", view_link, use_container_width=True)
-    with b_col2:
-        st.link_button("📂 Access All Files", download_link, use_container_width=True)
+    if not df_files.empty:
+        # Apply filters dynamically
+        filtered_df = df_files.copy()
+        
+        if selected_category != "All" and "Category" in filtered_df.columns:
+            filtered_df = filtered_df[filtered_df["Category"].str.contains(selected_category, case=False, na=False)]
+            
+        if selected_dept != "All Departments" and "Department" in filtered_df.columns:
+            filtered_df = filtered_df[filtered_df["Department"].str.contains(selected_dept, case=False, na=False)]
+
+        if not filtered_df.empty:
+            for idx, row in filtered_df.iterrows():
+                dept_val = row.get("Department", "General")
+                cat_val = row.get("Category", "Material")
+                title_val = row.get("Title", f"Document #{idx+1}")
+                date_val = row.get("Date", "Recent")
+                file_id = row.get("Fileid", "")
+
+                preview_url = f"https://drive.google.com/file/d/{file_id}/view?usp=sharing"
+                download_url = f"https://drive.google.com/uc?export=download&id={file_id}"
+
+                st.markdown(f"""
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div>
+                                <span style="background: #1E3A8A; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem;">{dept_val}</span>
+                                <span style="background: #059669; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-left: 6px;">{cat_val}</span>
+                                <h4 style="margin: 0.6rem 0 0.3rem 0; color: #1E293B;">{title_val}</h4>
+                                <small style="color: #64748B;">Uploaded on: {date_val}</small>
+                            </div>
+                        </div>
+                    </div>
+                """, unsafe_allow_html=True)
+
+                b_col1, b_col2, b_col3 = st.columns([1, 1, 3])
+                with b_col1:
+                    st.link_button("👁️ Preview", preview_url, use_container_width=True)
+                with b_col2:
+                    st.link_button("⬇️ Download", download_url, use_container_width=True)
+                st.markdown("<div style='margin-bottom: 0.8rem;'></div>", unsafe_allow_html=True)
+        else:
+            st.warning("No files found matching the selected filters.")
+    else:
+        st.info("No materials listed yet. Use the 'Upload New Materials' tab to submit documents.")
 
 # --- TAB 2: UPLOAD PORTAL ---
 with tab_upload:
@@ -150,7 +238,107 @@ with tab_upload:
     st.markdown("""
         <div class="card">
             <p style="color: #334155; margin-bottom: 1rem;">
-               Click below to open the secure Google Form. Files submitted here are automatically sorted into your institutional Google Drive folders.
+               Click below to open the secure Google Form. Files submitted here are automatically cataloged and made available on the repository portal.
+            </p>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    FORM_DIRECT_URL = "https://forms.gle/Uk4AcdHTUL67wQ3f7"
+    
+    col_b1, col_b2, col_b3 = st.columns([1, 2, 1])
+    with col_b2:
+        st.link_button("🚀 Open Secure Upload Portal", FORM_DIRECT_URL, use_container_width=True)
+
+# --- FOOTER ---
+st.markdown("""
+    <div class="institutional-footer">
+        <p>© Prabhu Jagatbandhu College | Academic Repository Management</p>
+        <p>Maintained by <strong>Dr. Kisor Mukhopadhyay</strong> (Teacher Council Secretary)</p>
+        <div class="visitor-counter">
+            <img src="https://visitor-badge.laobi.icu/badge?page_id=pjc_academic_repository_portal" alt="Visitor Counter">
+        </div>
+    </div>
+""", unsafe_allow_html=True)"
+
+@st.cache_data(ttl=60)  # Caches data for 60 seconds to enable auto-refreshing
+def load_uploaded_files():
+    try:
+        df = pd.read_csv(SHEET_CSV_URL)
+        # Standardize expected column names: Date, Department, Category, Title, FileId
+        df.columns = [col.strip().title() for col in df.columns]
+        return df
+    except Exception:
+        return pd.DataFrame()
+
+# --- NAVIGATION TABS ---
+tab_browse, tab_upload = st.tabs(["📂 Browse Repository & Syllabi", "📤 Upload New Materials"])
+
+# --- TAB 1: BROWSE REPOSITORY ---
+with tab_browse:
+    st.markdown("### 🔍 Explore Live Departmental Resources")
+    
+    f_col1, f_col2 = st.columns(2)
+    with f_col1:
+        selected_category = st.selectbox("Select Category", ["All", "Syllabus", "Study Material"])
+    with f_col2:
+        selected_dept = st.selectbox("Select Department", ["All Departments"] + DEPARTMENT_FOLDERS)
+    
+    st.markdown("---")
+
+    df_files = load_uploaded_files()
+
+    if not df_files.empty:
+        # Apply filters dynamically
+        filtered_df = df_files.copy()
+        
+        if selected_category != "All" and "Category" in filtered_df.columns:
+            filtered_df = filtered_df[filtered_df["Category"].str.contains(selected_category, case=False, na=False)]
+            
+        if selected_dept != "All Departments" and "Department" in filtered_df.columns:
+            filtered_df = filtered_df[filtered_df["Department"].str.contains(selected_dept, case=False, na=False)]
+
+        if not filtered_df.empty:
+            for idx, row in filtered_df.iterrows():
+                dept_val = row.get("Department", "General")
+                cat_val = row.get("Category", "Material")
+                title_val = row.get("Title", f"Document #{idx+1}")
+                date_val = row.get("Date", "Recent")
+                file_id = row.get("Fileid", "")
+
+                preview_url = f"https://drive.google.com/file/d/{file_id}/view?usp=sharing"
+                download_url = f"https://drive.google.com/uc?export=download&id={file_id}"
+
+                st.markdown(f"""
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div>
+                                <span style="background: #1E3A8A; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem;">{dept_val}</span>
+                                <span style="background: #059669; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-left: 6px;">{cat_val}</span>
+                                <h4 style="margin: 0.6rem 0 0.3rem 0; color: #1E293B;">{title_val}</h4>
+                                <small style="color: #64748B;">Uploaded on: {date_val}</small>
+                            </div>
+                        </div>
+                    </div>
+                """, unsafe_allow_html=True)
+
+                b_col1, b_col2, b_col3 = st.columns([1, 1, 3])
+                with b_col1:
+                    st.link_button("👁️ Preview", preview_url, use_container_width=True)
+                with b_col2:
+                    st.link_button("⬇️ Download", download_url, use_container_width=True)
+                st.markdown("<div style='margin-bottom: 0.8rem;'></div>", unsafe_allow_html=True)
+        else:
+            st.warning("No files found matching the selected filters.")
+    else:
+        st.info("No materials listed yet. Use the 'Upload New Materials' tab to submit documents.")
+
+# --- TAB 2: UPLOAD PORTAL ---
+with tab_upload:
+    st.markdown("### 🚀 Secure Material Submission")
+    st.markdown("""
+        <div class="card">
+            <p style="color: #334155; margin-bottom: 1rem;">
+               Click below to open the secure Google Form. Files submitted here are automatically cataloged and made available on the repository portal.
             </p>
         </div>
     """, unsafe_allow_html=True)
