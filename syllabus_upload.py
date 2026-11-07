@@ -4,7 +4,7 @@ import streamlit as st
 st.set_page_config(
     page_title="PJC Academic Material Repository Upload Portal",
     page_icon="📚",
-    layout="wide"
+    layout="centered"
 )
 
 # --- CUSTOM STYLING & INSTITUTIONAL DEEP BLUE THEME ---
@@ -13,31 +13,35 @@ st.markdown("""
     .stApp { background-color: #F8FAFC; }
     .portal-header {
         background-color: #1E3A8A;
-        padding: 1.5rem;
-        border-radius: 8px;
+        padding: 2rem 1.5rem;
+        border-radius: 10px;
         color: #FFFFFF;
         text-align: center;
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
-    .portal-header h1 { color: #FFFFFF !important; margin: 0; font-size: 1.8rem; font-weight: 700; }
-    .portal-header p { color: #E2E8F0; margin-top: 0.5rem; margin-bottom: 0; }
+    .portal-header h1 { color: #FFFFFF !important; margin: 0; font-size: 2rem; font-weight: 700; }
+    .portal-header p { color: #E2E8F0; margin-top: 0.5rem; margin-bottom: 0; font-size: 1.05rem; }
     
-    .form-container {
+    .action-card {
         background-color: #FFFFFF;
-        padding: 1rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        padding: 2.5rem 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         border: 1px solid #E2E8F0;
+        text-align: center;
+        margin-bottom: 2rem;
     }
+    .action-card h3 { color: #1E3A8A; margin-top: 0; }
+    .action-card p { color: #475569; font-size: 1rem; margin-bottom: 1.5rem; }
 
     .institutional-footer {
         background-color: #1E3A8A;
         color: #FFFFFF;
         text-align: center;
         padding: 1.5rem 1rem;
-        border-radius: 8px;
-        margin-top: 2.5rem;
+        border-radius: 10px;
+        margin-top: 3rem;
         box-shadow: 0 -2px 4px rgba(0,0,0,0.05);
     }
     .institutional-footer p { margin: 0.3rem 0; color: #F8FAFC; font-size: 0.9rem; }
@@ -54,30 +58,24 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- CONFIGURATION & LINKS ---
-FORM_EMBED_URL = "https://docs.google.com/forms/d/e/1FAIpQLSffjHfJolpUmj58B1Xw-OTSRpfWfc1HvbRkE4o-LEX_nhx20g/viewform?embedded=true"
 FORM_DIRECT_URL = "https://forms.gle/Uk4AcdHTUL67wQ3f7"
 
-# Instructions & Fallback Action Button
-col1, col2 = st.columns([3, 1])
-with col1:
-    st.info("ℹ️ Select your Category and Department below to automatically route your files to the right Google Drive folder.")
-with col2:
-    st.link_button("🔗 Open Form in New Tab", FORM_DIRECT_URL, use_container_width=True)
-
-# --- EMBEDDED GOOGLE FORM ---
-st.markdown(f"""
-    <div class="form-container">
-        <iframe 
-            src="{FORM_EMBED_URL}" 
-            width="100%" 
-            height="850" 
-            frameborder="0" 
-            marginheight="0" 
-            marginwidth="0">
-            Loading form...
-        </iframe>
+# --- CENTRAL SUBMISSION CARD ---
+st.markdown("""
+    <div class="action-card">
+        <h3>📄 Submit Academic Materials</h3>
+        <p>Click the secure portal button below to upload your Departmental Study Materials or Syllabi. 
+           Files submitted through the form are automatically sorted and routed to the correct Google Drive folders.</p>
     </div>
 """, unsafe_allow_html=True)
+
+# Centered large action button for submission
+col1, col2, col3 = st.columns([1, 2, 1])
+with col2:
+    st.link_button("🚀 Open Secure Upload Portal", FORM_DIRECT_URL, use_container_width=True)
+
+st.markdown("<br>", unsafe_allow_html=True)
+st.info("ℹ️ **Note:** Submissions open in a secure Google Form tab to ensure smooth file uploads and seamless Google account authentication.")
 
 # --- CENTERED DEEP BLUE FOOTER WITH VISITOR COUNTER ---
 st.markdown("""
