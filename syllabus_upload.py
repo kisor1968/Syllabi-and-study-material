@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import re
 from pathlib import Path
 
 # --- PAGE CONFIGURATION ---
@@ -79,13 +80,35 @@ DEPARTMENT_FOLDERS = [
 # --- LIVE PUBLISHED GOOGLE SHEET CSV URL ---
 SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTkBRxQ2SHSxD2u2S_0-ckK9j2a2D-gUXrIXAtGCTgYwuf2G5OlHAlQW8yoGZdMw5UiI0OeWPhIkP-u/pub?output=csv"
 
+def extract_drive_id(value):
+    """Extracts pure Google Drive File/Folder ID from raw text or URLs."""
+    if not value or pd.isna(value):
+        return ""
+    val_str = str(value).strip()
+    
+    # Check for /d/FILE_ID/ pattern
+    match_d = re.search(r'/d/([a-zA-Z0-9_-]+)', val_str)
+    if match_d:
+        return match_d.group(1)
+        
+    # Check for id=FILE_ID pattern
+    match_id = re.search(r'id=([a-zA-Z0-9_-]+)', val_str)
+    if match_id:
+        return match_id.group(1)
+        
+    # Standard alphanumeric Google Drive ID pattern
+    if re.match(r'^[a-zA-Z0-9_-]{25,}$', val_str):
+        return val_str
+        
+    return val_str
+
 @st.cache_data(ttl=60)
 def load_uploaded_files():
     try:
         df = pd.read_csv(SHEET_CSV_URL)
         df.columns = [str(col).strip().lower() for col in df.columns]
         return df
-    except Exception as e:
+    except Exception:
         return pd.DataFrame()
 
 # --- NAVIGATION TABS ---
@@ -110,9 +133,9 @@ with tab_browse:
         
         cat_col = next((c for c in filtered_df.columns if "cat" in c or "type" in c), None)
         dept_col = next((c for c in filtered_df.columns if "dept" in c or "department" in c), None)
-        title_col = next((c for c in filtered_df.columns if "title" in c or "file" in c or "name" in c), None)
-        date_col = next((c for c in filtered_df.columns if "date" in c or "time" in c), None)
-        id_col = next((c for c in filtered_df.columns if "id" in c or "link" in c or "url" in c), None)
+        title_col = next((c for c in filtered_df.columns if "title" in c or "file" in c or "name" in c or "upload" in c), None)
+        date_col = next((c for c in filtered_df.columns if "date" in c or "time" in c or "timestamp" in c), None)
+        id_col = next((c for c in filtered_df.columns if "id" in c or "link" in c or "url" in c or "file" in c or "upload" in c), None)
 
         if selected_category != "All" and cat_col:
             filtered_df = filtered_df[filtered_df[cat_col].astype(str).str.contains(selected_category, case=False, na=False)]
@@ -126,15 +149,16 @@ with tab_browse:
                 cat_val = str(row[cat_col]) if cat_col and pd.notna(row[cat_col]) else "Material"
                 title_val = str(row[title_col]) if title_col and pd.notna(row[title_col]) else f"Document #{idx+1}"
                 date_val = str(row[date_col]) if date_col and pd.notna(row[date_col]) else "Recent"
-                file_id = str(row[id_col]).strip() if id_col and pd.notna(row[id_col]) else ""
+                
+                raw_id_val = row[id_col] if id_col and pd.notna(row[id_col]) else ""
+                clean_file_id = extract_drive_id(raw_id_val)
 
-                if "id=" in file_id:
-                    file_id = file_id.split("id=")[-1].split("&")[0]
-                elif "/d/" in file_id:
-                    file_id = file_id.split("/d/")[1].split("/")[0]
-
-                preview_url = f"https://drive.google.com/file/d/{file_id}/view?usp=sharing"
-                download_url = f"https://drive.google.com/uc?export=download&id={file_id}"
+                if clean_file_id:
+                    preview_url = f"https://drive.google.com/file/d/{clean_file_id}/view?usp=sharing"
+                    download_url = f"https://drive.google.com/uc?export=download&id={clean_file_id}"
+                else:
+                    preview_url = "#"
+                    download_url = "#"
 
                 st.markdown(f"""
                     <div class="card">
