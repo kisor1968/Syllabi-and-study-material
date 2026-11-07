@@ -83,7 +83,6 @@ SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTkBRxQ2SHSxD2u
 def load_uploaded_files():
     try:
         df = pd.read_csv(SHEET_CSV_URL)
-        # Standardize column headers for robust matching
         df.columns = [str(col).strip().lower() for col in df.columns]
         return df
     except Exception as e:
@@ -109,11 +108,10 @@ with tab_browse:
     if not df_files.empty:
         filtered_df = df_files.copy()
         
-        # Flexibly match columns regardless of exact Google Form field names
         cat_col = next((c for c in filtered_df.columns if "cat" in c or "type" in c), None)
         dept_col = next((c for c in filtered_df.columns if "dept" in c or "department" in c), None)
         title_col = next((c for c in filtered_df.columns if "title" in c or "file" in c or "name" in c), None)
-        date_col = next((c for c in filtered_col.columns if "date" in c or "time" in c), None)
+        date_col = next((c for c in filtered_df.columns if "date" in c or "time" in c), None)
         id_col = next((c for c in filtered_df.columns if "id" in c or "link" in c or "url" in c), None)
 
         if selected_category != "All" and cat_col:
@@ -130,7 +128,6 @@ with tab_browse:
                 date_val = str(row[date_col]) if date_col and pd.notna(row[date_col]) else "Recent"
                 file_id = str(row[id_col]).strip() if id_col and pd.notna(row[id_col]) else ""
 
-                # Extract ID if a full URL was saved in the sheet
                 if "id=" in file_id:
                     file_id = file_id.split("id=")[-1].split("&")[0]
                 elif "/d/" in file_id:
