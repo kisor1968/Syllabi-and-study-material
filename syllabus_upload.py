@@ -7,13 +7,10 @@ st.set_page_config(
     layout="wide"
 )
 
-# --- CUSTOM STYLING & FOOTER (Institutional Deep Blue Theme) ---
+# --- CUSTOM STYLING ---
 st.markdown("""
     <style>
-    /* Main Theme & Header Styling */
-    .stApp {
-        background-color: #F8FAFC;
-    }
+    .stApp { background-color: #F8FAFC; }
     .portal-header {
         background-color: #1E3A8A;
         padding: 1.5rem;
@@ -21,31 +18,15 @@ st.markdown("""
         color: #FFFFFF;
         text-align: center;
         margin-bottom: 1.5rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
-    .portal-header h1 {
-        color: #FFFFFF !important;
-        margin: 0;
-        font-weight: 700;
-        font-size: 1.8rem;
-    }
-    .portal-header p {
-        color: #E2E8F0;
-        margin-top: 0.5rem;
-        margin-bottom: 0;
-        font-size: 0.95rem;
-    }
-
-    /* Embedded Form Wrapper */
+    .portal-header h1 { color: #FFFFFF !important; margin: 0; font-size: 1.8rem; }
+    .portal-header p { color: #E2E8F0; margin-top: 0.5rem; margin-bottom: 0; }
     .form-container {
         background-color: #FFFFFF;
         padding: 1rem;
         border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         border: 1px solid #E2E8F0;
     }
-
-    /* Centered Footer Styling */
     .institutional-footer {
         background-color: #1E3A8A;
         color: #FFFFFF;
@@ -53,20 +34,12 @@ st.markdown("""
         padding: 1.5rem 1rem;
         border-radius: 8px;
         margin-top: 2.5rem;
-        box-shadow: 0 -2px 4px rgba(0,0,0,0.05);
     }
-    .institutional-footer p {
-        margin: 0.3rem 0;
-        font-size: 0.9rem;
-        color: #F8FAFC;
-    }
-    .visitor-counter {
-        margin-top: 0.8rem;
-    }
+    .institutional-footer p { margin: 0.3rem 0; color: #F8FAFC; }
     </style>
 """, unsafe_allow_html=True)
 
-# --- HEADER SECTION ---
+# --- HEADER ---
 st.markdown("""
     <div class="portal-header">
         <h1>Prabhu Jagatbandhu College</h1>
@@ -74,19 +47,21 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-# --- GOOGLE FORM EMBED CONFIGURATION ---
-# Appended ?embedded=true to ensure clean rendering inside the Streamlit container frame
-GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScUk4AcdHTUL67wQ3f7.../viewform?embedded=true" 
-# Note: If your short link (forms.gle) doesn't load inside an iframe due to Google's X-Frame headers, 
-# use the full Google Form edit/share URL ending with /viewform?embedded=true instead.
+# --- DIRECT LINK & EMBED ---
+FORM_EMBED_URL = "https://docs.google.com/forms/d/e/1FAIpQLScUk4AcdHTUL67wQ3f7/viewform?embedded=true"
+FORM_DIRECT_URL = "https://forms.gle/Uk4AcdHTUL67wQ3f7"
 
-st.info("ℹ️ Please select the correct Category (Syllabus or Study Material) and Department in the form below. Uploaded files will automatically route into designated Google Drive folders.")
+col1, col2 = st.columns([3, 1])
+with col1:
+    st.info("ℹ️ Select your Category and Department below to automatically route your files to the right Google Drive folder.")
+with col2:
+    st.link_button("🔗 Open Form in New Tab", FORM_DIRECT_URL, use_container_width=True)
 
-# Embed Google Form inside Streamlit
+# Embed Google Form iframe
 st.markdown(f"""
     <div class="form-container">
         <iframe 
-            src="https://forms.gle/Uk4AcdHTUL67wQ3f7" 
+            src="{FORM_EMBED_URL}" 
             width="100%" 
             height="850" 
             frameborder="0" 
@@ -97,12 +72,12 @@ st.markdown(f"""
     </div>
 """, unsafe_allow_html=True)
 
-# --- CENTERED DEEP BLUE FOOTER WITH VISITOR COUNTER ---
+# --- FOOTER ---
 st.markdown("""
     <div class="institutional-footer">
         <p>© Prabhu Jagatbandhu College | Academic Repository Management</p>
         <p>Maintained by <strong>Dr. Kisor Mukhopadhyay</strong> (Teacher Council Secretary)</p>
-        <div class="visitor-counter">
+        <div style="margin-top: 0.8rem;">
             <img src="https://visitor-badge.laobi.icu/badge?page_id=pjc_academic_repository_portal" alt="Visitor Counter">
         </div>
     </div>
