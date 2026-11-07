@@ -42,20 +42,20 @@ st.markdown(f"""
     .portal-header-text h1 {{ color: #FFFFFF !important; margin: 0; font-size: 2.1rem; font-weight: 800; line-height: 1.2; }}
     .portal-header-text p {{ color: #E2E8F0; margin-top: 0.3rem; margin-bottom: 0; font-size: 1.05rem; }}
     
-    /* 3D Colored Card Look */
+    /* Refined Clean Card Style with Top Accent */
     .card-item {{
-        background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
-        padding: 1.3rem 1.6rem;
+        background: #FFFFFF;
+        padding: 1.4rem 1.8rem;
         border-radius: 12px;
-        box-shadow: 0 10px 20px -5px rgba(30, 58, 138, 0.12), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         border: 1px solid #E2E8F0;
-        border-left: 6px solid #F59E0B;
+        border-top: 4px solid #1E3A8A;
         margin-bottom: 1.2rem;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
     }}
     .card-item:hover {{
         transform: translateY(-2px);
-        box-shadow: 0 14px 25px -5px rgba(30, 58, 138, 0.18), 0 6px 8px -2px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 8px 20px rgba(30, 58, 138, 0.1);
     }}
     
     .btn-preview {{
@@ -69,7 +69,7 @@ st.markdown(f"""
         font-size: 0.9rem;
         text-align: center;
         width: 100%;
-        box-shadow: 0 3px 6px rgba(37, 99, 235, 0.25);
+        box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
         transition: background-color 0.2s;
     }}
     .btn-preview:hover {{
@@ -87,7 +87,7 @@ st.markdown(f"""
         font-size: 0.9rem;
         text-align: center;
         width: 100%;
-        box-shadow: 0 3px 6px rgba(5, 150, 105, 0.25);
+        box-shadow: 0 2px 4px rgba(5, 150, 105, 0.2);
         transition: background-color 0.2s;
     }}
     .btn-download:hover {{
