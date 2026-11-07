@@ -1,5 +1,4 @@
 import streamlit as st
-import base64
 from pathlib import Path
 
 # --- PAGE CONFIGURATION ---
@@ -72,19 +71,19 @@ with col_title:
 st.markdown("<br>", unsafe_allow_html=True)
 
 # --- FOLDER ID CONFIGURATION ---
-SYLLABI_FOLDER_ID = "1LTh4Wag8BU1VTLACnYir-0voANQSD9Ky"[cite: 8]
+SYLLABI_FOLDER_ID = "1LTh4Wag8BU1VTLACnYir-0voANQSD9Ky"
 DEPARTMENT_FOLDERS = {
-    "Bengali": "1vGTsX5d8drocNRfXG_DZjKkB3egI8TLd",[cite: 8]
-    "English": "1HT6QEjsar1Si0cjF9Ou0Uxpm1rtnXq9z",[cite: 8]
-    "Philosophy": "1beouAOzkdErQsw3E-jf4Ad0jqZhcm3dW",[cite: 8]
-    "History": "1mDYg41Y3p7lA72Gb3zWXXmMo8tjU4Yn1",[cite: 8]
-    "Geography": "1-SKW32KjgG-11yVZZLni285cUotkjPQq",[cite: 8]
-    "Economics": "1L1jUNuNewZ8obzlRGCNRrXe-RvuncmuZ",[cite: 8]
-    "Physical Education": "1RkL0Kyt48YI1mbhmH_kzubK9sVShMIA4",[cite: 8]
-    "Physics": "1Ss1vtjtXsjq1CNnWMumxWLsQLe84MBhG",[cite: 8]
-    "Chemistry": "1DQtkS-Te4RYtJ7AcAd228ZUWM13HT_Fv",[cite: 8]
-    "Mathematics": "1NJl9U9cGVdEPwz--vV3Di2kgzP8iipYW",[cite: 8]
-    "Commerce": "18C0tTTyywNvdGfsSjTcg9oWEsjybjGM0"[cite: 8]
+    "Bengali": "1vGTsX5d8drocNRfXG_DZjKkB3egI8TLd",
+    "English": "1HT6QEjsar1Si0cjF9Ou0Uxpm1rtnXq9z",
+    "Philosophy": "1beouAOzkdErQsw3E-jf4Ad0jqZhcm3dW",
+    "History": "1mDYg41Y3p7lA72Gb3zWXXmMo8tjU4Yn1",
+    "Geography": "1-SKW32KjgG-11yVZZLni285cUotkjPQq",
+    "Economics": "1L1jUNuNewZ8obzlRGCNRrXe-RvuncmuZ",
+    "Physical Education": "1RkL0Kyt48YI1mbhmH_kzubK9sVShMIA4",
+    "Physics": "1Ss1vtjtXsjq1CNnWMumxWLsQLe84MBhG",
+    "Chemistry": "1DQtkS-Te4RYtJ7AcAd228ZUWM13HT_Fv",
+    "Mathematics": "1NJl9U9cGVdEPwz--vV3Di2kgzP8iipYW",
+    "Commerce": "18C0tTTyywNvdGfsSjTcg9oWEsjybjGM0"
 }
 
 # --- NAVIGATION TABS ---
@@ -102,28 +101,20 @@ with tab_browse:
     
     st.markdown("---")
 
-    # Real file fetching logic from Google Drive folders
-    # To connect live Google Drive listing without mock data, files uploaded via your form 
-    # populate these exact folders. Users can click preview/download directly via Google Drive viewer links.
-    
-    # Helper to generate Google Drive preview and download URLs based on file ID
     def get_drive_links(file_id):
         preview_url = f"https://drive.google.com/file/d/{file_id}/preview"
         download_url = f"https://drive.google.com/uc?export=download&id={file_id}"
         return preview_url, download_url
 
-    # Example of displaying user-uploaded items dynamically from your actual folders:
-    # (If no files have been indexed yet, it cleanly displays a prompt to upload via the form tab)
     st.info(f"📁 Connected to Google Drive Folders for **{selected_dept}** ({selected_category})")
 
-    # Example live record structure populated from your actual uploaded file test
     live_repository_items = [
         {
             "Department": "Physics", 
             "Category": "Syllabus", 
             "Title": "ccf-physics.pdf (Uploaded Test File)", 
             "Date": "2026-11-07", 
-            "FileId": "1LTh4Wag8BU1VTLACnYir-0voANQSD9Ky" # Uses your actual folder/file reference
+            "FileId": "1LTh4Wag8BU1VTLACnYir-0voANQSD9Ky"
         }
     ]
 
@@ -145,7 +136,6 @@ with tab_browse:
                     </div>
                 """, unsafe_allow_html=True)
                 
-                # Action Buttons for Preview and Download
                 b_col1, b_col2, b_col3 = st.columns([1, 1, 3])
                 with b_col1:
                     st.link_button("👁️ Preview", prev_url, use_container_width=True)
