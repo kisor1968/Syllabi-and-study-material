@@ -101,26 +101,29 @@ with tab_browse:
     
     st.markdown("---")
 
-    def get_drive_links(file_id):
+    # Helper function to generate direct file preview and download URLs
+    def get_drive_file_links(file_id):
         preview_url = f"https://drive.google.com/file/d/{file_id}/preview"
         download_url = f"https://drive.google.com/uc?export=download&id={file_id}"
         return preview_url, download_url
 
-    st.info(f"📁 Connected to Google Drive Folders for **{selected_dept}** ({selected_category})")
+    st.info(f"📁 Repository Filter Active: **{selected_dept}** ({selected_category})")
 
+    # NOTE: Replace 'YOUR_ACTUAL_UPLOADED_FILE_ID' below with the actual File ID 
+    # of a PDF uploaded into your Google Drive folder (do not use Folder IDs).
     live_repository_items = [
         {
             "Department": "Physics", 
             "Category": "Syllabus", 
-            "Title": "ccf-physics.pdf (Uploaded Test File)", 
+            "Title": "CCF Physics Syllabus Document", 
             "Date": "2026-11-07", 
-            "FileId": "1LTh4Wag8BU1VTLACnYir-0voANQSD9Ky"
+            "FileId": "1LTh4Wag8BU1VTLACnYir-0voANQSD9Ky"  # Replace with a real file ID
         }
     ]
 
     if live_repository_items:
         for item in live_repository_items:
-            prev_url, dl_url = get_drive_links(item["FileId"])
+            prev_url, dl_url = get_drive_file_links(item["FileId"])
             
             with st.container():
                 st.markdown(f"""
