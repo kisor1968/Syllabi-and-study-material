@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import re
 from pathlib import Path
+import base64
 
 # --- PAGE CONFIGURATION ---
 st.set_page_config(
@@ -10,34 +11,47 @@ st.set_page_config(
     layout="wide"
 )
 
+# --- HELPER: BASE64 LOGO ENCODER ---
+def get_base64_image(image_path):
+    p = Path(image_path)
+    if p.exists():
+        with open(p, "rb") as img_file:
+            return base64.b64encode(img_file.read()).decode()
+    return None
+
+logo_b64 = get_base64_image("logo_pjc copy.jpg")
+logo_html = f'<img src="data:image/jpeg;base64,{logo_b64}" style="height: 75px; width: auto; margin-right: 1.5rem; border-radius: 6px; background: white; padding: 4px;">' if logo_b64 else '<div style="font-size: 2.2rem; margin-right: 1rem;">🏛️</div>'
+
 # --- CUSTOM STYLING & INSTITUTIONAL THEME ---
-st.markdown("""
+st.markdown(f"""
     <style>
-    .stApp { background-color: #F1F5F9; }
+    .stApp {{ background-color: #F1F5F9; }}
     
-    .portal-header {
+    .portal-header {{
         background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
-        padding: 2rem 1.5rem;
+        padding: 1.8rem 2rem;
         border-radius: 12px;
         color: #FFFFFF;
-        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
         margin-bottom: 2rem;
         box-shadow: 0 6px 15px -3px rgba(30, 58, 138, 0.3);
         border-bottom: 4px solid #F59E0B;
-    }
-    .portal-header h1 { color: #FFFFFF !important; margin: 0; font-size: 2.2rem; font-weight: 800; }
-    .portal-header p { color: #E2E8F0; margin-top: 0.5rem; margin-bottom: 0; font-size: 1.1rem; }
+    }}
+    .portal-header-text h1 {{ color: #FFFFFF !important; margin: 0; font-size: 2.1rem; font-weight: 800; line-height: 1.2; }}
+    .portal-header-text p {{ color: #E2E8F0; margin-top: 0.3rem; margin-bottom: 0; font-size: 1.05rem; }}
     
-    .card {
+    .card-item {{
         background-color: #FFFFFF;
         padding: 1.2rem 1.5rem;
         border-radius: 10px;
         box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
         border: 1px solid #E2E8F0;
         margin-bottom: 1rem;
-    }
+    }}
     
-    .institutional-footer {
+    .institutional-footer {{
         background-color: #1E3A8A;
         color: #FFFFFF;
         text-align: center;
@@ -46,31 +60,22 @@ st.markdown("""
         margin-top: 3rem;
         box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
         border-top: 3px solid #F59E0B;
-    }
-    .institutional-footer p { margin: 0.3rem 0; color: #F8FAFC; font-size: 0.9rem; }
-    .visitor-counter { margin-top: 0.8rem; }
+    }}
+    .institutional-footer p {{ margin: 0.3rem 0; color: #F8FAFC; font-size: 0.9rem; }}
+    .visitor-counter {{ margin-top: 0.8rem; }}
     </style>
 """, unsafe_allow_html=True)
 
-# --- HEADER WITH LOGO ---
-col_logo, col_title = st.columns([1, 5])
-
-with col_logo:
-    logo_path = Path("logo_pjc copy.jpg")
-    if logo_path.exists():
-        st.image(str(logo_path), width=110)
-    else:
-        st.markdown("### 🏛️ PJC")
-
-with col_title:
-    st.markdown("""
-        <div class="portal-header" style="margin-bottom: 0; padding: 1.2rem;">
+# --- HEADER WITH INTEGRATED LOGO ---
+st.markdown(f"""
+    <div class="portal-header">
+        {logo_html}
+        <div class="portal-header-text">
             <h1>Prabhu Jagatbandhu College</h1>
             <p>Academic Repository & Syllabus Management Portal</p>
         </div>
-    """, unsafe_allow_html=True)
-
-st.markdown("<br>", unsafe_allow_html=True)
+    </div>
+""", unsafe_allow_html=True)
 
 DEPARTMENT_FOLDERS = [
     "Bengali", "English", "Philosophy", "History", "Geography", 
@@ -86,17 +91,14 @@ def extract_drive_id(value):
         return ""
     val_str = str(value).strip()
     
-    # Check for /d/FILE_ID/ pattern
     match_d = re.search(r'/d/([a-zA-Z0-9_-]+)', val_str)
     if match_d:
         return match_d.group(1)
         
-    # Check for id=FILE_ID pattern
     match_id = re.search(r'id=([a-zA-Z0-9_-]+)', val_str)
     if match_id:
         return match_id.group(1)
         
-    # Standard alphanumeric Google Drive ID pattern
     if re.match(r'^[a-zA-Z0-9_-]{25,}$', val_str):
         return val_str
         
@@ -160,25 +162,30 @@ with tab_browse:
                     preview_url = "#"
                     download_url = "#"
 
-                st.markdown(f"""
-                    <div class="card">
-                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                # Container with details on the left (4 parts) and Action Buttons on the right (1 part)
+                with st.container():
+                    st.markdown('<div class="card-item">', unsafe_allow_html=True)
+                    card_left, card_right = st.columns([3.5, 1.2])
+                    
+                    with card_left:
+                        st.markdown(f"""
                             <div>
-                                <span style="background: #1E3A8A; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem;">{dept_val}</span>
-                                <span style="background: #059669; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-left: 6px;">{cat_val}</span>
+                                <span style="background: #1E3A8A; color: white; padding: 3px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 600;">{dept_val}</span>
+                                <span style="background: #059669; color: white; padding: 3px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; margin-left: 6px;">{cat_val}</span>
                                 <h4 style="margin: 0.6rem 0 0.3rem 0; color: #1E293B;">{title_val}</h4>
                                 <small style="color: #64748B;">Uploaded on: {date_val}</small>
                             </div>
-                        </div>
-                    </div>
-                """, unsafe_allow_html=True)
-
-                b_col1, b_col2, b_col3 = st.columns([1, 1, 3])
-                with b_col1:
-                    st.link_button("👁️ Preview", preview_url, use_container_width=True)
-                with b_col2:
-                    st.link_button("⬇️ Download", download_url, use_container_width=True)
-                st.markdown("<div style='margin-bottom: 0.8rem;'></div>", unsafe_allow_html=True)
+                        """, unsafe_allow_html=True)
+                        
+                    with card_right:
+                        st.markdown("<div style='margin-top: 0.4rem;'></div>", unsafe_allow_html=True)
+                        btn_col1, btn_col2 = st.columns(2)
+                        with btn_col1:
+                            st.link_button("👁️ Preview", preview_url, use_container_width=True)
+                        with btn_col2:
+                            st.link_button("⬇️ Download", download_url, use_container_width=True)
+                            
+                    st.markdown('</div>', unsafe_allow_html=True)
         else:
             st.warning("No files found matching the selected filters.")
     else:
@@ -188,7 +195,7 @@ with tab_browse:
 with tab_upload:
     st.markdown("### 🚀 Secure Material Submission")
     st.markdown("""
-        <div class="card">
+        <div class="card-item">
             <p style="color: #334155; margin-bottom: 1rem;">
                Click below to open the secure Google Form. Submissions automatically log to the master directory and update this repository portal in real-time.
             </p>
