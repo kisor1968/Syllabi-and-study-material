@@ -42,17 +42,32 @@ st.markdown(f"""
     .portal-header-text h1 {{ color: #FFFFFF !important; margin: 0; font-size: 2.1rem; font-weight: 800; line-height: 1.2; }}
     .portal-header-text p {{ color: #E2E8F0; margin-top: 0.3rem; margin-bottom: 0; font-size: 1.05rem; }}
     
-    /* Refined Clean Card Style with Top Accent */
+    /* Card Style with Half-Cover Saffron Top Accent */
     .card-item {{
         background: #FFFFFF;
         padding: 1.4rem 1.8rem;
         border-radius: 12px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         border: 1px solid #E2E8F0;
-        border-top: 4px solid #1E3A8A;
+        border-top: 4px solid #FF9933; /* Saffron/Orange Accent */
+        border-top-width: 4px;
+        position: relative;
         margin-bottom: 1.2rem;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
     }}
+    
+    /* Pseudo-element to make the top accent cover exactly half (50%) of the box */
+    .card-item::before {{
+        content: "";
+        position: absolute;
+        top: -4px;
+        left: 0;
+        width: 50%;
+        height: 4px;
+        background-color: #FF7700; /* Rich Saffron */
+        border-top-left-radius: 12px;
+    }}
+
     .card-item:hover {{
         transform: translateY(-2px);
         box-shadow: 0 8px 20px rgba(30, 58, 138, 0.1);
