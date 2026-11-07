@@ -51,6 +51,42 @@ st.markdown(f"""
         margin-bottom: 1rem;
     }}
     
+    .btn-preview {{
+        background-color: #2563EB;
+        color: white !important;
+        padding: 0.55rem 1rem;
+        border-radius: 6px;
+        text-decoration: none;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-align: center;
+        width: 100%;
+        box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+        transition: background-color 0.2s;
+    }}
+    .btn-preview:hover {{
+        background-color: #1D4ED8;
+    }}
+    
+    .btn-download {{
+        background-color: #059669;
+        color: white !important;
+        padding: 0.55rem 1rem;
+        border-radius: 6px;
+        text-decoration: none;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-align: center;
+        width: 100%;
+        box-shadow: 0 2px 4px rgba(5, 150, 105, 0.2);
+        transition: background-color 0.2s;
+    }}
+    .btn-download:hover {{
+        background-color: #047857;
+    }}
+    
     .institutional-footer {{
         background-color: #1E3A8A;
         color: #FFFFFF;
@@ -162,7 +198,7 @@ with tab_browse:
                     preview_url = "#"
                     download_url = "#"
 
-                # Container with details on the left (4 parts) and Action Buttons on the right (1 part)
+                # Container with details on the left and custom-colored action buttons on the right
                 with st.container():
                     st.markdown('<div class="card-item">', unsafe_allow_html=True)
                     card_left, card_right = st.columns([3.5, 1.2])
@@ -181,9 +217,9 @@ with tab_browse:
                         st.markdown("<div style='margin-top: 0.4rem;'></div>", unsafe_allow_html=True)
                         btn_col1, btn_col2 = st.columns(2)
                         with btn_col1:
-                            st.link_button("👁️ Preview", preview_url, use_container_width=True)
+                            st.markdown(f'<a href="{preview_url}" target="_blank" class="btn-preview">👁️ Preview</a>', unsafe_allow_html=True)
                         with btn_col2:
-                            st.link_button("⬇️ Download", download_url, use_container_width=True)
+                            st.markdown(f'<a href="{download_url}" target="_blank" class="btn-download">⬇️ Download</a>', unsafe_allow_html=True)
                             
                     st.markdown('</div>', unsafe_allow_html=True)
         else:
