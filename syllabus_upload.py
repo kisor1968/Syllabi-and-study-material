@@ -267,7 +267,7 @@ with tab_upload:
 st.markdown("""
     <div class="institutional-footer">
         <p>© Prabhu Jagatbandhu College | Academic Repository Management</p>
-        <p>Created & Maintained by: <strong>Dr. Kisor Mukhopadhyay</strong>, Associate Professor, Department of Physics & Teachers' Council Secretary, Prabhu Jagatbandhu College</p>
+        <p>Created & Maintained by: <strong>Dr. Kisor Mukhopadhyay</strong>, Associate Professor, Department of Physics, Prabhu Jagatbandhu College</p>
         <div class="visitor-counter">
             <img src="https://visitor-badge.laobi.icu/badge?page_id=pjc_academic_repository_portal" alt="Visitor Counter">
         </div>
