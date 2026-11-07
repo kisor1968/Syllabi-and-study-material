@@ -89,7 +89,17 @@ DEPARTMENT_FOLDERS = {
 # --- NAVIGATION TABS ---
 tab_browse, tab_upload = st.tabs(["📂 Browse Repository & Syllabi", "📤 Upload New Materials"])
 
-# --- TAB 1: BROWSE REAL REPOSITORY FILES ---
+# Helper function to generate view and download URLs for Google Drive files & folders
+def generate_drive_urls(item_id, is_folder=False):
+    if is_folder:
+        view_url = f"https://drive.google.com/drive/folders/{item_id}?usp=sharing"
+        download_url = f"https://drive.google.com/drive/folders/{item_id}?usp=sharing"
+    else:
+        view_url = f"https://drive.google.com/file/d/{item_id}/view?usp=sharing"
+        download_url = f"https://drive.google.com/uc?export=download&id={item_id}"
+    return view_url, download_url
+
+# --- TAB 1: BROWSE REPOSITORY ---
 with tab_browse:
     st.markdown("### 🔍 Explore Live Departmental Resources")
     
@@ -100,53 +110,39 @@ with tab_browse:
         selected_dept = st.selectbox("Select Department", ["All Departments"] + list(DEPARTMENT_FOLDERS.keys()))
     
     st.markdown("---")
+    st.info(f"📁 Repository View: **{selected_dept}** ({selected_category})")
 
-    # Helper function to generate direct file preview and download URLs
-    def get_drive_file_links(file_id):
-        preview_url = f"https://drive.google.com/file/d/{file_id}/preview"
-        download_url = f"https://drive.google.com/uc?export=download&id={file_id}"
-        return preview_url, download_url
+    # Dynamic lookup map
+    target_folder_id = SYLLABI_FOLDER_ID if selected_category == "Syllabus" else DEPARTMENT_FOLDERS.get(selected_dept, SYLLABI_FOLDER_ID)
+    
+    view_link, download_link = generate_drive_urls(target_folder_id, is_folder=True)
 
-    st.info(f"📁 Repository Filter Active: **{selected_dept}** ({selected_category})")
-
-    # NOTE: Replace 'YOUR_ACTUAL_UPLOADED_FILE_ID' below with the actual File ID 
-    # of a PDF uploaded into your Google Drive folder (do not use Folder IDs).
-    live_repository_items = [
-        {
-            "Department": "Physics", 
-            "Category": "Syllabus", 
-            "Title": "CCF Physics Syllabus Document", 
-            "Date": "2026-11-07", 
-            "FileId": "1LTh4Wag8BU1VTLACnYir-0voANQSD9Ky"  # Replace with a real file ID
-        }
-    ]
-
-    if live_repository_items:
-        for item in live_repository_items:
-            prev_url, dl_url = get_drive_file_links(item["FileId"])
-            
-            with st.container():
-                st.markdown(f"""
-                    <div class="card">
-                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                            <div>
-                                <span style="background: #1E3A8A; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem;">{item['Department']}</span>
-                                <span style="background: #059669; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-left: 6px;">{item['Category']}</span>
-                                <h4 style="margin: 0.6rem 0 0.3rem 0; color: #1E293B;">{item['Title']}</h4>
-                                <small style="color: #64748B;">Uploaded on: {item['Date']}</small>
-                            </div>
-                        </div>
-                    </div>
-                """, unsafe_allow_html=True)
-                
-                b_col1, b_col2, b_col3 = st.columns([1, 1, 3])
-                with b_col1:
-                    st.link_button("👁️ Preview", prev_url, use_container_width=True)
-                with b_col2:
-                    st.link_button("⬇️ Download", dl_url, use_container_width=True)
-                st.markdown("<div style='margin-bottom: 0.5rem;'></div>", unsafe_allow_html=True)
-    else:
-        st.warning("No files uploaded in this category yet. Use the 'Upload New Materials' tab to add documents.")
+    st.markdown(f"""
+        <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <span style="background: #1E3A8A; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85rem;">
+                        {selected_dept if selected_dept != 'All Departments' else 'All Departments'}
+                    </span>
+                    <span style="background: #059669; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85rem; margin-left: 6px;">
+                        {selected_category}
+                    </span>
+                    <h3 style="margin: 0.6rem 0 0.3rem 0; color: #1E293B;">
+                        CCF Physics Syllabus / Departmental Repository
+                    </h3>
+                    <p style="color: #64748B; font-size: 0.9rem; margin: 0;">
+                        Official Calcutta University CCF Syllabus & Departmental Study Material Directory
+                    </p>
+                </div>
+            </div>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    b_col1, b_col2, b_col3 = st.columns([1.2, 1.2, 2.6])
+    with b_col1:
+        st.link_button("👁️ Open / Preview Folder", view_link, use_container_width=True)
+    with b_col2:
+        st.link_button("📂 Access All Files", download_link, use_container_width=True)
 
 # --- TAB 2: UPLOAD PORTAL ---
 with tab_upload:
