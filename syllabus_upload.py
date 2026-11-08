@@ -34,18 +34,20 @@ PAGE_SIZE = 10
 
 DEPARTMENT_FOLDERS = [
     "Bengali", "English", "Philosophy", "History", "Geography",
-    "Economics", "Physical Education", "Physics", "Chemistry", "Mathematics", "Commerce", "Zoology", "Botany", "Computer Science", 
-    "Political Science", "Sociology", "Sanskrit", "Education"
-    
+    "Economics", "Physical Education", "Physics", "Chemistry", "Mathematics", "Commerce",
+    "Zoology", "Botany", "Computer Science", "Political Science", "Sociology", "Sanskrit", "Education"
 ]
 DEPT_BN = {
     "Bengali": "বাংলা", "English": "ইংরেজি", "Philosophy": "দর্শন", "History": "ইতিহাস",
     "Geography": "ভূগোল", "Economics": "অর্থনীতি", "Physical Education": "শারীরিক শিক্ষা",
     "Physics": "পদার্থবিদ্যা", "Chemistry": "রসায়ন", "Mathematics": "গণিত", "Commerce": "বাণিজ্য",
+    "Zoology": "প্রাণিবিদ্যা", "Botany": "উদ্ভিদবিদ্যা", "Computer Science": "কম্পিউটার বিজ্ঞান",
+    "Political Science": "রাষ্ট্রবিজ্ঞান", "Sociology": "সমাজবিজ্ঞান", "Sanskrit": "সংস্কৃত", "Education": "শিক্ষাবিজ্ঞান",
 }
 DEPT_COLORS = [
     "#1E3A8A", "#7C3AED", "#BE185D", "#B45309", "#0F766E", "#C2410C",
-    "#4D7C0F", "#0369A1", "#6D28D9", "#0E7490", "#9F1239",
+    "#4D7C0F", "#0369A1", "#6D28D9", "#0E7490", "#9F1239", "#15803D",
+    "#A16207", "#1D4ED8", "#BE123C", "#0891B2", "#7E22CE", "#475569",
 ]
 
 # =====================================================================
@@ -565,17 +567,35 @@ def parse_dates(series):
         except Exception:
             return pd.Series([pd.NaT] * len(series), index=series.index)
 
+def match_dept(name):
+    """Return the department name found in a sheet value (longest match wins, so
+    'Physical Education' is not mistaken for 'Education')."""
+    low = str(name).lower()
+    for d in sorted(DEPARTMENT_FOLDERS, key=len, reverse=True):
+        if d.lower() in low:
+            return d
+    return None
+
+def dept_mask(series, dept):
+    """Rows of a column that belong to `dept`, ignoring longer departments that contain its name."""
+    s = series.astype(str)
+    mask = s.str.contains(dept, case=False, na=False, regex=False)
+    for other in DEPARTMENT_FOLDERS:
+        if other != dept and dept.lower() in other.lower():
+            mask &= ~s.str.contains(other, case=False, na=False, regex=False)
+    return mask
+
 def dept_color(name):
-    for i, d in enumerate(DEPARTMENT_FOLDERS):
-        if d.lower() in str(name).lower():
-            return DEPT_COLORS[i % len(DEPT_COLORS)]
+    d = match_dept(name)
+    if d:
+        return DEPT_COLORS[DEPARTMENT_FOLDERS.index(d) % len(DEPT_COLORS)]
     return "#475569"
 
 def dept_label(name):
     if st.session_state.get("lang") == "bn":
-        for d in DEPARTMENT_FOLDERS:
-            if d.lower() in str(name).lower():
-                return DEPT_BN[d]
+        d = match_dept(name)
+        if d:
+            return DEPT_BN.get(d, d)
     return name
 
 def cat_label(value):
@@ -852,7 +872,7 @@ def render_admin(df, cols, notices_count):
     dept_counts = {}
     if dept_col:
         for d in DEPARTMENT_FOLDERS:
-            dept_counts[d] = int(df[dept_col].astype(str).str.contains(d, case=False, na=False).sum())
+            dept_counts[d] = int(dept_mask(df[dept_col], d).sum())
     dept_items = sorted([(dept_label(d), n) for d, n in dept_counts.items() if n], key=lambda x: -x[1])
 
     c1, c2 = st.columns(2)
@@ -1006,7 +1026,7 @@ with tab_browse:
         dept_counts = {}
         if dept_col:
             for d in DEPARTMENT_FOLDERS:
-                n = int(df_files[dept_col].astype(str).str.contains(d, case=False, na=False).sum())
+                n = int(dept_mask(df_files[dept_col], d).sum())
                 if n:
                     dept_counts[d] = n
 
@@ -1052,7 +1072,7 @@ with tab_browse:
             filtered_df = filtered_df[filtered_df[cat_col].astype(str).str.contains(selected_category, case=False, na=False)]
 
         if selected_dept != "All Departments" and dept_col:
-            filtered_df = filtered_df[filtered_df[dept_col].astype(str).str.contains(selected_dept, case=False, na=False)]
+            filtered_df = filtered_df[dept_mask(filtered_df[dept_col], selected_dept)]
 
         if search_query.strip():
             hay = pd.Series("", index=filtered_df.index)
