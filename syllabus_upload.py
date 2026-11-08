@@ -705,9 +705,11 @@ def _preview_links(fid):
     st.caption(t("preview_note"))
 
 def open_preview(title, fid):
-    if _dialog_fn is None:
-        st.session_state["inline_preview"] = fid
-        return
+    # Opens the file directly in a new tab to bypass iframe 403 restrictions
+    st.markdown(
+        f'<meta http-equiv="refresh" content="0;url=https://drive.google.com/file/d/{fid}/view?usp=sharing">',
+        unsafe_allow_html=True
+    )
 
     @_dialog_fn(str(title)[:70] or "Preview", width="large")
     def _show():
