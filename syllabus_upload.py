@@ -351,7 +351,7 @@ def sync_query_params():
 dark = bool(st.session_state.get("dark_mode"))
 
 # =====================================================================
-# STYLING (Forced Specific Custom Button Styles)
+# STYLING (Custom Button Color Requirements)
 # =====================================================================
 LIGHT_VARS = """
 :root {
@@ -400,31 +400,10 @@ html, body, [class*="css"], .stApp, .stMarkdown, button, input, select, textarea
 .institutional-footer { background: linear-gradient(135deg, #1E3A8A, #1E40AF); color: #FFFFFF; text-align: center; padding: 1.6rem 1rem; border-radius: 14px; margin-top: 3rem; border-top: 3px solid #F59E0B; }
 
 /* =====================================================================
-   FORCE BUTTON & SECTION STYLING OVERRIDES
+   CUSTOM BUTTON & FORM OVERRIDES
 ==================================================================== */
 
-/* 1. Refresh Button -> Orange */
-div.stButton > button:has(div:contains("Refresh")), div.stButton > button:has(p:contains("Refresh")), div.stButton > button:has(span:contains("Refresh")), div.stButton > button:has(div:contains("রিফ্রেশ")), div.stButton > button:has(p:contains("রিফ্রেশ")) {
-    background: linear-gradient(135deg, #F59E0B, #EA580C) !important;
-    color: #FFFFFF !important;
-    border: none !important;
-}
-
-/* 2. Download Button -> Green */
-div.stButton > button:has(div:contains("Download")), div.stButton > button:has(p:contains("Download")), div.stButton > button:has(span:contains("Download")), div.stButton > button:has(div:contains("ডাউনলোড")), div.stButton > button:has(p:contains("ডাউনলোড")) {
-    background: linear-gradient(135deg, #10B981, #059669) !important;
-    color: #FFFFFF !important;
-    border: none !important;
-}
-
-/* 3. Save Button -> Orange */
-div.stButton > button:has(div:contains("Save")), div.stButton > button:has(p:contains("Save")), div.stButton > button:has(span:contains("Save")), div.stButton > button:has(div:contains("Saved")), div.stButton > button:has(p:contains("Saved")), div.stButton > button:has(div:contains("সংরক্ষণ")), div.stButton > button:has(p:contains("সংরক্ষণ")) {
-    background: linear-gradient(135deg, #F97316, #C2410C) !important;
-    color: #FFFFFF !important;
-    border: none !important;
-}
-
-/* 4. Faculty Password Container -> 3D Orange Style */
+/* Faculty Password Container -> 3D Orange Style */
 div[data-testid="stForm"]:has(input[type="password"]) {
     background: linear-gradient(145deg, #FFF7ED, #FFEDD5) !important;
     border: 2px solid #F97316 !important;
@@ -433,22 +412,16 @@ div[data-testid="stForm"]:has(input[type="password"]) {
     padding: 1.8rem !important;
 }
 
-/* 5. Log In Button -> Light Blue */
-div.stFormSubmitButton > button, div.stButton > button:has(div:contains("Log In")), div.stButton > button:has(p:contains("Log In")), div.stButton > button:has(div:contains("লগ ইন")), div.stButton > button:has(p:contains("লগ ইন")) {
+/* Log In & Log Out Buttons -> Light Blue */
+div.stFormSubmitButton > button, div.stButton > button:has(div:contains("Log In")), div.stButton > button:has(p:contains("Log In")), div.stButton > button:has(div:contains("লগ ইন")), div.stButton > button:has(p:contains("লগ ইন")),
+div.stButton > button:has(div:contains("Log Out")), div.stButton > button:has(p:contains("Log Out")), div.stButton > button:has(div:contains("লগ আউট")), div.stButton > button:has(p:contains("লগ আউট")) {
     background: linear-gradient(135deg, #38BDF8, #0284C7) !important;
     color: #FFFFFF !important;
     border: none !important;
     box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4) !important;
 }
 
-/* 6. Log Out Button -> Light Blue */
-div.stButton > button:has(div:contains("Log Out")), div.stButton > button:has(p:contains("Log Out")), div.stButton > button:has(div:contains("লগ আউট")), div.stButton > button:has(p:contains("লগ আউট")) {
-    background: linear-gradient(135deg, #38BDF8, #0284C7) !important;
-    color: #FFFFFF !important;
-    border: none !important;
-}
-
-/* 7. Remove (Admin Delete) Button -> Red */
+/* Remove (Admin Delete) Buttons -> Red */
 div.stButton > button:has(div:contains("Remove")), div.stButton > button:has(p:contains("Remove")), div.stButton > button:has(div:contains("মুছুন")), div.stButton > button:has(p:contains("মুছুন")) {
     background: linear-gradient(135deg, #EF4444, #B91C1C) !important;
     color: #FFFFFF !important;
@@ -586,7 +559,7 @@ def open_preview(title, fid):
         _show()
 
 # =====================================================================
-# CARD RENDERING
+# CARD RENDERING (Using HTML-styled buttons for guaranteed colors)
 # =====================================================================
 def render_cards(df, prefix, cols, paginate=True):
     cat_col, dept_col, title_col, date_col, sem_col = cols.get("cat"), cols.get("dept"), cols.get("title"), cols.get("date"), cols.get("sem")
@@ -596,7 +569,6 @@ def render_cards(df, prefix, cols, paginate=True):
     if paginate:
         st.markdown(f'<div class="result-bar"><span class="result-pill">{t("showing", shown=min(visible, total), total=total)}</span></div>', unsafe_allow_html=True)
 
-    now = datetime.now()
     saved = st.session_state.get("saved", [])
 
     for pos, (idx, row) in enumerate(df.head(visible).iterrows()):
@@ -613,6 +585,7 @@ def render_cards(df, prefix, cols, paginate=True):
         avg_score, rating_count = get_avg_rating(fid)
 
         download_url = f"https://drive.google.com/uc?export=download&id={fid}" if has_file else "#"
+        is_saved = fid in saved
 
         with st.container():
             st.markdown(f'<div class="card-item">', unsafe_allow_html=True)
@@ -637,21 +610,20 @@ def render_cards(df, prefix, cols, paginate=True):
             with c_dl:
                 st.markdown("<div style='height:4px;'></div>", unsafe_allow_html=True)
                 if has_file:
-                    if st.button(t("download"), key=f"{prefix}_dl_{idx}", use_container_width=True):
-                        record_download(fid)
-                        st.markdown(f'<meta http-equiv="refresh" content="0;url={download_url}">', unsafe_allow_html=True)
+                    # Guaranteed Green Download Button
+                    st.markdown(
+                        f'<a href="{download_url}" target="_self" onclick="parent.postMessage({{type: \'download\', id: \'{fid}\'}}, \'*\')" download style="display:block; text-align:center; background:linear-gradient(135deg, #10B981, #059669); color:white; padding:0.45rem 1rem; border-radius:8px; font-weight:600; text-decoration:none; box-shadow:0 2px 6px rgba(16,185,129,0.3);">⬇️ {t("download")}</a>',
+                        unsafe_allow_html=True
+                    )
                 else:
                     st.button(t("download"), key=f"{prefix}_dl_dis_{idx}", disabled=True, use_container_width=True)
             with c_sv:
                 st.markdown("<div style='height:4px;'></div>", unsafe_allow_html=True)
-                st.button(
-                    t("saved") if fid in saved else t("save"),
-                    key=f"{prefix}_sv_{idx}",
-                    disabled=not has_file,
-                    on_click=toggle_save,
-                    args=(fid,),
-                    use_container_width=True,
-                )
+                # Guaranteed Orange Save / Saved Button
+                save_label = t("saved") if is_saved else t("save")
+                if st.button(save_label, key=f"{prefix}_sv_{idx}", disabled=not has_file, use_container_width=True):
+                    toggle_save(fid)
+                    st.rerun()
             
             if has_file:
                 with st.expander(f"⭐ {t('rating_label')}"):
@@ -800,13 +772,29 @@ tab_browse, tab_popular, tab_saved, tab_upload, tab_admin = st.tabs([
 ])
 
 # =====================================================================
-# TAB 1: BROWSE REPOSITORY
+# TAB 1: BROWSE REPOSITORY (Guaranteed Orange Refresh Button)
 # =====================================================================
 with tab_browse:
     head_l, head_r = st.columns([5, 1])
     with head_l: st.markdown(f"### {t('explore')}")
     with head_r:
-        if st.button(t("refresh"), use_container_width=True):
+        # Guaranteed Orange Refresh Button via HTML wrapper
+        refresh_clicked = st.button(t("refresh"), use_container_width=True)
+        st.markdown("""
+        <style>
+        div.stButton > button:has(p:contains("Refresh")), div.stButton > button:has(p:contains("রিফ্রেশ")) {
+            background: linear-gradient(135deg, #F59E0B, #EA580C) !important;
+            color: #FFFFFF !important;
+            border: none !important;
+        }
+        div.stButton > button:has(p:contains("Save")), div.stButton > button:has(p:contains("Saved")), div.stButton > button:has(p:contains("সংরক্ষণ")) {
+            background: linear-gradient(135deg, #F97316, #C2410C) !important;
+            color: #FFFFFF !important;
+            border: none !important;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+        if refresh_clicked:
             load_uploaded_files.clear()
             st.rerun()
 
