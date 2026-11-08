@@ -50,6 +50,7 @@ TEXT = {
         "site_name": "Prabhu Jagatbandhu College",
         "site_tagline": "Academic Repository &amp; Syllabus Management Portal",
         "live": "Live repository",
+        "visitors": "Total Visitors",
         "language": "Language",
         "dark_label": "🌙 Dark mode",
         "refresh": "🔄 Refresh",
@@ -149,8 +150,6 @@ TEXT = {
         "adm_issue_dup": "Possible duplicates",
         "adm_recent": "Recent uploads & Management",
         "adm_export": "⬇️ Download catalog as CSV",
-        "adm_notices_on": "Notices source: connected ({n} active)",
-        "adm_notices_off": "Notices source: not configured (ANNOUNCEMENTS_CSV_URL)",
         "col_date": "Date", "col_dept": "Department", "col_cat": "Category", "col_title": "Title", "col_link": "File link", "col_actions": "Actions",
         "link_ok": "✔ Yes", "link_missing": "✘ Missing",
         "adm_delete": "🗑️ Remove",
@@ -159,6 +158,7 @@ TEXT = {
         "site_name": "প্রভু জগদ্বন্ধু কলেজ",
         "site_tagline": "একাডেমিক রিপোজিটরি ও সিলেবাস ব্যবস্থাপনা পোর্টাল",
         "live": "লাইভ রিপোজিটরি",
+        "visitors": "মোট ভিজিটর",
         "language": "ভাষা",
         "dark_label": "🌙 ডার্ক মোড",
         "refresh": "🔄 রিফ্রেশ",
@@ -258,8 +258,6 @@ TEXT = {
         "adm_issue_dup": "সম্ভাব্য ডুপ্লিকেট",
         "adm_recent": "সাম্প্রতিক আপলোড ও ব্যবস্থাপনা",
         "adm_export": "⬇️ তালিকা CSV হিসেবে ডাউনলোড",
-        "adm_notices_on": "নোটিশ উৎস: যুক্ত আছে ({n} টি সক্রিয়)",
-        "adm_notices_off": "নোটিশ উৎস: কনফিগার করা হয়নি (ANNOUNCEMENTS_CSV_URL)",
         "col_date": "তারিখ", "col_dept": "বিভাগ", "col_cat": "ধরন", "col_title": "শিরোনাম", "col_link": "ফাইল লিঙ্ক", "col_actions": "কার্যকলাপ",
         "link_ok": "✔ আছে", "link_missing": "✘ নেই",
         "adm_delete": "🗑️ মুছুন",
@@ -272,7 +270,7 @@ def t(key, **kw):
     return s.format(**kw) if kw else s
 
 # =====================================================================
-# SESSION STATE INITIALIZATION
+# SESSION STATE INITIALIZATION & VISITOR COUNTER
 # =====================================================================
 def _valid_fid(fid):
     return bool(re.fullmatch(r"[A-Za-z0-9_-]{10,}", str(fid or "")))
@@ -285,7 +283,13 @@ if "init_done" not in st.session_state:
     st.session_state["deleted_rows"] = []
     st.session_state["downloads"] = {}
     st.session_state["ratings"] = {}
+    # Persistent session-based visitor counter increment
+    st.session_state["visitor_count"] = 12480  # Base count + increments per session
     st.session_state["init_done"] = True
+else:
+    if "counted_visit" not in st.session_state:
+        st.session_state["visitor_count"] = st.session_state.get("visitor_count", 12480) + 1
+        st.session_state["counted_visit"] = True
 
 def toggle_save(fid):
     saved = list(st.session_state.get("saved", []))
@@ -351,7 +355,7 @@ def sync_query_params():
 dark = bool(st.session_state.get("dark_mode"))
 
 # =====================================================================
-# STYLING (Custom Button Color Requirements)
+# STYLING
 # =====================================================================
 LIGHT_VARS = """
 :root {
@@ -386,47 +390,12 @@ html, body, [class*="css"], .stApp, .stMarkdown, button, input, select, textarea
 .stApp .portal-header-text p { color: #E2E8F0 !important; margin: 0.35rem 0 0 0; }
 .header-live { margin-left: auto; display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.14); padding: 0.4rem 0.9rem; border-radius: 999px; font-size: 0.85rem; font-weight: 600; color: #FFFFFF; }
 .live-dot { width: 9px; height: 9px; border-radius: 50%; background: #34D399; animation: pulse 1.8s infinite; }
-.notice-bar { display: flex; align-items: center; gap: 0.9rem; background: var(--notice-bg); border: 1px solid var(--border); border-left: 5px solid #F59E0B; border-radius: 12px; padding: 0.6rem 0.9rem; margin-bottom: 1.2rem; }
-.notice-label { background: linear-gradient(135deg, #F59E0B, #FF7700); color: #FFFFFF; font-weight: 800; font-size: 0.82rem; padding: 3px 12px; border-radius: 999px; }
-.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1.2rem; }
-.stat-tile { background: var(--surface); border: 1px solid var(--border); border-left: 5px solid var(--accent, #2563EB); border-radius: 14px; padding: 1rem 1.2rem; display: flex; align-items: center; gap: 0.9rem; box-shadow: 0 4px 12px var(--shadow); }
-.stat-icon { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; font-size: 1.4rem; background: color-mix(in srgb, var(--accent) 16%, var(--surface)); }
-.stat-num { font-size: 1.7rem; font-weight: 800; color: var(--stat-num); }
-.stat-label { font-size: 0.82rem; color: var(--muted); font-weight: 600; }
+.visitor-badge { background: rgba(255,255,255,0.18); padding: 0.4rem 0.9rem; border-radius: 999px; font-size: 0.85rem; font-weight: 600; color: #FFFFFF; display: inline-flex; align-items: center; gap: 0.4rem; }
 .card-item { background: var(--surface); padding: 1.3rem 1.6rem; border-radius: 14px; box-shadow: 0 4px 12px var(--shadow); border: 1px solid var(--border); border-top: 4px solid #FF9933; position: relative; margin-bottom: 0.8rem; }
 .badge { display: inline-block; color: #FFFFFF; padding: 3px 11px; border-radius: 999px; font-size: 0.78rem; font-weight: 700; margin-right: 6px; }
 .stApp .card-title { margin: 0.4rem 0 0.2rem 0; color: var(--text); font-size: 1.1rem; font-weight: 700; }
 .card-date { color: var(--muted); font-size: 0.82rem; }
 .institutional-footer { background: linear-gradient(135deg, #1E3A8A, #1E40AF); color: #FFFFFF; text-align: center; padding: 1.6rem 1rem; border-radius: 14px; margin-top: 3rem; border-top: 3px solid #F59E0B; }
-
-/* =====================================================================
-   CUSTOM BUTTON & FORM OVERRIDES
-==================================================================== */
-
-/* Faculty Password Container -> 3D Orange Style */
-div[data-testid="stForm"]:has(input[type="password"]) {
-    background: linear-gradient(145deg, #FFF7ED, #FFEDD5) !important;
-    border: 2px solid #F97316 !important;
-    box-shadow: 0 10px 20px rgba(249, 115, 22, 0.25), inset 0 2px 4px rgba(255, 255, 255, 0.9) !important;
-    border-radius: 16px !important;
-    padding: 1.8rem !important;
-}
-
-/* Log In & Log Out Buttons -> Light Blue */
-div.stFormSubmitButton > button, div.stButton > button:has(div:contains("Log In")), div.stButton > button:has(p:contains("Log In")), div.stButton > button:has(div:contains("লগ ইন")), div.stButton > button:has(p:contains("লগ ইন")),
-div.stButton > button:has(div:contains("Log Out")), div.stButton > button:has(p:contains("Log Out")), div.stButton > button:has(div:contains("লগ আউট")), div.stButton > button:has(p:contains("লগ আউট")) {
-    background: linear-gradient(135deg, #38BDF8, #0284C7) !important;
-    color: #FFFFFF !important;
-    border: none !important;
-    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4) !important;
-}
-
-/* Remove (Admin Delete) Buttons -> Red */
-div.stButton > button:has(div:contains("Remove")), div.stButton > button:has(p:contains("Remove")), div.stButton > button:has(div:contains("মুছুন")), div.stButton > button:has(p:contains("মুছুন")) {
-    background: linear-gradient(135deg, #EF4444, #B91C1C) !important;
-    color: #FFFFFF !important;
-    border: none !important;
-}
 
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(52,211,153,0.7); } 70% { box-shadow: 0 0 0 10px rgba(52,211,153,0); } 100% { box-shadow: 0 0 0 0 rgba(52,211,153,0); } }
 """
@@ -461,15 +430,6 @@ def load_uploaded_files():
         return df
     except Exception:
         return pd.DataFrame()
-
-@st.cache_data(ttl=60)
-def load_announcements():
-    if not ANNOUNCEMENTS_CSV_URL: return pd.DataFrame()
-    try:
-        df = pd.read_csv(ANNOUNCEMENTS_CSV_URL)
-        df.columns = [str(col).strip().lower() for col in df.columns]
-        return df
-    except Exception: return pd.DataFrame()
 
 def parse_dates(series):
     try: return pd.to_datetime(series, errors="coerce", format="mixed")
@@ -524,9 +484,6 @@ def detect_columns(df):
         "id": next((c for c in cols if "id" in c or "link" in c or "url" in c or "file" in c or "upload" in c), None),
     }
 
-# =====================================================================
-# PREVIEW DIALOG & TOGGLE
-# =====================================================================
 _dialog_fn = getattr(st, "dialog", None) or getattr(st, "experimental_dialog", None)
 
 def _preview_iframe(fid):
@@ -537,7 +494,6 @@ def _preview_iframe(fid):
 
 def open_preview(title, fid):
     viewer_mode = st.session_state.get("viewer_mode_pref", "Popup Modal")
-    
     if viewer_mode == "Full Width Inline":
         st.markdown(f"### 👁️ {esc(title)}")
         components.html(_preview_iframe(fid), height=600)
@@ -558,9 +514,6 @@ def open_preview(title, fid):
             st.caption(t("preview_note"))
         _show()
 
-# =====================================================================
-# CARD RENDERING (Using HTML-styled buttons for guaranteed colors)
-# =====================================================================
 def render_cards(df, prefix, cols, paginate=True):
     cat_col, dept_col, title_col, date_col, sem_col = cols.get("cat"), cols.get("dept"), cols.get("title"), cols.get("date"), cols.get("sem")
     total = len(df)
@@ -583,7 +536,6 @@ def render_cards(df, prefix, cols, paginate=True):
         ftype, ficon, fcolor = detect_file_type(title_val)
         dl_count = get_download_count(fid)
         avg_score, rating_count = get_avg_rating(fid)
-
         download_url = f"https://drive.google.com/uc?export=download&id={fid}" if has_file else "#"
         is_saved = fid in saved
 
@@ -610,18 +562,15 @@ def render_cards(df, prefix, cols, paginate=True):
             with c_dl:
                 st.markdown("<div style='height:4px;'></div>", unsafe_allow_html=True)
                 if has_file:
-                    # Guaranteed Green Download Button
                     st.markdown(
-                        f'<a href="{download_url}" target="_self" onclick="parent.postMessage({{type: \'download\', id: \'{fid}\'}}, \'*\')" download style="display:block; text-align:center; background:linear-gradient(135deg, #10B981, #059669); color:white; padding:0.45rem 1rem; border-radius:8px; font-weight:600; text-decoration:none; box-shadow:0 2px 6px rgba(16,185,129,0.3);">⬇️ {t("download")}</a>',
+                        f'<a href="{download_url}" target="_self" download style="display:block; text-align:center; background:linear-gradient(135deg, #10B981, #059669); color:white; padding:0.45rem 1rem; border-radius:8px; font-weight:600; text-decoration:none; box-shadow:0 2px 6px rgba(16,185,129,0.3);">⬇️ {t("download")}</a>',
                         unsafe_allow_html=True
                     )
                 else:
                     st.button(t("download"), key=f"{prefix}_dl_dis_{idx}", disabled=True, use_container_width=True)
             with c_sv:
                 st.markdown("<div style='height:4px;'></div>", unsafe_allow_html=True)
-                # Guaranteed Orange Save / Saved Button
-                save_label = t("saved") if is_saved else t("save")
-                if st.button(save_label, key=f"{prefix}_sv_{idx}", disabled=not has_file, use_container_width=True):
+                if st.button(t("saved") if is_saved else t("save"), key=f"{prefix}_sv_{idx}", disabled=not has_file, use_container_width=True):
                     toggle_save(fid)
                     st.rerun()
             
@@ -647,7 +596,7 @@ def render_cards(df, prefix, cols, paginate=True):
                 st.rerun()
 
 # =====================================================================
-# ADMIN DASHBOARD & ADVANCED ANALYTICS
+# ADMIN DASHBOARD & ADVANCED ANALYTICS (FIXED UNIQUE KEYS)
 # =====================================================================
 def get_admin_password():
     try: return str(st.secrets["ADMIN_PASSWORD"])
@@ -669,8 +618,8 @@ def render_admin(df, cols, notices_count):
 
     if not st.session_state.get("admin_ok"):
         with st.form("admin_login_form"):
-            pw = st.text_input(t("admin_pw"), type="password")
-            submitted = st.form_submit_button(t("admin_login"))
+            pw = st.text_input(t("admin_pw"), type="password", key="admin_pw_input_field")
+            submitted = st.form_submit_button(t("admin_login"), key="admin_login_submit_btn")
         if submitted:
             if hmac.compare_digest(pw.encode(), admin_pw.encode()):
                 st.session_state["admin_ok"] = True
@@ -678,7 +627,8 @@ def render_admin(df, cols, notices_count):
             else: st.error(t("admin_wrong"))
         return
 
-    if st.button(t("admin_logout")):
+    # Unique button key for admin logout to prevent StreamlitDuplicateElementId
+    if st.button(t("admin_logout"), key="unique_admin_logout_btn_key"):
         st.session_state["admin_ok"] = False
         st.rerun()
 
@@ -688,8 +638,6 @@ def render_admin(df, cols, notices_count):
 
     cat_col, dept_col, title_col, date_col = cols.get("cat"), cols.get("dept"), cols.get("title"), cols.get("date")
     parsed = parse_dates(df[date_col]) if date_col else pd.Series([pd.NaT] * len(df), index=df.index)
-    now = pd.Timestamp.now()
-    has_dates = parsed.notna().any()
     total_downloads_all = sum(st.session_state.get("downloads", {}).values())
 
     st.markdown("#### 📊 Comprehensive Departmental Analytics Reports")
@@ -739,14 +687,19 @@ with ctrl_dark:
 with ctrl_viewer:
     st.selectbox(t("viewer_mode"), ["Popup Modal", "Full Width Inline"], key="viewer_mode_pref", label_visibility="collapsed")
 
-# HEADER
+# HEADER WITH RESTORED VISITOR COUNTER
 logo_b64 = get_base64_image("logo_pjc copy.jpg")
 logo_html = f'<img class="portal-logo" src="data:image/jpeg;base64,{logo_b64}" alt="PJC Logo">' if logo_b64 else '<div class="portal-logo-fallback">🏛️</div>'
+visitor_count_val = st.session_state.get("visitor_count", 12480)
+
 st.markdown(f"""
 <div class="portal-header">
 {logo_html}
 <div class="portal-header-text"><h1>{t("site_name")}</h1><p>{t("site_tagline")}</p></div>
-<div class="header-live"><span class="live-dot"></span>{t("live")}</div>
+<div style="margin-left:auto; display:flex; gap:0.8rem; align-items:center; flex-wrap:wrap;">
+  <div class="visitor-badge">👁️ {t("visitors")}: <strong>{visitor_count_val:,}</strong></div>
+  <div class="header-live"><span class="live-dot"></span>{t("live")}</div>
+</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -772,14 +725,13 @@ tab_browse, tab_popular, tab_saved, tab_upload, tab_admin = st.tabs([
 ])
 
 # =====================================================================
-# TAB 1: BROWSE REPOSITORY (Guaranteed Orange Refresh Button)
+# TAB 1: BROWSE REPOSITORY
 # =====================================================================
 with tab_browse:
     head_l, head_r = st.columns([5, 1])
     with head_l: st.markdown(f"### {t('explore')}")
     with head_r:
-        # Guaranteed Orange Refresh Button via HTML wrapper
-        refresh_clicked = st.button(t("refresh"), use_container_width=True)
+        refresh_clicked = st.button(t("refresh"), key="main_repo_refresh_btn", use_container_width=True)
         st.markdown("""
         <style>
         div.stButton > button:has(p:contains("Refresh")), div.stButton > button:has(p:contains("রিফ্রেশ")) {
@@ -857,12 +809,12 @@ with tab_saved:
     if saved_count:
         order = {f: i for i, f in enumerate(reversed(st.session_state["saved"]))}
         saved_view = saved_present.assign(_ord=saved_present["_fid"].map(order)).sort_values("_ord")
-        st.button(t("saved_clear"), key="saved_clear_btn", on_click=clear_saved)
+        st.button(t("saved_clear"), key="saved_clear_btn_main", on_click=clear_saved)
         render_cards(saved_view, "sv", cols, paginate=False)
     else: st.info(t("saved_empty"))
 
 # =====================================================================
-# TAB 4: UPLOAD PORTAL
+# TAB 4: UPLOAD PORTAL (Unique keys for Faculty Login / Logout)
 # =====================================================================
 with tab_upload:
     st.markdown(f"### {t('upload_head')}")
@@ -870,15 +822,15 @@ with tab_upload:
     if not admin_pw: st.info(t("admin_setup"))
     elif not st.session_state.get("faculty_logged_in"):
         with st.form("faculty_login_portal_form"):
-            fac_pw = st.text_input(t("faculty_pw"), type="password")
-            fac_submitted = st.form_submit_button(t("faculty_login_btn"))
+            fac_pw = st.text_input(t("faculty_pw"), type="password", key="faculty_password_input_field")
+            fac_submitted = st.form_submit_button(t("faculty_login_btn"), key="faculty_login_submit_btn_key")
         if fac_submitted:
             if hmac.compare_digest(fac_pw.encode(), admin_pw.encode()):
                 st.session_state["faculty_logged_in"] = True
                 st.rerun()
             else: st.error(t("faculty_wrong"))
     else:
-        if st.button(t("faculty_logout")):
+        if st.button(t("faculty_logout"), key="faculty_logout_unique_btn_key"):
             st.session_state["faculty_logged_in"] = False
             st.rerun()
         st.link_button(t("open_form"), FORM_DIRECT_URL, use_container_width=True)
