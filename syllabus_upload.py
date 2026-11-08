@@ -22,13 +22,9 @@ st.set_page_config(
 SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTkBRxQ2SHSxD2u2S_0-ckK9j2a2D-gUXrIXAtGCTgYwuf2G5OlHAlQW8yoGZdMw5UiI0OeWPhIkP-u/pub?output=csv"
 
 # --- ANNOUNCEMENTS: publish a second tab of the same Google Sheet as CSV and paste its URL here.
-# Suggested columns: message | message_bn (optional Bengali text) | link (optional) |
-#                    active (Yes/No, optional) | expires (date, optional)
 ANNOUNCEMENTS_CSV_URL = ""
 
 FORM_DIRECT_URL = "https://forms.gle/Uk4AcdHTUL67wQ3f7"
-
-# --- ADMIN PASSWORD: set ADMIN_PASSWORD in .streamlit/secrets.toml (or Streamlit Cloud > Secrets)
 
 PAGE_SIZE = 10
 
@@ -90,7 +86,6 @@ TEXT = {
         "preview": "👁️ Preview",
         "save": "☆ Save",
         "saved": "★ Saved",
-        "new_tab": "↗ New tab",
         "download": "⬇️ Download",
         "tab_browse": "📂 Browse Repository & Syllabi",
         "tab_saved": "⭐ My Saved ({n})",
@@ -106,12 +101,19 @@ TEXT = {
         "step2_t": "Fill in the details", "step2_d": "Choose the category and department, then attach your file.",
         "step3_t": "See it live", "step3_d": "Your document appears in the repository shortly after submission.",
         "open_form": "🚀 Open Secure Upload Portal",
-        "preview_note": "If the preview does not load, use “Open in new tab”. The file must be shared as “Anyone with the link can view”.",
-        "open_new_tab": "↗ Open in new tab",
+        "preview_note": "If the preview does not load, use direct download. The file must be shared as “Anyone with the link can view”.",
         "notices": "📢 Notices",
         "all_notices": "📢 All notices ({n})",
         "footer_rights": "© Prabhu Jagatbandhu College | Academic Repository Management",
         "footer_by": "Created &amp; Maintained by: <strong>Dr. Kisor Mukhopadhyay</strong>, Associate Professor, Department of Physics, Prabhu Jagatbandhu College",
+        # faculty upload login
+        "faculty_login_head": "🔐 Faculty Login Required",
+        "faculty_login_sub": "Please enter the password to access the secure material upload portal.",
+        "faculty_pw": "Faculty Password",
+        "faculty_login_btn": "Log In",
+        "faculty_wrong": "Incorrect password.",
+        "faculty_logged_in": "✅ Logged in as Faculty",
+        "faculty_logout": "Log Out",
         # admin
         "admin_head": "🔐 Admin Dashboard",
         "admin_setup": "The admin password is not set yet. Add this to your Streamlit secrets (.streamlit/secrets.toml, or Streamlit Cloud → Settings → Secrets):",
@@ -135,12 +137,13 @@ TEXT = {
         "adm_issue_nodept": "No department",
         "adm_issue_nocat": "No category",
         "adm_issue_dup": "Possible duplicates",
-        "adm_recent": "Recent uploads",
+        "adm_recent": "Recent uploads & Management",
         "adm_export": "⬇️ Download catalog as CSV",
         "adm_notices_on": "Notices source: connected ({n} active)",
-        "adm_notices_off": "Notices source: not configured (set ANNOUNCEMENTS_CSV_URL)",
-        "col_date": "Date", "col_dept": "Department", "col_cat": "Category", "col_title": "Title", "col_link": "File link",
+        "adm_notices_off": "Notices source: not configured (ANNOUNCEMENTS_CSV_URL)",
+        "col_date": "Date", "col_dept": "Department", "col_cat": "Category", "col_title": "Title", "col_link": "File link", "col_actions": "Actions",
         "link_ok": "✔ Yes", "link_missing": "✘ Missing",
+        "adm_delete": "🗑️ Remove",
     },
     "bn": {
         "site_name": "প্রভু জগদ্বন্ধু কলেজ",
@@ -178,7 +181,6 @@ TEXT = {
         "preview": "👁️ প্রিভিউ",
         "save": "☆ সংরক্ষণ",
         "saved": "★ সংরক্ষিত",
-        "new_tab": "↗ নতুন ট্যাবে",
         "download": "⬇️ ডাউনলোড",
         "tab_browse": "📂 রিপোজিটরি ও সিলেবাস দেখুন",
         "tab_saved": "⭐ আমার সংরক্ষিত ({n})",
@@ -194,12 +196,19 @@ TEXT = {
         "step2_t": "বিবরণ পূরণ করুন", "step2_d": "ধরন ও বিভাগ বেছে নিন, তারপর ফাইল সংযুক্ত করুন।",
         "step3_t": "লাইভ দেখুন", "step3_d": "জমা দেওয়ার কিছুক্ষণের মধ্যেই আপনার নথি রিপোজিটরিতে দেখা যাবে।",
         "open_form": "🚀 নিরাপদ আপলোড পোর্টাল খুলুন",
-        "preview_note": "প্রিভিউ লোড না হলে “নতুন ট্যাবে খুলুন” ব্যবহার করুন। ফাইলটি “লিঙ্কযুক্ত যে কেউ দেখতে পারবে” হিসেবে শেয়ার করা থাকতে হবে।",
-        "open_new_tab": "↗ নতুন ট্যাবে খুলুন",
+        "preview_note": "প্রিভিউ লোড না হলে সরাসরি ডাউনলোড করুন। ফাইলটি “লিঙ্কযুক্ত যে কেউ দেখতে পারবে” হিসেবে শেয়ার করা থাকতে হবে।",
         "notices": "📢 নোটিশ",
         "all_notices": "📢 সব নোটিশ ({n})",
         "footer_rights": "© প্রভু জগদ্বন্ধু কলেজ | একাডেমিক রিপোজিটরি ব্যবস্থাপনা",
         "footer_by": "সৃষ্টি ও রক্ষণাবেক্ষণ: <strong>Dr. Kisor Mukhopadhyay</strong>, অ্যাসোসিয়েট প্রফেসর, পদার্থবিদ্যা বিভাগ, প্রভু জগদ্বন্ধু কলেজ",
+        # faculty upload login
+        "faculty_login_head": "🔐 অনুষদ লগইন প্রয়োজন",
+        "faculty_login_sub": "নিরাপদ সামগ্রী আপলোড পোর্টাল অ্যাক্সেস করতে পাসওয়ার্ড দিন।",
+        "faculty_pw": "পাসওয়ার্ড",
+        "faculty_login_btn": "লগ ইন",
+        "faculty_wrong": "পাসওয়ার্ড সঠিক নয়।",
+        "faculty_logged_in": "✅ অনুষদ হিসেবে লগইন করা হয়েছে",
+        "faculty_logout": "লগ আউট",
         # admin
         "admin_head": "🔐 অ্যাডমিন ড্যাশবোর্ড",
         "admin_setup": "অ্যাডমিন পাসওয়ার্ড এখনও সেট করা হয়নি। Streamlit secrets-এ এটি যোগ করুন (.streamlit/secrets.toml, অথবা Streamlit Cloud → Settings → Secrets):",
@@ -223,12 +232,13 @@ TEXT = {
         "adm_issue_nodept": "বিভাগ নেই",
         "adm_issue_nocat": "ধরন নেই",
         "adm_issue_dup": "সম্ভাব্য ডুপ্লিকেট",
-        "adm_recent": "সাম্প্রতিক আপলোড",
+        "adm_recent": "সাম্প্রতিক আপলোড ও ব্যবস্থাপনা",
         "adm_export": "⬇️ তালিকা CSV হিসেবে ডাউনলোড",
         "adm_notices_on": "নোটিশ উৎস: যুক্ত আছে ({n} টি সক্রিয়)",
-        "adm_notices_off": "নোটিশ উৎস: কনফিগার করা হয়নি (ANNOUNCEMENTS_CSV_URL সেট করুন)",
-        "col_date": "তারিখ", "col_dept": "বিভাগ", "col_cat": "ধরন", "col_title": "শিরোনাম", "col_link": "ফাইল লিঙ্ক",
+        "adm_notices_off": "নোটিশ উৎস: কনফিগার করা হয়নি (ANNOUNCEMENTS_CSV_URL)",
+        "col_date": "তারিখ", "col_dept": "বিভাগ", "col_cat": "ধরন", "col_title": "শিরোনাম", "col_link": "ফাইল লিঙ্ক", "col_actions": "কার্যকলাপ",
         "link_ok": "✔ আছে", "link_missing": "✘ নেই",
+        "adm_delete": "🗑️ মুছুন",
     },
 }
 
@@ -238,7 +248,7 @@ def t(key, **kw):
     return s.format(**kw) if kw else s
 
 # =====================================================================
-# SESSION STATE (language, theme and saved list survive via the page URL)
+# SESSION STATE
 # =====================================================================
 def _valid_fid(fid):
     return bool(re.fullmatch(r"[A-Za-z0-9_-]{10,}", str(fid or "")))
@@ -248,6 +258,7 @@ if "init_done" not in st.session_state:
     st.session_state["lang"] = "bn" if qp.get("lang") == "bn" else "en"
     st.session_state["dark_mode"] = qp.get("theme") == "dark"
     st.session_state["saved"] = [s for s in str(qp.get("saved", "")).split(",") if _valid_fid(s)][:60]
+    st.session_state["deleted_rows"] = []
     st.session_state["init_done"] = True
 
 def toggle_save(fid):
@@ -319,7 +330,6 @@ html, body, [class*="css"], .stApp, .stMarkdown, button, input, select, textarea
 #MainMenu, footer { visibility: hidden; }
 .block-container { padding-top: 2rem; max-width: 1200px; }
 
-/* ---------- Native Streamlit elements follow the theme ---------- */
 .stApp h1, .stApp h2, .stApp h3, .stApp h4 { color: var(--text); }
 .stApp label p, .stApp [data-testid="stWidgetLabel"] p, .stApp [data-testid="stCaptionContainer"] { color: var(--text); }
 .stApp hr { border-color: var(--border); }
@@ -425,25 +435,16 @@ div[data-testid="stLinkButton"] a:hover { transform: translateY(-2px); box-shado
 .card-item {
     background: var(--surface); padding: 1.3rem 1.6rem; border-radius: 14px;
     box-shadow: 0 4px 12px var(--shadow); border: 1px solid var(--border); border-top: 4px solid #FF9933;
-    position: relative; margin-bottom: 0; animation: riseIn 0.55s ease both;
+    position: relative; margin-bottom: 0.8rem; animation: riseIn 0.55s ease both;
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 .card-item::before { content: ""; position: absolute; top: -4px; left: -1px; width: 50%; height: 4px; background-color: #FF7700; border-top-left-radius: 14px; transition: width 0.45s ease; }
 .card-item:hover { transform: translateY(-3px); box-shadow: 0 14px 28px var(--shadow-hover); border-color: var(--card-hover-border); }
 .card-item:hover::before { width: calc(100% + 2px); border-top-right-radius: 14px; }
-.card-row { display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; flex-wrap: wrap; }
-.card-main { flex: 1 1 320px; min-width: 0; }
-.card-actions { display: flex; gap: 0.6rem; flex: 0 0 auto; min-width: 260px; }
-.card-actions a { flex: 1; }
 .badge { display: inline-block; color: #FFFFFF; padding: 3px 11px; border-radius: 999px; font-size: 0.78rem; font-weight: 700; margin-right: 6px; }
 .badge-new { background: linear-gradient(135deg, #F59E0B, #EF4444); animation: pulse-soft 2s ease-in-out infinite; }
-.stApp .card-title { margin: 0.65rem 0 0.3rem 0; color: var(--text); font-size: 1.1rem; font-weight: 700; overflow-wrap: anywhere; }
+.stApp .card-title { margin: 0.4rem 0 0.2rem 0; color: var(--text); font-size: 1.1rem; font-weight: 700; overflow-wrap: anywhere; }
 .card-date { color: var(--muted); font-size: 0.82rem; }
-.btn-newtab, .btn-download { padding: 0.6rem 1rem; border-radius: 8px; text-decoration: none !important; display: inline-block; font-weight: 700; font-size: 0.9rem; text-align: center; white-space: nowrap; transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease; }
-.btn-newtab { color: var(--link) !important; background: transparent; border: 2px solid var(--link); }
-.btn-download { color: #FFFFFF !important; background: linear-gradient(135deg, #10B981, #047857); box-shadow: 0 3px 8px rgba(5,150,105,0.28); border: 2px solid transparent; }
-.btn-newtab:hover, .btn-download:hover { transform: translateY(-2px); filter: brightness(1.1); }
-.btn-disabled { background: #94A3B8 !important; color: #FFFFFF !important; border-color: transparent !important; box-shadow: none !important; pointer-events: none; opacity: 0.6; }
 
 /* ---------- RESULT BAR & BARS ---------- */
 .result-bar { display: flex; align-items: center; justify-content: space-between; margin: 0.2rem 0 1rem 0; color: var(--muted); font-size: 0.92rem; font-weight: 600; }
@@ -498,7 +499,6 @@ div[data-testid="stLinkButton"] a:hover { transform: translateY(-2px); box-shado
 @media (max-width: 720px) {
     .stApp .portal-header-text h1 { font-size: 1.6rem; }
     .header-live { margin-left: 0; }
-    .card-actions { min-width: 100%; }
     .dept-name { flex-basis: 100px; }
     .notice-bar { flex-wrap: wrap; }
 }
@@ -568,8 +568,6 @@ def parse_dates(series):
             return pd.Series([pd.NaT] * len(series), index=series.index)
 
 def match_dept(name):
-    """Return the department name found in a sheet value (longest match wins, so
-    'Physical Education' is not mistaken for 'Education')."""
     low = str(name).lower()
     for d in sorted(DEPARTMENT_FOLDERS, key=len, reverse=True):
         if d.lower() in low:
@@ -577,7 +575,6 @@ def match_dept(name):
     return None
 
 def dept_mask(series, dept):
-    """Rows of a column that belong to `dept`, ignoring longer departments that contain its name."""
     s = series.astype(str)
     mask = s.str.contains(dept, case=False, na=False, regex=False)
     for other in DEPARTMENT_FOLDERS:
@@ -611,7 +608,6 @@ def esc(v):
     return html.escape(str(v), quote=True)
 
 def bar_rows(items):
-    """items: list of (label, count) -> animated horizontal bars (theme aware)."""
     if not items:
         return ""
     max_n = max(n for _, n in items) or 1
@@ -703,14 +699,13 @@ def _preview_iframe(fid):
 def _preview_links(fid):
     c1, c2 = st.columns(2)
     with c1:
-        st.link_button(t("open_new_tab"), f"https://drive.google.com/file/d/{fid}/view?usp=sharing", use_container_width=True)
+        st.link_button("↗ Open in new tab", f"https://drive.google.com/file/d/{fid}/view?usp=sharing", use_container_width=True)
     with c2:
         st.link_button(t("download"), f"https://drive.google.com/uc?export=download&id={fid}", use_container_width=True)
     st.caption(t("preview_note"))
 
 def open_preview(title, fid):
     if _dialog_fn is None:
-        # Older Streamlit: show the preview inline under the card instead of a pop-up
         st.session_state["inline_preview"] = fid
         return
 
@@ -722,7 +717,7 @@ def open_preview(title, fid):
     _show()
 
 # =====================================================================
-# CARD RENDERING (shared by Browse and Saved tabs)
+# CARD RENDERING (Preview button placed in place of New Tab button)
 # =====================================================================
 def render_cards(df, prefix, cols, paginate=True):
     cat_col, dept_col, title_col, date_col = cols.get("cat"), cols.get("dept"), cols.get("title"), cols.get("date")
@@ -747,13 +742,9 @@ def render_cards(df, prefix, cols, paginate=True):
         has_file = _valid_fid(fid)
 
         if has_file:
-            preview_url = f"https://drive.google.com/file/d/{fid}/view?usp=sharing"
             download_url = f"https://drive.google.com/uc?export=download&id={fid}"
-            newtab_btn = f'<a href="{esc(preview_url)}" target="_blank" rel="noopener" class="btn-newtab">{t("new_tab")}</a>'
-            download_btn = f'<a href="{esc(download_url)}" target="_blank" rel="noopener" class="btn-download">{t("download")}</a>'
         else:
-            newtab_btn = f'<a class="btn-newtab btn-disabled">{t("new_tab")}</a>'
-            download_btn = f'<a class="btn-download btn-disabled">{t("download")}</a>'
+            download_url = "#"
 
         new_badge = ""
         if date_col:
@@ -765,34 +756,41 @@ def render_cards(df, prefix, cols, paginate=True):
                 pass
 
         delay = min(pos * 0.06, 0.5)
-        st.markdown(f"""
-<div class="card-item" style="animation-delay:{delay:.2f}s;">
-<div class="card-row">
-<div class="card-main">
-<span class="badge" style="background:{dept_color(dept_val)};">{esc(dept_label(dept_val))}</span>
-<span class="badge" style="background:#059669;">{esc(cat_label(cat_val))}</span>
-{new_badge}
-<h4 class="card-title">{esc(title_val)}</h4>
-<small class="card-date">🕒 {t("uploaded_on")}: {esc(date_val)}</small>
-</div>
-<div class="card-actions">{newtab_btn}{download_btn}</div>
-</div>
-</div>
-""", unsafe_allow_html=True)
 
-        b1, b2, _sp = st.columns([1.3, 1.3, 4])
-        with b1:
-            if st.button(t("preview"), key=f"{prefix}_pv_{idx}", type="primary", disabled=not has_file, use_container_width=True):
-                open_preview(title_val, fid)
-        with b2:
-            st.button(
-                t("saved") if fid in saved else t("save"),
-                key=f"{prefix}_sv_{idx}",
-                disabled=not has_file,
-                on_click=toggle_save,
-                args=(fid,),
-                use_container_width=True,
-            )
+        with st.container():
+            st.markdown(f'<div class="card-item" style="animation-delay:{delay:.2f}s;">', unsafe_allow_html=True)
+            c_info, c_prev, c_dl, c_sv = st.columns([3.2, 1, 1, 1])
+            with c_info:
+                st.markdown(f"""
+                <div>
+                <span class="badge" style="background:{dept_color(dept_val)};">{esc(dept_label(dept_val))}</span>
+                <span class="badge" style="background:#059669;">{esc(cat_label(cat_val))}</span>
+                {new_badge}
+                <h4 class="card-title">{esc(title_val)}</h4>
+                <small class="card-date">🕒 {t("uploaded_on")}: {esc(date_val)}</small>
+                </div>
+                """, unsafe_allow_html=True)
+            with c_prev:
+                st.markdown("<div style='height:4px;'></div>", unsafe_allow_html=True)
+                if st.button(t("preview"), key=f"{prefix}_pv_{idx}", type="primary", disabled=not has_file, use_container_width=True):
+                    open_preview(title_val, fid)
+            with c_dl:
+                st.markdown("<div style='height:4px;'></div>", unsafe_allow_html=True)
+                if has_file:
+                    st.link_button(t("download"), download_url, use_container_width=True)
+                else:
+                    st.button(t("download"), key=f"{prefix}_dl_{idx}", disabled=True, use_container_width=True)
+            with c_sv:
+                st.markdown("<div style='height:4px;'></div>", unsafe_allow_html=True)
+                st.button(
+                    t("saved") if fid in saved else t("save"),
+                    key=f"{prefix}_sv_{idx}",
+                    disabled=not has_file,
+                    on_click=toggle_save,
+                    args=(fid,),
+                    use_container_width=True,
+                )
+            st.markdown('</div>', unsafe_allow_html=True)
 
         if _dialog_fn is None and has_file and st.session_state.get("inline_preview") == fid:
             components.html(_preview_iframe(fid), height=590)
@@ -806,7 +804,7 @@ def render_cards(df, prefix, cols, paginate=True):
                 st.rerun()
 
 # =====================================================================
-# ADMIN
+# ADMIN & DELETE HANDLER
 # =====================================================================
 def get_admin_password():
     try:
@@ -814,6 +812,12 @@ def get_admin_password():
         return str(val) if val else None
     except Exception:
         return None
+
+def remove_row(idx):
+    deleted = st.session_state.get("deleted_rows", [])
+    if idx not in deleted:
+        deleted.append(idx)
+        st.session_state["deleted_rows"] = deleted
 
 def render_admin(df, cols, notices_count):
     st.markdown(f"### {t('admin_head')}")
@@ -923,23 +927,27 @@ def render_admin(df, cols, notices_count):
     )
     st.markdown(f'<div class="admin-panel"><h4>{t("adm_attention")}</h4>{issue_html}</div>', unsafe_allow_html=True)
 
-    recent = df.assign(_dt=parsed).sort_values("_dt", ascending=False, na_position="last").head(15)
-    rows = ""
-    for _, r in recent.iterrows():
+    # --- RECENT UPLOADS & REMOVE BUTTON TABLE ---
+    st.markdown(f'<div class="admin-panel"><h4>{t("adm_recent")}</h4>', unsafe_allow_html=True)
+    recent = df.assign(_dt=parsed).sort_values("_dt", ascending=False, na_position="last").head(20)
+    for idx, r in recent.iterrows():
         link_ok = _valid_fid(r["_fid"])
-        rows += (
-            f"<tr><td>{esc(r[date_col]) if date_col and pd.notna(r[date_col]) else '—'}</td>"
-            f"<td>{esc(dept_label(r[dept_col])) if dept_col and pd.notna(r[dept_col]) else '—'}</td>"
-            f"<td>{esc(cat_label(r[cat_col])) if cat_col and pd.notna(r[cat_col]) else '—'}</td>"
-            f"<td>{esc(r[title_col]) if title_col and pd.notna(r[title_col]) else '—'}</td>"
-            f"<td>{t('link_ok') if link_ok else t('link_missing')}</td></tr>"
-        )
-    st.markdown(
-        f'<div class="admin-panel"><h4>{t("adm_recent")}</h4><div class="admin-table-wrap"><table class="admin-table">'
-        f'<tr><th>{t("col_date")}</th><th>{t("col_dept")}</th><th>{t("col_cat")}</th><th>{t("col_title")}</th><th>{t("col_link")}</th></tr>'
-        f'{rows}</table></div></div>',
-        unsafe_allow_html=True,
-    )
+        dt_str = str(r[date_col]) if date_col and pd.notna(r[date_col]) else '—'
+        dept_str = str(dept_label(r[dept_col])) if dept_col and pd.notna(r[dept_col]) else '—'
+        cat_str = str(cat_label(r[cat_col])) if cat_col and pd.notna(r[cat_col]) else '—'
+        title_str = str(r[title_col]) if title_col and pd.notna(r[title_col]) else '—'
+        
+        col_t, col_meta, col_del = st.columns([4, 3, 1])
+        with col_t:
+            st.markdown(f"**{esc(title_str)}**<br><small style='color:var(--muted);'>{dt_str} | {dept_str} ({cat_str})</small>", unsafe_allow_html=True)
+        with col_meta:
+            st.markdown(f"<small>{t('link_ok') if link_ok else t('link_missing')}</small>", unsafe_allow_html=True)
+        with col_del:
+            if st.button(t("adm_delete"), key=f"del_{idx}", use_container_width=True):
+                remove_row(idx)
+                st.rerun()
+        st.markdown("<hr style='margin:0.4rem 0;'>", unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
     export_df = df.drop(columns=[c for c in df.columns if c.startswith("_")])
     st.download_button(t("adm_export"), export_df.to_csv(index=False).encode("utf-8-sig"),
@@ -985,9 +993,12 @@ notices = get_notices(load_announcements(), st.session_state.get("lang", "en"))
 render_notices(notices)
 
 # =====================================================================
-# DATA
+# DATA & DELETION FILTERING
 # =====================================================================
 df_files = load_uploaded_files()
+if not df_files.empty and st.session_state.get("deleted_rows"):
+    df_files = df_files.drop(index=st.session_state["deleted_rows"], errors="ignore")
+
 cols = detect_columns(df_files)
 if not df_files.empty:
     df_files = df_files.copy()
@@ -1118,24 +1129,54 @@ with tab_saved:
         st.info(t("saved_empty"))
 
 # =====================================================================
-# TAB 3: UPLOAD PORTAL
+# TAB 3: UPLOAD PORTAL (Restricted to Faculty with Password)
 # =====================================================================
 with tab_upload:
     st.markdown(f"### {t('upload_head')}")
-    st.markdown(f"""
-<div class="card-item">
-<p class="note-text">{t("upload_intro")}</p>
-</div>
-<div class="upload-steps">
-<div class="step-card" style="animation-delay:0.05s;"><div class="step-no">1</div><h4>{t("step1_t")}</h4><p>{t("step1_d")}</p></div>
-<div class="step-card" style="animation-delay:0.15s;"><div class="step-no">2</div><h4>{t("step2_t")}</h4><p>{t("step2_d")}</p></div>
-<div class="step-card" style="animation-delay:0.25s;"><div class="step-no">3</div><h4>{t("step3_t")}</h4><p>{t("step3_d")}</p></div>
-</div>
-""", unsafe_allow_html=True)
+    
+    admin_pw = get_admin_password()
+    if not admin_pw:
+        st.info(t("admin_setup"))
+    elif not st.session_state.get("faculty_logged_in"):
+        st.markdown(f"""
+        <div class="card-item">
+        <h4>{t("faculty_login_head")}</h4>
+        <p class="note-text">{t("faculty_login_sub")}</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        with st.form("faculty_login_portal_form"):
+            fac_pw = st.text_input(t("faculty_pw"), type="password")
+            fac_submitted = st.form_submit_button(t("faculty_login_btn"))
+        if fac_submitted:
+            if hmac.compare_digest(fac_pw.encode(), admin_pw.encode()):
+                st.session_state["faculty_logged_in"] = True
+                st.rerun()
+            else:
+                st.error(t("faculty_wrong"))
+    else:
+        col_lg1, col_lg2 = st.columns([4, 1])
+        with col_lg1:
+            st.success(t("faculty_logged_in"))
+        with col_lg2:
+            if st.button(t("faculty_logout"), use_container_width=True):
+                st.session_state["faculty_logged_in"] = False
+                st.rerun()
 
-    col_b1, col_b2, col_b3 = st.columns([1, 2, 1])
-    with col_b2:
-        st.link_button(t("open_form"), FORM_DIRECT_URL, use_container_width=True)
+        st.markdown(f"""
+        <div class="card-item">
+        <p class="note-text">{t("upload_intro")}</p>
+        </div>
+        <div class="upload-steps">
+        <div class="step-card" style="animation-delay:0.05s;"><div class="step-no">1</div><h4>{t("step1_t")}</h4><p>{t("step1_d")}</p></div>
+        <div class="step-card" style="animation-delay:0.15s;"><div class="step-no">2</div><h4>{t("step2_t")}</h4><p>{t("step2_d")}</p></div>
+        <div class="step-card" style="animation-delay:0.25s;"><div class="step-no">3</div><h4>{t("step3_t")}</h4><p>{t("step3_d")}</p></div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        col_b1, col_b2, col_b3 = st.columns([1, 2, 1])
+        with col_b2:
+            st.link_button(t("open_form"), FORM_DIRECT_URL, use_container_width=True)
 
 # =====================================================================
 # TAB 4: ADMIN
@@ -1154,5 +1195,4 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-# Keep language, theme and saved list in the page URL
 sync_query_params()
