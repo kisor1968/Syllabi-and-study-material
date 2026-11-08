@@ -63,17 +63,23 @@ TEXT = {
         "by_dept": "📊 Documents by department",
         "category": "Select Category",
         "department": "Select Department",
+        "semester": "Select Semester",
+        "file_type": "File Format",
         "search": "Search",
         "search_ph": "🔎 Search by title, e.g. 'CBCS Semester 3'",
         "sort_by": "Sort by",
         "all": "All",
         "all_depts": "All Departments",
+        "all_sems": "All Semesters",
+        "all_types": "All Formats",
         "syllabus": "Syllabus",
         "study_material": "Study Material",
         "assignment": "Assignment",
         "newest": "Newest first",
         "oldest": "Oldest first",
         "az": "Title A–Z",
+        "most_downloaded": "Most Downloaded",
+        "top_rated": "Top Rated",
         "showing": "Showing {shown} of {total} documents",
         "load_more": "⬇️ Load more ({n} remaining)",
         "no_match": "No files found matching the selected filters.",
@@ -85,10 +91,18 @@ TEXT = {
         "save": "☆ Save",
         "saved": "★ Saved",
         "download": "⬇️ Download",
-        "tab_browse": "📂 Browse Repository & Syllabi",
+        "downloads_count": "Downloads",
+        "rating_label": "Rate Resource",
+        "avg_rating": "Rating",
+        "viewer_mode": "Viewer Mode",
+        "viewer_modal": "Popup Modal",
+        "viewer_inline": "Full Width Inline",
+        "popular_head": "🔥 Popular Resources Leaderboard",
+        "tab_browse": "📂 Browse Repository",
+        "tab_popular": "🔥 Popular & Leaderboard",
         "tab_saved": "⭐ My Saved ({n})",
         "tab_upload": "📤 Upload New Materials",
-        "tab_admin": "🔐 Admin",
+        "tab_admin": "🔐 Admin & Analytics",
         "saved_head": "⭐ My Saved Documents",
         "saved_note": "Your saved list is kept in this page's address (URL). Bookmark the page to keep it.",
         "saved_empty": "Nothing saved yet. Press ☆ Save under any document to add it here.",
@@ -96,7 +110,7 @@ TEXT = {
         "upload_head": "🚀 Secure Material Submission",
         "upload_intro": "Click below to open the secure Google Form. Submissions automatically log to the master directory and update this repository portal in real-time.",
         "step1_t": "Open the form", "step1_d": "Use the secure upload button below.",
-        "step2_t": "Fill in the details", "step2_d": "Choose the category and department, then attach your file.",
+        "step2_t": "Fill in the details", "step2_d": "Choose the category, semester, and department, then attach your file.",
         "step3_t": "See it live", "step3_d": "Your document appears in the repository shortly after submission.",
         "open_form": "🚀 Open Secure Upload Portal",
         "preview_note": "If the preview does not load, use direct download. The file must be shared as “Anyone with the link can view”.",
@@ -111,7 +125,7 @@ TEXT = {
         "faculty_wrong": "Incorrect password.",
         "faculty_logged_in": "✅ Logged in as Faculty",
         "faculty_logout": "Log Out",
-        "admin_head": "🔐 Admin Dashboard",
+        "admin_head": "🔐 Admin Dashboard & Advanced Analytics",
         "admin_setup": "The admin password is not set yet. Add this to your Streamlit secrets (.streamlit/secrets.toml, or Streamlit Cloud → Settings → Secrets):",
         "admin_pw": "Admin password",
         "admin_login": "Log in",
@@ -158,17 +172,23 @@ TEXT = {
         "by_dept": "📊 বিভাগ অনুযায়ী নথি",
         "category": "ধরন নির্বাচন করুন",
         "department": "বিভাগ নির্বাচন করুন",
+        "semester": "সেমিস্টার নির্বাচন করুন",
+        "file_type": "ফাইলের ধরন",
         "search": "অনুসন্ধান",
         "search_ph": "🔎 শিরোনাম দিয়ে খুঁজুন, যেমন 'CBCS সেমিস্টার ৩'",
         "sort_by": "সাজান",
         "all": "সব",
         "all_depts": "সব বিভাগ",
+        "all_sems": "সব সেমিস্টার",
+        "all_types": "সব ফরম্যাট",
         "syllabus": "সিলেবাস",
         "study_material": "পাঠ্যসামগ্রী",
         "assignment": "অ্যাসাইনমেন্ট",
         "newest": "নতুন আগে",
         "oldest": "পুরনো আগে",
         "az": "শিরোনাম অনুযায়ী",
+        "most_downloaded": "সর্বাধিক ডাউনলোড",
+        "top_rated": "সেরা রেটিং প্রাপ্ত",
         "showing": "{total} টি নথির মধ্যে {shown} টি দেখানো হচ্ছে",
         "load_more": "⬇️ আরও দেখুন (আরও {n} টি)",
         "no_match": "নির্বাচিত ফিল্টারে কোনো ফাইল পাওয়া যায়নি।",
@@ -180,10 +200,18 @@ TEXT = {
         "save": "☆ সংরক্ষণ",
         "saved": "★ সংরক্ষিত",
         "download": "⬇️ ডাউনলোড",
-        "tab_browse": "📂 রিপোজিটরি ও সিলেবাস দেখুন",
+        "downloads_count": "ডাউনলোড",
+        "rating_label": "রেটিং দিন",
+        "avg_rating": "রেটিং",
+        "viewer_mode": "প্রিভিউ মোড",
+        "viewer_modal": "পপআপ মোডাল",
+        "viewer_inline": "সম্পূর্ণ ইনলাইন",
+        "popular_head": "🔥 জনপ্রিয় ও শীর্ষস্থানীয় সম্পদ",
+        "tab_browse": "📂 রিপোজিটরি দেখুন",
+        "tab_popular": "🔥 জনপ্রিয় ও লিডারবোর্ড",
         "tab_saved": "⭐ আমার সংরক্ষিত ({n})",
         "tab_upload": "📤 নতুন সামগ্রী আপলোড",
-        "tab_admin": "🔐 অ্যাডমিন",
+        "tab_admin": "🔐 অ্যাডমিন ও অ্যানালিটিক্স",
         "saved_head": "⭐ আমার সংরক্ষিত নথি",
         "saved_note": "সংরক্ষিত তালিকা এই পেজের ঠিকানায় (URL) জমা থাকে। তালিকা রাখতে পেজটি বুকমার্ক করুন।",
         "saved_empty": "এখনও কিছু সংরক্ষণ করা হয়নি। কোনো নথির নিচে ☆ সংরক্ষণ চাপুন।",
@@ -191,7 +219,7 @@ TEXT = {
         "upload_head": "🚀 নিরাপদ সামগ্রী জমা",
         "upload_intro": "নিচের বোতামে ক্লিক করে নিরাপদ Google Form খুলুন। জমা দেওয়া নথি স্বয়ংক্রিয়ভাবে মূল তালিকায় যুক্ত হয় এবং এই পোর্টালে রিয়েল-টাইমে দেখা যায়।",
         "step1_t": "ফর্মটি খুলুন", "step1_d": "নিচের নিরাপদ আপলোড বোতামটি ব্যবহার করুন।",
-        "step2_t": "বিবরণ পূরণ করুন", "step2_d": "ধরন ও বিভাগ বেছে নিন, তারপর ফাইল সংযুক্ত করুন।",
+        "step2_t": "বিবরণ পূরণ করুন", "step2_d": "ধরন, সেমিস্টার ও বিভাগ বেছে নিন, তারপর ফাইল সংযুক্ত করুন।",
         "step3_t": "লাইভ দেখুন", "step3_d": "জমা দেওয়ার কিছুক্ষণের মধ্যেই আপনার নথি রিপোজিটরিতে দেখা যাবে।",
         "open_form": "🚀 নিরাপদ আপলোড পোর্টাল খুলুন",
         "preview_note": "প্রিভিউ লোড না হলে সরাসরি ডাউনলোড করুন। ফাইলটি “লিঙ্কযুক্ত যে কেউ দেখতে পারবে” হিসেবে শেয়ার করা থাকতে হবে।",
@@ -206,7 +234,7 @@ TEXT = {
         "faculty_wrong": "পাসওয়ার্ড সঠিক নয়।",
         "faculty_logged_in": "✅ অনুষদ হিসেবে লগইন করা হয়েছে",
         "faculty_logout": "লগ আউট",
-        "admin_head": "🔐 অ্যাডমিন ড্যাশবোর্ড",
+        "admin_head": "🔐 অ্যাডমিন ড্যাশবোর্ড ও বিশদ অ্যানালিটিক্স",
         "admin_setup": "অ্যাডমিন পাসওয়ার্ড এখনও সেট করা হয়নি। Streamlit secrets-এ এটি যোগ করুন (.streamlit/secrets.toml, অথবা Streamlit Cloud → Settings → Secrets):",
         "admin_pw": "অ্যাডমিন পাসওয়ার্ড",
         "admin_login": "লগ ইন",
@@ -244,7 +272,7 @@ def t(key, **kw):
     return s.format(**kw) if kw else s
 
 # =====================================================================
-# SESSION STATE
+# SESSION STATE INITIALIZATION
 # =====================================================================
 def _valid_fid(fid):
     return bool(re.fullmatch(r"[A-Za-z0-9_-]{10,}", str(fid or "")))
@@ -255,6 +283,8 @@ if "init_done" not in st.session_state:
     st.session_state["dark_mode"] = qp.get("theme") == "dark"
     st.session_state["saved"] = [s for s in str(qp.get("saved", "")).split(",") if _valid_fid(s)][:60]
     st.session_state["deleted_rows"] = []
+    st.session_state["downloads"] = {}
+    st.session_state["ratings"] = {}
     st.session_state["init_done"] = True
 
 def toggle_save(fid):
@@ -267,6 +297,41 @@ def toggle_save(fid):
 
 def clear_saved():
     st.session_state["saved"] = []
+
+def record_download(fid):
+    counts = st.session_state.get("downloads", {})
+    counts[fid] = counts.get(fid, 0) + 1
+    st.session_state["downloads"] = counts
+
+def add_rating(fid, score):
+    ratings = st.session_state.get("ratings", {})
+    if fid not in ratings:
+        ratings[fid] = []
+    ratings[fid].append(score)
+    st.session_state["ratings"] = ratings
+
+def get_avg_rating(fid):
+    ratings = st.session_state.get("ratings", {}).get(fid, [])
+    if not ratings:
+        return 0.0, 0
+    return round(sum(ratings) / len(ratings), 1), len(ratings)
+
+def get_download_count(fid):
+    return st.session_state.get("downloads", {}).get(fid, 0)
+
+def detect_file_type(title_or_link):
+    s = str(title_or_link).lower()
+    if any(k in s for k in ("pdf", ".pdf")):
+        return "PDF", "📄", "#EF4444"
+    elif any(k in s for k in ("doc", "docx", "word")):
+        return "Word", "📝", "#2563EB"
+    elif any(k in s for k in ("xls", "xlsx", "sheet", "csv")):
+        return "Excel", "📊", "#059669"
+    elif any(k in s for k in ("ppt", "pptx", "slide")):
+        return "Presentation", "📊", "#D97706"
+    elif any(k in s for k in ("jpg", "png", "jpeg", "image")):
+        return "Image", "🖼️", "#7C3AED"
+    return "Document", "📁", "#475569"
 
 def sync_query_params():
     desired = {}
@@ -286,7 +351,7 @@ def sync_query_params():
 dark = bool(st.session_state.get("dark_mode"))
 
 # =====================================================================
-# THEME & STYLING
+# STYLING
 # =====================================================================
 LIGHT_VARS = """
 :root {
@@ -308,202 +373,37 @@ DARK_VARS = """
   --glow1:rgba(37,99,235,0.18); --glow2:rgba(245,158,11,0.08);
 }
 """
-
 BASE_CSS = """
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap');
-
-html, body, [class*="css"], .stApp, .stMarkdown, button, input, select, textarea {
-    font-family: 'Plus Jakarta Sans', 'Noto Sans Bengali', 'Segoe UI', sans-serif;
-}
-.stApp {
-    background:
-        radial-gradient(1100px 500px at 90% -10%, var(--glow1), transparent 60%),
-        radial-gradient(900px 450px at -10% 10%, var(--glow2), transparent 55%),
-        var(--bg);
-    color: var(--text);
-}
+html, body, [class*="css"], .stApp, .stMarkdown, button, input, select, textarea { font-family: 'Plus Jakarta Sans', 'Noto Sans Bengali', sans-serif; }
+.stApp { background: radial-gradient(1100px 500px at 90% -10%, var(--glow1), transparent 60%), radial-gradient(900px 450px at -10% 10%, var(--glow2), transparent 55%), var(--bg); color: var(--text); }
 [data-testid="stHeader"] { background: transparent; }
 #MainMenu, footer { visibility: hidden; }
 .block-container { padding-top: 2rem; max-width: 1200px; }
-
-.stApp h1, .stApp h2, .stApp h3, .stApp h4 { color: var(--text); }
-.stApp label p, .stApp [data-testid="stWidgetLabel"] p, .stApp [data-testid="stCaptionContainer"] { color: var(--text); }
-.stApp hr { border-color: var(--border); }
-.stApp [data-baseweb="input"], .stApp [data-baseweb="base-input"], .stApp [data-baseweb="select"] > div {
-    background-color: var(--surface) !important; border-color: var(--border) !important;
-}
-.stApp [data-baseweb="input"] input, .stApp [data-baseweb="base-input"] input {
-    color: var(--text) !important; -webkit-text-fill-color: var(--text) !important;
-}
-.stApp input::placeholder { color: var(--muted) !important; -webkit-text-fill-color: var(--muted) !important; }
-.stApp [data-baseweb="select"] div { color: var(--text); }
-.stApp [data-baseweb="select"] svg { fill: var(--muted); }
-[data-baseweb="popover"] > div, [data-baseweb="popover"] ul, [data-baseweb="menu"] { background-color: var(--surface) !important; }
-[data-baseweb="popover"] li, [data-baseweb="popover"] li * { color: var(--text) !important; }
-[data-baseweb="popover"] li:hover, [data-baseweb="popover"] li[aria-selected="true"] { background-color: var(--hover-bg) !important; }
-.stApp [data-testid="stExpander"] details { background: var(--surface); border-color: var(--border); border-radius: 12px; }
-.stApp [data-testid="stExpander"] summary, .stApp [data-testid="stExpander"] summary * { color: var(--text); }
-.stApp [data-testid="stAlert"] { background-color: var(--surface); border: 1px solid var(--border); }
-.stApp [data-testid="stAlert"] * { color: var(--text); }
-.stApp [data-testid="stForm"] { background: var(--surface); border-color: var(--border); border-radius: 12px; }
-div[role="dialog"] { background-color: var(--surface) !important; color: var(--text); }
-div[role="dialog"] h1, div[role="dialog"] h2, div[role="dialog"] h3, div[role="dialog"] p { color: var(--text); }
-
-.stApp div.stButton > button, .stApp [data-testid="stDownloadButton"] button, .stApp [data-testid="stFormSubmitButton"] button {
-    background: var(--surface); color: var(--text); border: 1px solid var(--border);
-    border-radius: 10px; font-weight: 700;
-    transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-}
-.stApp button p { color: inherit; }
-.stApp div.stButton > button:hover:not(:disabled) { transform: translateY(-1px); border-color: #2563EB; color: var(--accent-text); }
-.stApp div.stButton > button[kind="primary"], .stApp div.stButton > button[data-testid="stBaseButton-primary"] {
-    background: linear-gradient(135deg, #2563EB, #1D4ED8); color: #FFFFFF; border: none;
-    box-shadow: 0 3px 8px rgba(37, 99, 235, 0.28);
-}
-.stApp div.stButton > button[kind="primary"]:hover:not(:disabled), .stApp div.stButton > button[data-testid="stBaseButton-primary"]:hover:not(:disabled) { color: #FFFFFF; filter: brightness(1.1); }
-div[data-testid="stLinkButton"] a {
-    background: linear-gradient(135deg, #F59E0B, #FF7700);
-    color: #FFFFFF !important; border: none; border-radius: 10px; font-weight: 700; padding: 0.7rem 1rem;
-    box-shadow: 0 6px 16px rgba(255, 119, 0, 0.35);
-    transition: transform 0.15s ease, box-shadow 0.2s ease;
-}
-div[data-testid="stLinkButton"] a:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(255, 119, 0, 0.45); }
-
-/* ---------- HEADER ---------- */
-.portal-header {
-    position: relative; overflow: hidden;
-    background: linear-gradient(120deg, #1E3A8A, #2563EB, #3B82F6, #1E3A8A);
-    background-size: 300% 300%;
-    animation: headerFlow 14s ease infinite, riseIn 0.7s ease both;
-    padding: 1.8rem 2rem; border-radius: 16px; color: #FFFFFF;
-    display: flex; align-items: center; flex-wrap: wrap; gap: 1.4rem;
-    margin-bottom: 1.4rem;
-    box-shadow: 0 12px 28px -8px rgba(30, 58, 138, 0.45);
-    border-bottom: 4px solid #F59E0B;
-}
-.portal-header::before, .portal-header::after { content: ""; position: absolute; border-radius: 50%; pointer-events: none; }
-.portal-header::before { width: 260px; height: 260px; right: -60px; top: -110px; background: radial-gradient(circle, rgba(255,153,51,0.35), transparent 70%); animation: floaty 9s ease-in-out infinite; }
-.portal-header::after { width: 180px; height: 180px; right: 180px; bottom: -110px; background: radial-gradient(circle, rgba(255,255,255,0.18), transparent 70%); animation: floaty 11s ease-in-out infinite reverse; }
-.portal-logo { height: 78px; width: auto; border-radius: 10px; background: #FFFFFF; padding: 5px; box-shadow: 0 6px 16px rgba(0,0,0,0.25); position: relative; z-index: 1; }
-.portal-logo-fallback { font-size: 2.4rem; position: relative; z-index: 1; }
-.portal-header-text { position: relative; z-index: 1; }
-.stApp .portal-header-text h1 { color: #FFFFFF !important; margin: 0; padding: 0; font-size: 2.15rem; font-weight: 800; line-height: 1.2; letter-spacing: -0.01em; }
-.stApp .portal-header-text p { color: #E2E8F0 !important; margin: 0.35rem 0 0 0; font-size: 1.05rem; }
-.header-live {
-    margin-left: auto; position: relative; z-index: 1;
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28);
-    padding: 0.4rem 0.9rem; border-radius: 999px; font-size: 0.85rem; font-weight: 600;
-    backdrop-filter: blur(4px); color: #FFFFFF;
-}
-.live-dot { width: 9px; height: 9px; border-radius: 50%; background: #34D399; box-shadow: 0 0 0 0 rgba(52,211,153,0.7); animation: pulse 1.8s infinite; }
-
-/* ---------- ANNOUNCEMENT TICKER ---------- */
-.notice-bar {
-    display: flex; align-items: center; gap: 0.9rem;
-    background: var(--notice-bg); border: 1px solid var(--border); border-left: 5px solid #F59E0B;
-    border-radius: 12px; padding: 0.6rem 0.9rem; margin: 0 0 1.2rem 0;
-    box-shadow: 0 4px 12px var(--shadow); animation: riseIn 0.6s ease both;
-}
-.notice-label { flex: 0 0 auto; background: linear-gradient(135deg, #F59E0B, #FF7700); color: #FFFFFF; font-weight: 800; font-size: 0.82rem; padding: 3px 12px; border-radius: 999px; }
-.ticker { flex: 1; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); }
-.ticker-track { display: inline-flex; white-space: nowrap; animation: tick linear infinite; }
-.ticker:hover .ticker-track { animation-play-state: paused; }
-.ticker-item { margin-right: 3.5rem; color: var(--text); font-weight: 600; font-size: 0.92rem; }
-.ticker-item a, .notice-list a { color: var(--link) !important; text-decoration: underline; }
-.notice-list { margin: 0; padding-left: 1.1rem; color: var(--text); }
-.notice-list li { margin: 0.35rem 0; }
-
-/* ---------- STAT TILES ---------- */
-.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 0.4rem 0 1.2rem 0; }
-.stat-tile {
-    background: var(--surface); border: 1px solid var(--border); border-left: 5px solid var(--accent, #2563EB);
-    border-radius: 14px; padding: 1rem 1.2rem; display: flex; align-items: center; gap: 0.9rem;
-    box-shadow: 0 4px 12px var(--shadow); animation: riseIn 0.6s ease both;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.stat-tile:hover { transform: translateY(-3px); box-shadow: 0 10px 22px var(--shadow-hover); }
-.stat-icon { width: 46px; height: 46px; flex: 0 0 46px; border-radius: 12px; display: grid; place-items: center; font-size: 1.4rem; background: color-mix(in srgb, var(--accent, #2563EB) 16%, var(--surface)); }
-.stat-num { font-size: 1.7rem; font-weight: 800; color: var(--stat-num); line-height: 1.1; }
+.portal-header { position: relative; overflow: hidden; background: linear-gradient(120deg, #1E3A8A, #2563EB, #3B82F6, #1E3A8A); padding: 1.8rem 2rem; border-radius: 16px; color: #FFFFFF; display: flex; align-items: center; flex-wrap: wrap; gap: 1.4rem; margin-bottom: 1.4rem; box-shadow: 0 12px 28px -8px rgba(30,58,138,0.45); border-bottom: 4px solid #F59E0B; }
+.portal-logo { height: 78px; width: auto; border-radius: 10px; background: #FFFFFF; padding: 5px; box-shadow: 0 6px 16px rgba(0,0,0,0.25); }
+.stApp .portal-header-text h1 { color: #FFFFFF !important; margin: 0; font-size: 2.15rem; font-weight: 800; }
+.stApp .portal-header-text p { color: #E2E8F0 !important; margin: 0.35rem 0 0 0; }
+.header-live { margin-left: auto; display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.14); padding: 0.4rem 0.9rem; border-radius: 999px; font-size: 0.85rem; font-weight: 600; color: #FFFFFF; }
+.live-dot { width: 9px; height: 9px; border-radius: 50%; background: #34D399; animation: pulse 1.8s infinite; }
+.notice-bar { display: flex; align-items: center; gap: 0.9rem; background: var(--notice-bg); border: 1px solid var(--border); border-left: 5px solid #F59E0B; border-radius: 12px; padding: 0.6rem 0.9rem; margin-bottom: 1.2rem; }
+.notice-label { background: linear-gradient(135deg, #F59E0B, #FF7700); color: #FFFFFF; font-weight: 800; font-size: 0.82rem; padding: 3px 12px; border-radius: 999px; }
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1.2rem; }
+.stat-tile { background: var(--surface); border: 1px solid var(--border); border-left: 5px solid var(--accent, #2563EB); border-radius: 14px; padding: 1rem 1.2rem; display: flex; align-items: center; gap: 0.9rem; box-shadow: 0 4px 12px var(--shadow); }
+.stat-icon { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; font-size: 1.4rem; background: color-mix(in srgb, var(--accent) 16%, var(--surface)); }
+.stat-num { font-size: 1.7rem; font-weight: 800; color: var(--stat-num); }
 .stat-label { font-size: 0.82rem; color: var(--muted); font-weight: 600; }
-
-/* ---------- RESULT CARDS ---------- */
-.card-item {
-    background: var(--surface); padding: 1.3rem 1.6rem; border-radius: 14px;
-    box-shadow: 0 4px 12px var(--shadow); border: 1px solid var(--border); border-top: 4px solid #FF9933;
-    position: relative; margin-bottom: 0.8rem; animation: riseIn 0.55s ease both;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-}
-.card-item::before { content: ""; position: absolute; top: -4px; left: -1px; width: 50%; height: 4px; background-color: #FF7700; border-top-left-radius: 14px; transition: width 0.45s ease; }
-.card-item:hover { transform: translateY(-3px); box-shadow: 0 14px 28px var(--shadow-hover); border-color: var(--card-hover-border); }
-.card-item:hover::before { width: calc(100% + 2px); border-top-right-radius: 14px; }
+.card-item { background: var(--surface); padding: 1.3rem 1.6rem; border-radius: 14px; box-shadow: 0 4px 12px var(--shadow); border: 1px solid var(--border); border-top: 4px solid #FF9933; position: relative; margin-bottom: 0.8rem; }
 .badge { display: inline-block; color: #FFFFFF; padding: 3px 11px; border-radius: 999px; font-size: 0.78rem; font-weight: 700; margin-right: 6px; }
-.badge-new { background: linear-gradient(135deg, #F59E0B, #EF4444); animation: pulse-soft 2s ease-in-out infinite; }
-.stApp .card-title { margin: 0.4rem 0 0.2rem 0; color: var(--text); font-size: 1.1rem; font-weight: 700; overflow-wrap: anywhere; }
+.stApp .card-title { margin: 0.4rem 0 0.2rem 0; color: var(--text); font-size: 1.1rem; font-weight: 700; }
 .card-date { color: var(--muted); font-size: 0.82rem; }
-
-/* ---------- RESULT BAR & BARS ---------- */
-.result-bar { display: flex; align-items: center; justify-content: space-between; margin: 0.2rem 0 1rem 0; color: var(--muted); font-size: 0.92rem; font-weight: 600; }
-.result-pill { background: var(--pill-bg); color: var(--pill-text); padding: 3px 12px; border-radius: 999px; font-weight: 700; }
-.dept-row { display: flex; align-items: center; gap: 0.8rem; margin: 0.45rem 0; font-size: 0.88rem; color: var(--text); font-weight: 600; }
-.dept-name { flex: 0 0 150px; }
-.dept-track { flex: 1; height: 10px; background: var(--track); border-radius: 999px; overflow: hidden; }
-.dept-fill { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, #2563EB, #F59E0B); transform-origin: left; animation: grow 1s ease both; }
-.dept-count { flex: 0 0 32px; text-align: right; color: var(--accent-text); }
-
-/* ---------- UPLOAD TAB ---------- */
-.stApp .note-text { color: var(--text); margin: 0; }
-.upload-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1rem 0 1.4rem 0; }
-.step-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.1rem 1.2rem; box-shadow: 0 4px 12px var(--shadow); animation: riseIn 0.6s ease both; transition: transform 0.2s ease; }
-.step-card:hover { transform: translateY(-3px); }
-.step-no { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(135deg, #F59E0B, #FF7700); color: #FFFFFF; font-weight: 800; margin-bottom: 0.6rem; }
-.stApp .step-card h4 { margin: 0 0 0.25rem 0; color: var(--text); font-size: 1rem; }
-.stApp .step-card p { margin: 0; color: var(--muted); font-size: 0.88rem; }
-
-/* ---------- ADMIN ---------- */
-.admin-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1rem 1.2rem; box-shadow: 0 4px 12px var(--shadow); margin-bottom: 1rem; }
-.stApp .admin-panel h4 { margin: 0 0 0.6rem 0; font-size: 1rem; color: var(--text); }
-.issue-list { margin: 0; padding-left: 1.1rem; color: var(--text); font-size: 0.9rem; }
-.issue-list li { margin: 0.3rem 0; }
-.ok-text { color: #059669; font-weight: 700; }
-
-/* ---------- TABS ---------- */
-.stTabs [data-baseweb="tab-list"] { gap: 0.5rem; border-bottom: 2px solid var(--border); flex-wrap: wrap; }
-.stTabs [data-baseweb="tab"] { height: 48px; padding: 0 1.2rem; border-radius: 10px 10px 0 0; font-weight: 700; color: var(--muted); transition: background 0.2s ease, color 0.2s ease; }
-.stTabs [data-baseweb="tab"]:hover { background: var(--hover-bg); color: var(--accent-text); }
-.stTabs [aria-selected="true"] { color: var(--pill-text) !important; background: var(--pill-bg); }
-.stTabs [data-baseweb="tab-highlight"] { background-color: #F59E0B !important; height: 3px; }
-
-/* ---------- FOOTER ---------- */
-.institutional-footer { background: linear-gradient(135deg, #1E3A8A, #1E40AF); color: #FFFFFF; text-align: center; padding: 1.6rem 1rem; border-radius: 14px; margin-top: 3rem; box-shadow: 0 -4px 10px rgba(0,0,0,0.05); border-top: 3px solid #F59E0B; }
-.stApp .institutional-footer p { margin: 0.3rem 0; color: #F8FAFC; font-size: 0.9rem; }
-.visitor-counter { margin-top: 0.8rem; }
-
-/* ---------- MOTION ---------- */
-@keyframes headerFlow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-@keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(14px); } }
-@keyframes riseIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+.institutional-footer { background: linear-gradient(135deg, #1E3A8A, #1E40AF); color: #FFFFFF; text-align: center; padding: 1.6rem 1rem; border-radius: 14px; margin-top: 3rem; border-top: 3px solid #F59E0B; }
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(52,211,153,0.7); } 70% { box-shadow: 0 0 0 10px rgba(52,211,153,0); } 100% { box-shadow: 0 0 0 0 rgba(52,211,153,0); } }
-@keyframes pulse-soft { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.07); } }
-@keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-@keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-@media (max-width: 720px) {
-    .stApp .portal-header-text h1 { font-size: 1.6rem; }
-    .header-live { margin-left: 0; }
-    .dept-name { flex-basis: 100px; }
-    .notice-bar { flex-wrap: wrap; }
-}
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation: none !important; transition: none !important; }
-    .ticker { overflow: visible; -webkit-mask-image: none; mask-image: none; }
-    .ticker-track { display: block; white-space: normal; }
-}
 """
 st.markdown("<style>" + (DARK_VARS if dark else LIGHT_VARS) + BASE_CSS + "</style>", unsafe_allow_html=True)
 
 # =====================================================================
-# HELPERS
+# HELPERS & DATA LOADERS
 # =====================================================================
 def get_base64_image(image_path):
     p = Path(image_path)
@@ -517,13 +417,10 @@ def extract_drive_id(value):
         return ""
     val_str = str(value).strip()
     match_d = re.search(r'/d/([a-zA-Z0-9_-]+)', val_str)
-    if match_d:
-        return match_d.group(1)
+    if match_d: return match_d.group(1)
     match_id = re.search(r'id=([a-zA-Z0-9_-]+)', val_str)
-    if match_id:
-        return match_id.group(1)
-    if re.match(r'^[a-zA-Z0-9_-]{25,}$', val_str):
-        return val_str
+    if match_id: return match_id.group(1)
+    if re.match(r'^[a-zA-Z0-9_-]{25,}$', val_str): return val_str
     return val_str
 
 @st.cache_data(ttl=60)
@@ -537,29 +434,23 @@ def load_uploaded_files():
 
 @st.cache_data(ttl=60)
 def load_announcements():
-    if not ANNOUNCEMENTS_CSV_URL:
-        return pd.DataFrame()
+    if not ANNOUNCEMENTS_CSV_URL: return pd.DataFrame()
     try:
         df = pd.read_csv(ANNOUNCEMENTS_CSV_URL)
         df.columns = [str(col).strip().lower() for col in df.columns]
         return df
-    except Exception:
-        return pd.DataFrame()
+    except Exception: return pd.DataFrame()
 
 def parse_dates(series):
-    try:
-        return pd.to_datetime(series, errors="coerce", format="mixed")
+    try: return pd.to_datetime(series, errors="coerce", format="mixed")
     except Exception:
-        try:
-            return pd.to_datetime(series, errors="coerce")
-        except Exception:
-            return pd.Series([pd.NaT] * len(series), index=series.index)
+        try: return pd.to_datetime(series, errors="coerce")
+        except Exception: return pd.Series([pd.NaT] * len(series), index=series.index)
 
 def match_dept(name):
     low = str(name).lower()
     for d in sorted(DEPARTMENT_FOLDERS, key=len, reverse=True):
-        if d.lower() in low:
-            return d
+        if d.lower() in low: return d
     return None
 
 def dept_mask(series, dept):
@@ -572,111 +463,39 @@ def dept_mask(series, dept):
 
 def dept_color(name):
     d = match_dept(name)
-    if d:
-        return DEPT_COLORS[DEPARTMENT_FOLDERS.index(d) % len(DEPT_COLORS)]
+    if d: return DEPT_COLORS[DEPARTMENT_FOLDERS.index(d) % len(DEPT_COLORS)]
     return "#475569"
 
 def dept_label(name):
     if st.session_state.get("lang") == "bn":
         d = match_dept(name)
-        if d:
-            return DEPT_BN.get(d, d)
+        if d: return DEPT_BN.get(d, d)
     return name
 
 def cat_label(value):
     if st.session_state.get("lang") == "bn":
         low = str(value).lower()
-        if "syllabus" in low:
-            return t("syllabus")
-        if "study" in low:
-            return t("study_material")
-        if "assignment" in low:
-            return t("assignment")
+        if "syllabus" in low: return t("syllabus")
+        if "study" in low: return t("study_material")
+        if "assignment" in low: return t("assignment")
     return value
 
-def esc(v):
-    return html.escape(str(v), quote=True)
-
-def bar_rows(items):
-    if not items:
-        return ""
-    max_n = max(n for _, n in items) or 1
-    return "".join(
-        f'<div class="dept-row"><span class="dept-name">{esc(label)}</span>'
-        f'<span class="dept-track"><span class="dept-fill" style="width:{n / max_n * 100:.0f}%;"></span></span>'
-        f'<span class="dept-count">{n}</span></div>'
-        for label, n in items
-    )
+def esc(v): return html.escape(str(v), quote=True)
 
 def detect_columns(df):
-    if df.empty:
-        return {}
+    if df.empty: return {}
     cols = df.columns
     return {
         "cat": next((c for c in cols if "cat" in c or "type" in c), None),
         "dept": next((c for c in cols if "dept" in c or "department" in c), None),
         "title": next((c for c in cols if "title" in c or "file" in c or "name" in c or "upload" in c), None),
         "date": next((c for c in cols if "date" in c or "time" in c or "timestamp" in c), None),
+        "sem": next((c for c in cols if "sem" in c or "year" in c), None),
         "id": next((c for c in cols if "id" in c or "link" in c or "url" in c or "file" in c or "upload" in c), None),
     }
 
 # =====================================================================
-# ANNOUNCEMENTS
-# =====================================================================
-def get_notices(df, lang):
-    notices = []
-    if df.empty:
-        return notices
-    cols = list(df.columns)
-    bn_col = next((c for c in cols if "bengali" in c or c == "bn" or c.endswith("_bn")), None)
-    msg_col = next((c for c in cols if c != bn_col and any(k in c for k in ("message", "notice", "announcement", "title", "text"))), None)
-    link_col = next((c for c in cols if "link" in c or "url" in c), None)
-    active_col = next((c for c in cols if any(k in c for k in ("active", "show", "visible", "display"))), None)
-    exp_col = next((c for c in cols if any(k in c for k in ("expir", "until", "valid"))), None)
-    if not msg_col:
-        return notices
-    today = datetime.now().date()
-    for _, r in df.iterrows():
-        text = str(r[msg_col]).strip() if pd.notna(r[msg_col]) else ""
-        if lang == "bn" and bn_col and pd.notna(r[bn_col]) and str(r[bn_col]).strip():
-            text = str(r[bn_col]).strip()
-        if not text:
-            continue
-        if active_col and pd.notna(r[active_col]) and str(r[active_col]).strip().lower() in {"no", "false", "0", "n", "hide", "inactive"}:
-            continue
-        if exp_col and pd.notna(r[exp_col]):
-            exp = pd.to_datetime(r[exp_col], errors="coerce")
-            if pd.notna(exp) and exp.date() < today:
-                continue
-        link = str(r[link_col]).strip() if link_col and pd.notna(r[link_col]) else ""
-        if link and not link.lower().startswith(("http://", "https://")):
-            link = ""
-        notices.append({"text": text, "link": link})
-    return notices
-
-def _notice_html(n):
-    body = esc(n["text"])
-    if n["link"]:
-        body = f'<a href="{esc(n["link"])}" target="_blank" rel="noopener">{body}</a>'
-    return body
-
-def render_notices(notices):
-    if not notices:
-        return
-    items = "".join(f'<span class="ticker-item">📌 {_notice_html(n)}</span>' for n in notices)
-    duration = max(20, int(sum(len(n["text"]) for n in notices) * 0.28))
-    st.markdown(
-        f'<div class="notice-bar"><span class="notice-label">{t("notices")}</span>'
-        f'<div class="ticker"><div class="ticker-track" style="animation-duration:{duration}s;">{items}{items}</div></div></div>',
-        unsafe_allow_html=True,
-    )
-    if len(notices) > 1:
-        with st.expander(t("all_notices", n=len(notices))):
-            lis = "".join(f"<li>{_notice_html(n)}</li>" for n in notices)
-            st.markdown(f'<ul class="notice-list">{lis}</ul>', unsafe_allow_html=True)
-
-# =====================================================================
-# PREVIEW DIALOG
+# PREVIEW DIALOG & TOGGLE
 # =====================================================================
 _dialog_fn = getattr(st, "dialog", None) or getattr(st, "experimental_dialog", None)
 
@@ -686,35 +505,39 @@ def _preview_iframe(fid):
         f'style="border:0;border-radius:10px;background:#fff;" allow="autoplay" loading="lazy"></iframe>'
     )
 
-def _preview_links(fid):
-    c1, c2 = st.columns(2)
-    with c1:
-        st.link_button("↗ Open in new tab", f"https://drive.google.com/file/d/{fid}/view?usp=sharing", use_container_width=True)
-    with c2:
-        st.link_button(t("download"), f"https://drive.google.com/uc?export=download&id={fid}", use_container_width=True)
-    st.caption(t("preview_note"))
-
 def open_preview(title, fid):
-    @_dialog_fn(str(title)[:70] or "Preview", width="large")
-    def _show():
-        components.html(_preview_iframe(fid), height=590)
-        _preview_links(fid)
-
-    _show()
+    viewer_mode = st.session_state.get("viewer_mode_pref", "Popup Modal")
+    
+    if viewer_mode == "Full Width Inline":
+        st.markdown(f"### 👁️ {esc(title)}")
+        components.html(_preview_iframe(fid), height=600)
+        c1, c2 = st.columns(2)
+        with c1: st.link_button("↗ Open in new tab", f"https://drive.google.com/file/d/{fid}/view?usp=sharing", use_container_width=True)
+        with c2: 
+            if st.button(t("download"), key=f"inline_dl_{fid}", use_container_width=True):
+                record_download(fid)
+                st.markdown(f'<meta http-equiv="refresh" content="0;url=https://drive.google.com/uc?export=download&id={fid}">', unsafe_allow_html=True)
+        st.markdown("---")
+    else:
+        @_dialog_fn(str(title)[:70] or "Preview", width="large")
+        def _show():
+            components.html(_preview_iframe(fid), height=580)
+            c1, c2 = st.columns(2)
+            with c1: st.link_button("↗ Open in new tab", f"https://drive.google.com/file/d/{fid}/view?usp=sharing", use_container_width=True)
+            with c2: st.link_button(t("download"), f"https://drive.google.com/uc?export=download&id={fid}", use_container_width=True)
+            st.caption(t("preview_note"))
+        _show()
 
 # =====================================================================
 # CARD RENDERING
 # =====================================================================
 def render_cards(df, prefix, cols, paginate=True):
-    cat_col, dept_col, title_col, date_col = cols.get("cat"), cols.get("dept"), cols.get("title"), cols.get("date")
+    cat_col, dept_col, title_col, date_col, sem_col = cols.get("cat"), cols.get("dept"), cols.get("title"), cols.get("date"), cols.get("sem")
     total = len(df)
     visible = st.session_state.get(f"{prefix}_visible", PAGE_SIZE) if paginate else total
 
     if paginate:
-        st.markdown(
-            f'<div class="result-bar"><span class="result-pill">{t("showing", shown=min(visible, total), total=total)}</span></div>',
-            unsafe_allow_html=True,
-        )
+        st.markdown(f'<div class="result-bar"><span class="result-pill">{t("showing", shown=min(visible, total), total=total)}</span></div>', unsafe_allow_html=True)
 
     now = datetime.now()
     saved = st.session_state.get("saved", [])
@@ -724,36 +547,30 @@ def render_cards(df, prefix, cols, paginate=True):
         cat_val = str(row[cat_col]) if cat_col and pd.notna(row[cat_col]) else "Material"
         title_val = str(row[title_col]) if title_col and pd.notna(row[title_col]) else f"Document #{idx+1}"
         date_val = str(row[date_col]) if date_col and pd.notna(row[date_col]) else t("recent")
+        sem_val = str(row[sem_col]) if sem_col and pd.notna(row[sem_col]) else ""
         fid = row.get("_fid", "")
         has_file = _valid_fid(fid)
 
-        if has_file:
-            download_url = f"https://drive.google.com/uc?export=download&id={fid}"
-        else:
-            download_url = "#"
+        ftype, ficon, fcolor = detect_file_type(title_val)
+        dl_count = get_download_count(fid)
+        avg_score, rating_count = get_avg_rating(fid)
 
-        new_badge = ""
-        if date_col:
-            try:
-                dt = pd.to_datetime(row[date_col], errors="coerce")
-                if pd.notna(dt) and now - dt.to_pydatetime() <= timedelta(days=7):
-                    new_badge = f'<span class="badge badge-new">{t("new")}</span>'
-            except Exception:
-                pass
-
-        delay = min(pos * 0.06, 0.5)
+        download_url = f"https://drive.google.com/uc?export=download&id={fid}" if has_file else "#"
 
         with st.container():
-            st.markdown(f'<div class="card-item" style="animation-delay:{delay:.2f}s;">', unsafe_allow_html=True)
+            st.markdown(f'<div class="card-item">', unsafe_allow_html=True)
             c_info, c_prev, c_dl, c_sv = st.columns([3.2, 1, 1, 1])
             with c_info:
+                sem_badge = f'<span class="badge" style="background:#0F766E;">{esc(sem_val)}</span>' if sem_val else ''
+                rating_str = f"⭐ {avg_score} ({rating_count})" if rating_count > 0 else "☆ No ratings"
                 st.markdown(f"""
                 <div>
                 <span class="badge" style="background:{dept_color(dept_val)};">{esc(dept_label(dept_val))}</span>
                 <span class="badge" style="background:#059669;">{esc(cat_label(cat_val))}</span>
-                {new_badge}
+                <span class="badge" style="background:{fcolor};">{ficon} {ftype}</span>
+                {sem_badge}
                 <h4 class="card-title">{esc(title_val)}</h4>
-                <small class="card-date">🕒 {t("uploaded_on")}: {esc(date_val)}</small>
+                <small class="card-date">🕒 {t("uploaded_on")}: {esc(date_val)} &nbsp;|&nbsp; 📥 {dl_count} {t("downloads_count")} &nbsp;|&nbsp; {rating_str}</small>
                 </div>
                 """, unsafe_allow_html=True)
             with c_prev:
@@ -763,9 +580,11 @@ def render_cards(df, prefix, cols, paginate=True):
             with c_dl:
                 st.markdown("<div style='height:4px;'></div>", unsafe_allow_html=True)
                 if has_file:
-                    st.link_button(t("download"), download_url, use_container_width=True)
+                    if st.button(t("download"), key=f"{prefix}_dl_{idx}", use_container_width=True):
+                        record_download(fid)
+                        st.markdown(f'<meta http-equiv="refresh" content="0;url={download_url}">', unsafe_allow_html=True)
                 else:
-                    st.button(t("download"), key=f"{prefix}_dl_{idx}", disabled=True, use_container_width=True)
+                    st.button(t("download"), key=f"{prefix}_dl_dis_{idx}", disabled=True, use_container_width=True)
             with c_sv:
                 st.markdown("<div style='height:4px;'></div>", unsafe_allow_html=True)
                 st.button(
@@ -776,11 +595,20 @@ def render_cards(df, prefix, cols, paginate=True):
                     args=(fid,),
                     use_container_width=True,
                 )
-            st.markdown('</div>', unsafe_allow_html=True)
+            
+            if has_file:
+                with st.expander(f"⭐ {t('rating_label')}"):
+                    r_col1, r_col2 = st.columns([2, 1])
+                    with r_col1:
+                        score = st.slider("Select rating", 1, 5, 5, key=f"rate_slider_{prefix}_{idx}")
+                    with r_col2:
+                        st.markdown("<div style='height:1.4rem;'></div>", unsafe_allow_html=True)
+                        if st.button("Submit Rating", key=f"rate_btn_{prefix}_{idx}", use_container_width=True):
+                            add_rating(fid, score)
+                            st.success("Thank you for rating!")
+                            st.rerun()
 
-        if _dialog_fn is None and has_file and st.session_state.get("inline_preview") == fid:
-            components.html(_preview_iframe(fid), height=590)
-            _preview_links(fid)
+            st.markdown('</div>', unsafe_allow_html=True)
 
     if paginate and total > visible:
         _, mid, _ = st.columns([1, 1, 1])
@@ -790,14 +618,11 @@ def render_cards(df, prefix, cols, paginate=True):
                 st.rerun()
 
 # =====================================================================
-# ADMIN & DELETE HANDLER
+# ADMIN DASHBOARD & ADVANCED ANALYTICS
 # =====================================================================
 def get_admin_password():
-    try:
-        val = st.secrets["ADMIN_PASSWORD"]
-        return str(val) if val else None
-    except Exception:
-        return None
+    try: return str(st.secrets["ADMIN_PASSWORD"])
+    except Exception: return None
 
 def remove_row(idx):
     deleted = st.session_state.get("deleted_rows", [])
@@ -808,7 +633,6 @@ def remove_row(idx):
 def render_admin(df, cols, notices_count):
     st.markdown(f"### {t('admin_head')}")
     admin_pw = get_admin_password()
-
     if not admin_pw:
         st.info(t("admin_setup"))
         st.code('ADMIN_PASSWORD = "choose-a-strong-password"', language="toml")
@@ -819,15 +643,10 @@ def render_admin(df, cols, notices_count):
             pw = st.text_input(t("admin_pw"), type="password")
             submitted = st.form_submit_button(t("admin_login"))
         if submitted:
-            if st.session_state.get("admin_fail", 0) >= 5:
-                st.error(t("admin_lockout"))
-            elif hmac.compare_digest(pw.encode(), admin_pw.encode()):
+            if hmac.compare_digest(pw.encode(), admin_pw.encode()):
                 st.session_state["admin_ok"] = True
-                st.session_state["admin_fail"] = 0
                 st.rerun()
-            else:
-                st.session_state["admin_fail"] = st.session_state.get("admin_fail", 0) + 1
-                st.error(t("admin_wrong"))
+            else: st.error(t("admin_wrong"))
         return
 
     if st.button(t("admin_logout")):
@@ -842,143 +661,67 @@ def render_admin(df, cols, notices_count):
     parsed = parse_dates(df[date_col]) if date_col else pd.Series([pd.NaT] * len(df), index=df.index)
     now = pd.Timestamp.now()
     has_dates = parsed.notna().any()
-    this_month = int(((parsed.dt.year == now.year) & (parsed.dt.month == now.month)).sum()) if has_dates else 0
-    last_week = int((parsed >= now - pd.Timedelta(days=7)).sum()) if has_dates else 0
-    nolink_mask = ~df["_fid"].map(_valid_fid)
+    total_downloads_all = sum(st.session_state.get("downloads", {}).values())
 
-    st.markdown(f"""
-<div class="stat-grid">
-<div class="stat-tile" style="--accent:#2563EB;"><div class="stat-icon">📚</div><div><div class="stat-num">{len(df)}</div><div class="stat-label">{t("adm_total")}</div></div></div>
-<div class="stat-tile" style="--accent:#F59E0B;"><div class="stat-icon">🗓️</div><div><div class="stat-num">{this_month}</div><div class="stat-label">{t("adm_month")}</div></div></div>
-<div class="stat-tile" style="--accent:#10B981;"><div class="stat-icon">⚡</div><div><div class="stat-num">{last_week}</div><div class="stat-label">{t("adm_week")}</div></div></div>
-<div class="stat-tile" style="--accent:#EF4444;"><div class="stat-icon">⚠️</div><div><div class="stat-num">{int(nolink_mask.sum())}</div><div class="stat-label">{t("adm_nolink")}</div></div></div>
-</div>
-""", unsafe_allow_html=True)
+    st.markdown("#### 📊 Comprehensive Departmental Analytics Reports")
+    an_col1, an_col2, an_col3 = st.columns(3)
+    with an_col1:
+        st.metric("Total Cataloged Resources", len(df))
+    with an_col2:
+        st.metric("Total Portal Downloads", total_downloads_all)
+    with an_col3:
+        active_depts = len([d for d in DEPARTMENT_FOLDERS if int(dept_mask(df[dept_col], d).sum()) > 0]) if dept_col else 0
+        st.metric("Active Contributing Depts", f"{active_depts} / {len(DEPARTMENT_FOLDERS)}")
 
-    month_items = []
-    if has_dates:
-        counts = parsed.dropna().dt.to_period("M").value_counts().sort_index().tail(12)
-        month_items = [(str(p), int(n)) for p, n in counts.items()]
-    dept_counts = {}
     if dept_col:
+        dept_stats = []
         for d in DEPARTMENT_FOLDERS:
-            dept_counts[d] = int(dept_mask(df[dept_col], d).sum())
-    dept_items = sorted([(dept_label(d), n) for d, n in dept_counts.items() if n], key=lambda x: -x[1])
+            d_count = int(dept_mask(df[dept_col], d).sum())
+            if d_count > 0:
+                dept_stats.append({"Department": d, "Documents": d_count})
+        if dept_stats:
+            st.bar_chart(pd.DataFrame(dept_stats).set_index("Department"))
 
-    c1, c2 = st.columns(2)
-    with c1:
-        st.markdown(f'<div class="admin-panel"><h4>{t("adm_by_month")}</h4>{bar_rows(month_items)}</div>', unsafe_allow_html=True)
-    with c2:
-        st.markdown(f'<div class="admin-panel"><h4>{t("adm_by_dept")}</h4>{bar_rows(dept_items)}</div>', unsafe_allow_html=True)
-
-    cat_items = []
-    if cat_col:
-        vc = df[cat_col].fillna("—").astype(str).str.strip().value_counts().head(8)
-        cat_items = [(cat_label(k), int(v)) for k, v in vc.items()]
-    empty_depts = [dept_label(d) for d, n in dept_counts.items() if n == 0] if dept_col else []
-
-    c3, c4 = st.columns(2)
-    with c3:
-        st.markdown(f'<div class="admin-panel"><h4>{t("adm_by_cat")}</h4>{bar_rows(cat_items)}</div>', unsafe_allow_html=True)
-    with c4:
-        body = (
-            "".join(f'<span class="badge" style="background:#B45309;margin-bottom:6px;">{esc(d)}</span>' for d in empty_depts)
-            if empty_depts else f'<span class="ok-text">✔ {t("adm_all_covered")}</span>'
-        )
-        st.markdown(f'<div class="admin-panel"><h4>{t("adm_empty_depts")}</h4>{body}</div>', unsafe_allow_html=True)
-
-    def _titles(mask):
-        if not title_col:
-            return ""
-        return "; ".join(esc(x)[:60] for x in df.loc[mask, title_col].astype(str).head(5))
-
-    issues = []
-    if nolink_mask.any():
-        issues.append((t("adm_issue_nolink"), int(nolink_mask.sum()), _titles(nolink_mask)))
-    if dept_col:
-        m = df[dept_col].isna() | (df[dept_col].astype(str).str.strip() == "")
-        if m.any():
-            issues.append((t("adm_issue_nodept"), int(m.sum()), _titles(m)))
-    if cat_col:
-        m = df[cat_col].isna() | (df[cat_col].astype(str).str.strip() == "")
-        if m.any():
-            issues.append((t("adm_issue_nocat"), int(m.sum()), _titles(m)))
-    if title_col and dept_col:
-        m = df.duplicated(subset=[title_col, dept_col], keep=False)
-        if m.any():
-            issues.append((t("adm_issue_dup"), int(m.sum()), _titles(m)))
-    issue_html = (
-        '<ul class="issue-list">' + "".join(f"<li><b>{lbl}: {n}</b> — {names}</li>" for lbl, n, names in issues) + "</ul>"
-        if issues else f'<span class="ok-text">✔ {t("adm_none_attention")}</span>'
-    )
-    st.markdown(f'<div class="admin-panel"><h4>{t("adm_attention")}</h4>{issue_html}</div>', unsafe_allow_html=True)
-
-    st.markdown(f'<div class="admin-panel"><h4>{t("adm_recent")}</h4>', unsafe_allow_html=True)
+    st.markdown("---")
+    st.markdown(f"#### {t('adm_recent')}")
     recent = df.assign(_dt=parsed).sort_values("_dt", ascending=False, na_position="last").head(20)
     for idx, r in recent.iterrows():
         link_ok = _valid_fid(r["_fid"])
-        dt_str = str(r[date_col]) if date_col and pd.notna(r[date_col]) else '—'
-        dept_str = str(dept_label(r[dept_col])) if dept_col and pd.notna(r[dept_col]) else '—'
-        cat_str = str(cat_label(r[cat_col])) if cat_col and pd.notna(r[cat_col]) else '—'
         title_str = str(r[title_col]) if title_col and pd.notna(r[title_col]) else '—'
-        
         col_t, col_meta, col_del = st.columns([4, 3, 1])
         with col_t:
-            st.markdown(f"**{esc(title_str)}**<br><small style='color:var(--muted);'>{dt_str} | {dept_str} ({cat_str})</small>", unsafe_allow_html=True)
+            st.markdown(f"**{esc(title_str)}**", unsafe_allow_html=True)
         with col_meta:
             st.markdown(f"<small>{t('link_ok') if link_ok else t('link_missing')}</small>", unsafe_allow_html=True)
         with col_del:
             if st.button(t("adm_delete"), key=f"del_{idx}", use_container_width=True):
                 remove_row(idx)
                 st.rerun()
-        st.markdown("<hr style='margin:0.4rem 0;'>", unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
-
-    export_df = df.drop(columns=[c for c in df.columns if c.startswith("_")])
-    st.download_button(t("adm_export"), export_df.to_csv(index=False).encode("utf-8-sig"),
-                       file_name="pjc_repository_catalog.csv", mime="text/csv")
-    st.caption(t("adm_notices_on", n=notices_count) if ANNOUNCEMENTS_CSV_URL else t("adm_notices_off"))
 
 # =====================================================================
-# TOP CONTROLS: language + dark mode
+# TOP CONTROLS & VIEWER TOGGLE
 # =====================================================================
 _toggle = getattr(st, "toggle", st.checkbox)
-_, ctrl_lang, ctrl_dark = st.columns([5, 2.4, 1.8])
+_, ctrl_lang, ctrl_dark, ctrl_viewer = st.columns([3, 1.8, 1.4, 2.2])
 with ctrl_lang:
-    st.radio(
-        "Language", ["en", "bn"], key="lang", horizontal=True,
-        format_func=lambda x: {"en": "English", "bn": "বাংলা"}[x],
-        label_visibility="collapsed",
-    )
+    st.radio("Language", ["en", "bn"], key="lang", horizontal=True, format_func=lambda x: {"en": "English", "bn": "বাংলা"}[x], label_visibility="collapsed")
 with ctrl_dark:
     _toggle(t("dark_label"), key="dark_mode")
+with ctrl_viewer:
+    st.selectbox(t("viewer_mode"), ["Popup Modal", "Full Width Inline"], key="viewer_mode_pref", label_visibility="collapsed")
 
-# =====================================================================
-# HEADER WITH INTEGRATED LOGO
-# =====================================================================
+# HEADER
 logo_b64 = get_base64_image("logo_pjc copy.jpg")
-logo_html = (
-    f'<img class="portal-logo" src="data:image/jpeg;base64,{logo_b64}" alt="PJC Logo">'
-    if logo_b64
-    else '<div class="portal-logo-fallback">🏛️</div>'
-)
+logo_html = f'<img class="portal-logo" src="data:image/jpeg;base64,{logo_b64}" alt="PJC Logo">' if logo_b64 else '<div class="portal-logo-fallback">🏛️</div>'
 st.markdown(f"""
 <div class="portal-header">
 {logo_html}
-<div class="portal-header-text">
-<h1>{t("site_name")}</h1>
-<p>{t("site_tagline")}</p>
-</div>
+<div class="portal-header-text"><h1>{t("site_name")}</h1><p>{t("site_tagline")}</p></div>
 <div class="header-live"><span class="live-dot"></span>{t("live")}</div>
 </div>
 """, unsafe_allow_html=True)
 
-notices = get_notices(load_announcements(), st.session_state.get("lang", "en"))
-render_notices(notices)
-
-# =====================================================================
-# DATA & DELETION FILTERING
-# =====================================================================
+# DATA LOADING & FILTERING
 df_files = load_uploaded_files()
 if not df_files.empty and st.session_state.get("deleted_rows"):
     df_files = df_files.drop(index=st.session_state["deleted_rows"], errors="ignore")
@@ -995,8 +738,8 @@ else:
     saved_count = 0
 
 # --- NAVIGATION TABS ---
-tab_browse, tab_saved, tab_upload, tab_admin = st.tabs([
-    t("tab_browse"), t("tab_saved", n=saved_count), t("tab_upload"), t("tab_admin")
+tab_browse, tab_popular, tab_saved, tab_upload, tab_admin = st.tabs([
+    t("tab_browse"), t("tab_popular"), t("tab_saved", n=saved_count), t("tab_upload"), t("tab_admin")
 ])
 
 # =====================================================================
@@ -1004,104 +747,64 @@ tab_browse, tab_saved, tab_upload, tab_admin = st.tabs([
 # =====================================================================
 with tab_browse:
     head_l, head_r = st.columns([5, 1])
-    with head_l:
-        st.markdown(f"### {t('explore')}")
+    with head_l: st.markdown(f"### {t('explore')}")
     with head_r:
-        if st.button(t("refresh"), use_container_width=True, help=t("refresh_help")):
+        if st.button(t("refresh"), use_container_width=True):
             load_uploaded_files.clear()
-            load_announcements.clear()
             st.rerun()
 
-    cat_col, dept_col, title_col, date_col = cols.get("cat"), cols.get("dept"), cols.get("title"), cols.get("date")
+    cat_col, dept_col, title_col, date_col, sem_col = cols.get("cat"), cols.get("dept"), cols.get("title"), cols.get("date"), cols.get("sem")
 
-    if not df_files.empty:
-        total_docs = len(df_files)
-        syllabus_docs = int(df_files[cat_col].astype(str).str.contains("syllabus", case=False, na=False).sum()) if cat_col else 0
-        study_docs = int(df_files[cat_col].astype(str).str.contains("study", case=False, na=False).sum()) if cat_col else 0
-        assignment_docs = int(df_files[cat_col].astype(str).str.contains("assignment", case=False, na=False).sum()) if cat_col else 0
-        dept_counts = {}
-        if dept_col:
-            for d in DEPARTMENT_FOLDERS:
-                n = int(dept_mask(df_files[dept_col], d).sum())
-                if n:
-                    dept_counts[d] = n
-
-        st.markdown(f"""
-<div class="stat-grid">
-<div class="stat-tile" style="--accent:#2563EB; animation-delay:0s;"><div class="stat-icon">📚</div><div><div class="stat-num">{total_docs}</div><div class="stat-label">{t("total_docs")}</div></div></div>
-<div class="stat-tile" style="--accent:#F59E0B; animation-delay:0.08s;"><div class="stat-icon">📘</div><div><div class="stat-num">{syllabus_docs}</div><div class="stat-label">{t("syllabi")}</div></div></div>
-<div class="stat-tile" style="--accent:#10B981; animation-delay:0.16s;"><div class="stat-icon">📝</div><div><div class="stat-num">{study_docs}</div><div class="stat-label">{t("study_materials")}</div></div></div>
-<div class="stat-tile" style="--accent:#D97706; animation-delay:0.20s;"><div class="stat-icon">📋</div><div><div class="stat-num">{assignment_docs}</div><div class="stat-label">{t("assignments")}</div></div></div>
-<div class="stat-tile" style="--accent:#7C3AED; animation-delay:0.24s;"><div class="stat-icon">🏫</div><div><div class="stat-num">{len(dept_counts)}</div><div class="stat-label">{t("depts_contrib")}</div></div></div>
-</div>
-""", unsafe_allow_html=True)
-
-        if dept_counts:
-            with st.expander(t("by_dept")):
-                st.markdown(
-                    bar_rows([(dept_label(d), n) for d, n in sorted(dept_counts.items(), key=lambda x: -x[1])]),
-                    unsafe_allow_html=True,
-                )
-
-    # --- FILTERS ---
-    f_col1, f_col2, f_col3, f_col4 = st.columns([1.1, 1.4, 1.6, 1.1])
+    f_col1, f_col2, f_col3, f_col4, f_col5 = st.columns([1, 1.2, 1.1, 1.3, 1])
     with f_col1:
-        selected_category = st.selectbox(
-            t("category"), ["All", "Syllabus", "Study Material", "Assignment"],
-            format_func=lambda x: {"All": t("all"), "Syllabus": t("syllabus"), "Study Material": t("study_material"), "Assignment": t("assignment")}[x],
-        )
+        selected_category = st.selectbox(t("category"), ["All", "Syllabus", "Study Material", "Assignment"], format_func=lambda x: {"All": t("all"), "Syllabus": t("syllabus"), "Study Material": t("study_material"), "Assignment": t("assignment")}[x])
     with f_col2:
-        selected_dept = st.selectbox(
-            t("department"), ["All Departments"] + DEPARTMENT_FOLDERS,
-            format_func=lambda x: t("all_depts") if x == "All Departments" else dept_label(x),
-        )
+        selected_dept = st.selectbox(t("department"), ["All Departments"] + DEPARTMENT_FOLDERS, format_func=lambda x: t("all_depts") if x == "All Departments" else dept_label(x))
     with f_col3:
-        search_query = st.text_input(t("search"), placeholder=t("search_ph"))
+        selected_sem = st.selectbox(t("semester"), ["All Semesters"] + [f"Semester {i}" for i in range(1, 9)], format_func=lambda x: t("all_sems") if x == "All Semesters" else x)
     with f_col4:
-        sort_choice = st.selectbox(t("sort_by"), ["newest", "oldest", "az"], format_func=lambda x: t(x))
+        selected_type = st.selectbox(t("file_type"), ["All Formats", "PDF", "Word", "Excel", "Presentation"], format_func=lambda x: t("all_types") if x == "All Formats" else x)
+    with f_col5:
+        search_query = st.text_input(t("search"), placeholder=t("search_ph"))
 
     st.markdown("---")
 
     if not df_files.empty:
         filtered_df = df_files.copy()
-
         if selected_category != "All" and cat_col:
             filtered_df = filtered_df[filtered_df[cat_col].astype(str).str.contains(selected_category, case=False, na=False)]
-
         if selected_dept != "All Departments" and dept_col:
             filtered_df = filtered_df[dept_mask(filtered_df[dept_col], selected_dept)]
-
+        if selected_sem != "All Semesters" and sem_col:
+            filtered_df = filtered_df[filtered_df[sem_col].astype(str).str.contains(selected_sem, case=False, na=False)]
+        if selected_type != "All Formats":
+            filtered_df = filtered_df[filtered_df[title_col].astype(str).str.contains(selected_type, case=False, na=False)]
         if search_query.strip():
             hay = pd.Series("", index=filtered_df.index)
             for c in (title_col, dept_col, cat_col):
-                if c:
-                    hay = hay + " " + filtered_df[c].astype(str)
+                if c: hay = hay + " " + filtered_df[c].astype(str)
             filtered_df = filtered_df[hay.str.contains(search_query.strip(), case=False, na=False, regex=False)]
-
-        parsed_dates = parse_dates(filtered_df[date_col]) if date_col else None
-        if sort_choice == "az" and title_col:
-            filtered_df = filtered_df.sort_values(title_col, key=lambda s: s.astype(str).str.lower())
-        elif parsed_dates is not None and parsed_dates.notna().any():
-            filtered_df = filtered_df.assign(_sort_dt=parsed_dates).sort_values(
-                "_sort_dt", ascending=(sort_choice == "oldest"), na_position="last"
-            )
-        elif sort_choice == "newest":
-            filtered_df = filtered_df.iloc[::-1]
-
-        signature = (selected_category, selected_dept, search_query, sort_choice)
-        if st.session_state.get("filter_signature") != signature:
-            st.session_state["filter_signature"] = signature
-            st.session_state["br_visible"] = PAGE_SIZE
 
         if not filtered_df.empty:
             render_cards(filtered_df, "br", cols, paginate=True)
-        else:
-            st.warning(t("no_match"))
+        else: st.warning(t("no_match"))
+    else: st.info(t("empty_repo"))
+
+# =====================================================================
+# TAB 2: POPULAR RESOURCES & LEADERBOARD
+# =====================================================================
+with tab_popular:
+    st.markdown(f"### {t('popular_head')}")
+    if not df_files.empty:
+        df_pop = df_files.copy()
+        df_pop["_downloads"] = df_pop["_fid"].map(get_download_count)
+        df_pop = df_pop.sort_values(by="_downloads", ascending=False).head(10)
+        render_cards(df_pop, "pop", cols, paginate=False)
     else:
         st.info(t("empty_repo"))
 
 # =====================================================================
-# TAB 2: MY SAVED
+# TAB 3: MY SAVED
 # =====================================================================
 with tab_saved:
     st.markdown(f"### {t('saved_head')}")
@@ -1111,26 +814,16 @@ with tab_saved:
         saved_view = saved_present.assign(_ord=saved_present["_fid"].map(order)).sort_values("_ord")
         st.button(t("saved_clear"), key="saved_clear_btn", on_click=clear_saved)
         render_cards(saved_view, "sv", cols, paginate=False)
-    else:
-        st.info(t("saved_empty"))
+    else: st.info(t("saved_empty"))
 
 # =====================================================================
-# TAB 3: UPLOAD PORTAL (Restricted to Faculty with Password)
+# TAB 4: UPLOAD PORTAL
 # =====================================================================
 with tab_upload:
     st.markdown(f"### {t('upload_head')}")
-    
     admin_pw = get_admin_password()
-    if not admin_pw:
-        st.info(t("admin_setup"))
+    if not admin_pw: st.info(t("admin_setup"))
     elif not st.session_state.get("faculty_logged_in"):
-        st.markdown(f"""
-        <div class="card-item">
-        <h4>{t("faculty_login_head")}</h4>
-        <p class="note-text">{t("faculty_login_sub")}</p>
-        </div>
-        """, unsafe_allow_html=True)
-        
         with st.form("faculty_login_portal_form"):
             fac_pw = st.text_input(t("faculty_pw"), type="password")
             fac_submitted = st.form_submit_button(t("faculty_login_btn"))
@@ -1138,47 +831,24 @@ with tab_upload:
             if hmac.compare_digest(fac_pw.encode(), admin_pw.encode()):
                 st.session_state["faculty_logged_in"] = True
                 st.rerun()
-            else:
-                st.error(t("faculty_wrong"))
+            else: st.error(t("faculty_wrong"))
     else:
-        col_lg1, col_lg2 = st.columns([4, 1])
-        with col_lg1:
-            st.success(t("faculty_logged_in"))
-        with col_lg2:
-            if st.button(t("faculty_logout"), use_container_width=True):
-                st.session_state["faculty_logged_in"] = False
-                st.rerun()
-
-        st.markdown(f"""
-        <div class="card-item">
-        <p class="note-text">{t("upload_intro")}</p>
-        </div>
-        <div class="upload-steps">
-        <div class="step-card" style="animation-delay:0.05s;"><div class="step-no">1</div><h4>{t("step1_t")}</h4><p>{t("step1_d")}</p></div>
-        <div class="step-card" style="animation-delay:0.15s;"><div class="step-no">2</div><h4>{t("step2_t")}</h4><p>{t("step2_d")}</p></div>
-        <div class="step-card" style="animation-delay:0.25s;"><div class="step-no">3</div><h4>{t("step3_t")}</h4><p>{t("step3_d")}</p></div>
-        </div>
-        """, unsafe_allow_html=True)
-
-        col_b1, col_b2, col_b3 = st.columns([1, 2, 1])
-        with col_b2:
-            st.link_button(t("open_form"), FORM_DIRECT_URL, use_container_width=True)
+        if st.button(t("faculty_logout")):
+            st.session_state["faculty_logged_in"] = False
+            st.rerun()
+        st.link_button(t("open_form"), FORM_DIRECT_URL, use_container_width=True)
 
 # =====================================================================
-# TAB 4: ADMIN
+# TAB 5: ADMIN & ANALYTICS
 # =====================================================================
 with tab_admin:
-    render_admin(df_files, cols, len(notices))
+    render_admin(df_files, cols, 0)
 
-# --- FOOTER ---
+# FOOTER
 st.markdown(f"""
 <div class="institutional-footer">
 <p>{t("footer_rights")}</p>
 <p>{t("footer_by")}</p>
-<div class="visitor-counter">
-<img src="https://visitor-badge.laobi.icu/badge?page_id=pjc_academic_repository_portal" alt="Visitor Counter">
-</div>
 </div>
 """, unsafe_allow_html=True)
-
 sync_query_params()
