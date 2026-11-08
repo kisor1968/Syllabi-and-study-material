@@ -711,7 +711,7 @@ with ctrl_viewer:
     st.selectbox(t("viewer_mode"), ["Popup Modal", "Full Width Inline"], key="viewer_mode_pref", label_visibility="collapsed")
 
 # HEADER
-logo_b64 = get_base64_image("logo_pjc copy.jpg")
+logo_b64 = get_base64_image("logo_pjc.jpg")
 logo_html = f'<img class="portal-logo" src="data:image/jpeg;base64,{logo_b64}" alt="PJC Logo">' if logo_b64 else '<div class="portal-logo-fallback">🏛️</div>'
 st.markdown(f"""
 <div class="portal-header">
