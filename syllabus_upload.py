@@ -351,7 +351,7 @@ def sync_query_params():
 dark = bool(st.session_state.get("dark_mode"))
 
 # =====================================================================
-# STYLING
+# STYLING (Custom Button Color Requirements)
 # =====================================================================
 LIGHT_VARS = """
 :root {
@@ -398,6 +398,60 @@ html, body, [class*="css"], .stApp, .stMarkdown, button, input, select, textarea
 .stApp .card-title { margin: 0.4rem 0 0.2rem 0; color: var(--text); font-size: 1.1rem; font-weight: 700; }
 .card-date { color: var(--muted); font-size: 0.82rem; }
 .institutional-footer { background: linear-gradient(135deg, #1E3A8A, #1E40AF); color: #FFFFFF; text-align: center; padding: 1.6rem 1rem; border-radius: 14px; margin-top: 3rem; border-top: 3px solid #F59E0B; }
+
+/* ==================== CUSTOM BUTTON & SECTION STYLING ==================== */
+/* Refresh Button -> Orange */
+button[kind="secondary"]:has(div:contains("Refresh")), button[kind="secondary"]:has(p:contains("Refresh")), button[kind="secondary"]:has(p:contains("রিফ্রেশ")), div.stButton > button:has(p:contains("Refresh")), div.stButton > button:has(p:contains("রিফ্রেশ")) {
+    background: linear-gradient(135deg, #F59E0B, #EA580C) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+}
+
+/* Download Button -> Green */
+div[data-testid="stDownloadButton"] button, a[target="_self"][download], div[data-testid="stLinkButton"] a:has-text("Download"), div[data-testid="stLinkButton"] a:has-text("ডাউনলোড"), div.stButton > button:has(p:contains("Download")), div.stButton > button:has(p:contains("ডাউনলোড")) {
+    background: linear-gradient(135deg, #10B981, #059669) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+}
+
+/* Save Button -> Orange */
+div.stButton > button:has(p:contains("Save")), div.stButton > button:has(p:contains("Saved")), div.stButton > button:has(p:contains("সংরক্ষণ")) {
+    background: linear-gradient(135deg, #F97316, #C2410C) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+}
+
+/* Faculty Password Section with 3D Orange Style */
+div[data-testid="stForm"]:has(input[type="password"]) {
+    background: linear-gradient(145deg, #FFF7ED, #FFEDD5) !important;
+    border: 2px solid #F97316 !important;
+    box-shadow: 0 8px 16px rgba(249, 115, 22, 0.25), inset 0 2px 4px rgba(255, 255, 255, 0.8) !important;
+    border-radius: 14px !important;
+    padding: 1.5rem !important;
+}
+
+/* Login Button -> Light Blue */
+div.stFormSubmitButton > button, div.stButton > button:has(p:contains("Log In")), div.stButton > button:has(p:contains("লগ ইন")) {
+    background: linear-gradient(135deg, #38BDF8, #0284C7) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    box-shadow: 0 4px 10px rgba(56, 189, 248, 0.35) !important;
+}
+
+/* Logout Button -> Light Blue */
+div.stButton > button:has(p:contains("Log Out")), div.stButton > button:has(p:contains("লগ আউট")) {
+    background: linear-gradient(135deg, #38BDF8, #0284C7) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+}
+
+/* Remove Button -> Red */
+div.stButton > button:has(p:contains("Remove")), div.stButton > button:has(p:contains("মুছুন")) {
+    background: linear-gradient(135deg, #EF4444, #B91C1C) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+}
+
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(52,211,153,0.7); } 70% { box-shadow: 0 0 0 10px rgba(52,211,153,0); } 100% { box-shadow: 0 0 0 0 rgba(52,211,153,0); } }
 """
 st.markdown("<style>" + (DARK_VARS if dark else LIGHT_VARS) + BASE_CSS + "</style>", unsafe_allow_html=True)
