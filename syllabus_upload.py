@@ -34,7 +34,9 @@ PAGE_SIZE = 10
 
 DEPARTMENT_FOLDERS = [
     "Bengali", "English", "Philosophy", "History", "Geography",
-    "Economics", "Physical Education", "Physics", "Chemistry", "Mathematics", "Commerce"
+    "Economics", "Physical Education", "Physics", "Chemistry", "Mathematics", "Commerce", "Zoology", "Botany", "Computer Science", 
+    "Political Science", "Sociology", "Sanskrit", "Education"
+    
 ]
 DEPT_BN = {
     "Bengali": "বাংলা", "English": "ইংরেজি", "Philosophy": "দর্শন", "History": "ইতিহাস",
