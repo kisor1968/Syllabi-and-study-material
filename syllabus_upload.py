@@ -705,12 +705,6 @@ def _preview_links(fid):
     st.caption(t("preview_note"))
 
 def open_preview(title, fid):
-    # Opens the file directly in a new tab to bypass iframe 403 restrictions
-    st.markdown(
-        f'<meta http-equiv="refresh" content="0;url=https://drive.google.com/file/d/{fid}/view?usp=sharing">',
-        unsafe_allow_html=True
-    )
-
     @_dialog_fn(str(title)[:70] or "Preview", width="large")
     def _show():
         components.html(_preview_iframe(fid), height=590)
@@ -719,7 +713,7 @@ def open_preview(title, fid):
     _show()
 
 # =====================================================================
-# CARD RENDERING (Preview button placed in place of New Tab button)
+# CARD RENDERING
 # =====================================================================
 def render_cards(df, prefix, cols, paginate=True):
     cat_col, dept_col, title_col, date_col = cols.get("cat"), cols.get("dept"), cols.get("title"), cols.get("date")
