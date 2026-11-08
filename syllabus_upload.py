@@ -351,7 +351,7 @@ def sync_query_params():
 dark = bool(st.session_state.get("dark_mode"))
 
 # =====================================================================
-# STYLING (Custom Button Color Requirements)
+# STYLING (Forced Specific Custom Button Styles)
 # =====================================================================
 LIGHT_VARS = """
 :root {
@@ -399,54 +399,57 @@ html, body, [class*="css"], .stApp, .stMarkdown, button, input, select, textarea
 .card-date { color: var(--muted); font-size: 0.82rem; }
 .institutional-footer { background: linear-gradient(135deg, #1E3A8A, #1E40AF); color: #FFFFFF; text-align: center; padding: 1.6rem 1rem; border-radius: 14px; margin-top: 3rem; border-top: 3px solid #F59E0B; }
 
-/* ==================== CUSTOM BUTTON & SECTION STYLING ==================== */
-/* Refresh Button -> Orange */
-button[kind="secondary"]:has(div:contains("Refresh")), button[kind="secondary"]:has(p:contains("Refresh")), button[kind="secondary"]:has(p:contains("রিফ্রেশ")), div.stButton > button:has(p:contains("Refresh")), div.stButton > button:has(p:contains("রিফ্রেশ")) {
+/* =====================================================================
+   FORCE BUTTON & SECTION STYLING OVERRIDES
+==================================================================== */
+
+/* 1. Refresh Button -> Orange */
+div.stButton > button:has(div:contains("Refresh")), div.stButton > button:has(p:contains("Refresh")), div.stButton > button:has(span:contains("Refresh")), div.stButton > button:has(div:contains("রিফ্রেশ")), div.stButton > button:has(p:contains("রিফ্রেশ")) {
     background: linear-gradient(135deg, #F59E0B, #EA580C) !important;
     color: #FFFFFF !important;
     border: none !important;
 }
 
-/* Download Button -> Green */
-div[data-testid="stDownloadButton"] button, a[target="_self"][download], div[data-testid="stLinkButton"] a:has-text("Download"), div[data-testid="stLinkButton"] a:has-text("ডাউনলোড"), div.stButton > button:has(p:contains("Download")), div.stButton > button:has(p:contains("ডাউনলোড")) {
+/* 2. Download Button -> Green */
+div.stButton > button:has(div:contains("Download")), div.stButton > button:has(p:contains("Download")), div.stButton > button:has(span:contains("Download")), div.stButton > button:has(div:contains("ডাউনলোড")), div.stButton > button:has(p:contains("ডাউনলোড")) {
     background: linear-gradient(135deg, #10B981, #059669) !important;
     color: #FFFFFF !important;
     border: none !important;
 }
 
-/* Save Button -> Orange */
-div.stButton > button:has(p:contains("Save")), div.stButton > button:has(p:contains("Saved")), div.stButton > button:has(p:contains("সংরক্ষণ")) {
+/* 3. Save Button -> Orange */
+div.stButton > button:has(div:contains("Save")), div.stButton > button:has(p:contains("Save")), div.stButton > button:has(span:contains("Save")), div.stButton > button:has(div:contains("Saved")), div.stButton > button:has(p:contains("Saved")), div.stButton > button:has(div:contains("সংরক্ষণ")), div.stButton > button:has(p:contains("সংরক্ষণ")) {
     background: linear-gradient(135deg, #F97316, #C2410C) !important;
     color: #FFFFFF !important;
     border: none !important;
 }
 
-/* Faculty Password Section with 3D Orange Style */
+/* 4. Faculty Password Container -> 3D Orange Style */
 div[data-testid="stForm"]:has(input[type="password"]) {
     background: linear-gradient(145deg, #FFF7ED, #FFEDD5) !important;
     border: 2px solid #F97316 !important;
-    box-shadow: 0 8px 16px rgba(249, 115, 22, 0.25), inset 0 2px 4px rgba(255, 255, 255, 0.8) !important;
-    border-radius: 14px !important;
-    padding: 1.5rem !important;
+    box-shadow: 0 10px 20px rgba(249, 115, 22, 0.25), inset 0 2px 4px rgba(255, 255, 255, 0.9) !important;
+    border-radius: 16px !important;
+    padding: 1.8rem !important;
 }
 
-/* Login Button -> Light Blue */
-div.stFormSubmitButton > button, div.stButton > button:has(p:contains("Log In")), div.stButton > button:has(p:contains("লগ ইন")) {
+/* 5. Log In Button -> Light Blue */
+div.stFormSubmitButton > button, div.stButton > button:has(div:contains("Log In")), div.stButton > button:has(p:contains("Log In")), div.stButton > button:has(div:contains("লগ ইন")), div.stButton > button:has(p:contains("লগ ইন")) {
     background: linear-gradient(135deg, #38BDF8, #0284C7) !important;
     color: #FFFFFF !important;
     border: none !important;
-    box-shadow: 0 4px 10px rgba(56, 189, 248, 0.35) !important;
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4) !important;
 }
 
-/* Logout Button -> Light Blue */
-div.stButton > button:has(p:contains("Log Out")), div.stButton > button:has(p:contains("লগ আউট")) {
+/* 6. Log Out Button -> Light Blue */
+div.stButton > button:has(div:contains("Log Out")), div.stButton > button:has(p:contains("Log Out")), div.stButton > button:has(div:contains("লগ আউট")), div.stButton > button:has(p:contains("লগ আউট")) {
     background: linear-gradient(135deg, #38BDF8, #0284C7) !important;
     color: #FFFFFF !important;
     border: none !important;
 }
 
-/* Remove Button -> Red */
-div.stButton > button:has(p:contains("Remove")), div.stButton > button:has(p:contains("মুছুন")) {
+/* 7. Remove (Admin Delete) Button -> Red */
+div.stButton > button:has(div:contains("Remove")), div.stButton > button:has(p:contains("Remove")), div.stButton > button:has(div:contains("মুছুন")), div.stButton > button:has(p:contains("মুছুন")) {
     background: linear-gradient(135deg, #EF4444, #B91C1C) !important;
     color: #FFFFFF !important;
     border: none !important;
