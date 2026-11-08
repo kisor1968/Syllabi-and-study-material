@@ -18,32 +18,28 @@ st.set_page_config(
 # =====================================================================
 # CONFIGURATION
 # =====================================================================
-# --- LIVE PUBLISHED GOOGLE SHEET CSV URL (materials) ---
 SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTkBRxQ2SHSxD2u2S_0-ckK9j2a2D-gUXrIXAtGCTgYwuf2G5OlHAlQW8yoGZdMw5UiI0OeWPhIkP-u/pub?output=csv"
-
-# --- ANNOUNCEMENTS: publish a second tab of the same Google Sheet as CSV and paste its URL here.
 ANNOUNCEMENTS_CSV_URL = ""
-
 FORM_DIRECT_URL = "https://forms.gle/Uk4AcdHTUL67wQ3f7"
-
 PAGE_SIZE = 10
 
 DEPARTMENT_FOLDERS = [
     "Bengali", "English", "Philosophy", "History", "Geography",
     "Economics", "Physical Education", "Physics", "Chemistry", "Mathematics", "Commerce",
-    "Zoology", "Botany", "Computer Science", "Political Science", "Sociology", "Sanskrit", "Education"
+    "Zoology", "Botany", "Computer Science", "Electronics", "Political Science", "Sociology", "Sanskrit", "Education", "Food & Nutrition"
 ]
 DEPT_BN = {
     "Bengali": "বাংলা", "English": "ইংরেজি", "Philosophy": "দর্শন", "History": "ইতিহাস",
     "Geography": "ভূগোল", "Economics": "অর্থনীতি", "Physical Education": "শারীরিক শিক্ষা",
     "Physics": "পদার্থবিদ্যা", "Chemistry": "রসায়ন", "Mathematics": "গণিত", "Commerce": "বাণিজ্য",
     "Zoology": "প্রাণিবিদ্যা", "Botany": "উদ্ভিদবিদ্যা", "Computer Science": "কম্পিউটার বিজ্ঞান",
-    "Political Science": "রাষ্ট্রবিজ্ঞান", "Sociology": "সমাজবিজ্ঞান", "Sanskrit": "সংস্কৃত", "Education": "শিক্ষাবিজ্ঞান",
+    "Electronics": "ইলেকট্রনিক্স", "Political Science": "রাষ্ট্রবিজ্ঞান", "Sociology": "সমাজবিজ্ঞান", 
+    "Sanskrit": "সংস্কৃত", "Education": "শিক্ষাবিজ্ঞান", "Food & Nutrition": "খাদ্য ও পুষ্টি",
 }
 DEPT_COLORS = [
     "#1E3A8A", "#7C3AED", "#BE185D", "#B45309", "#0F766E", "#C2410C",
     "#4D7C0F", "#0369A1", "#6D28D9", "#0E7490", "#9F1239", "#15803D",
-    "#A16207", "#1D4ED8", "#BE123C", "#0891B2", "#7E22CE", "#475569",
+    "#A16207", "#1D4ED8", "#BE123C", "#0891B2", "#7E22CE", "#475569", "#0D9488", "#D97706"
 ]
 
 # =====================================================================
@@ -62,6 +58,7 @@ TEXT = {
         "total_docs": "Total documents",
         "syllabi": "Syllabi",
         "study_materials": "Study materials",
+        "assignments": "Assignments",
         "depts_contrib": "Departments contributing",
         "by_dept": "📊 Documents by department",
         "category": "Select Category",
@@ -73,6 +70,7 @@ TEXT = {
         "all_depts": "All Departments",
         "syllabus": "Syllabus",
         "study_material": "Study Material",
+        "assignment": "Assignment",
         "newest": "Newest first",
         "oldest": "Oldest first",
         "az": "Title A–Z",
@@ -106,7 +104,6 @@ TEXT = {
         "all_notices": "📢 All notices ({n})",
         "footer_rights": "© Prabhu Jagatbandhu College | Academic Repository Management",
         "footer_by": "Created &amp; Maintained by: <strong>Dr. Kisor Mukhopadhyay</strong>, Associate Professor, Department of Physics, Prabhu Jagatbandhu College",
-        # faculty upload login
         "faculty_login_head": "🔐 Faculty Login Required",
         "faculty_login_sub": "Please enter the password to access the secure material upload portal.",
         "faculty_pw": "Faculty Password",
@@ -114,7 +111,6 @@ TEXT = {
         "faculty_wrong": "Incorrect password.",
         "faculty_logged_in": "✅ Logged in as Faculty",
         "faculty_logout": "Log Out",
-        # admin
         "admin_head": "🔐 Admin Dashboard",
         "admin_setup": "The admin password is not set yet. Add this to your Streamlit secrets (.streamlit/secrets.toml, or Streamlit Cloud → Settings → Secrets):",
         "admin_pw": "Admin password",
@@ -157,6 +153,7 @@ TEXT = {
         "total_docs": "মোট নথি",
         "syllabi": "সিলেবাস",
         "study_materials": "পাঠ্যসামগ্রী",
+        "assignments": "অ্যাসাইনমেন্ট",
         "depts_contrib": "অবদানকারী বিভাগ",
         "by_dept": "📊 বিভাগ অনুযায়ী নথি",
         "category": "ধরন নির্বাচন করুন",
@@ -168,6 +165,7 @@ TEXT = {
         "all_depts": "সব বিভাগ",
         "syllabus": "সিলেবাস",
         "study_material": "পাঠ্যসামগ্রী",
+        "assignment": "অ্যাসাইনমেন্ট",
         "newest": "নতুন আগে",
         "oldest": "পুরনো আগে",
         "az": "শিরোনাম অনুযায়ী",
@@ -201,7 +199,6 @@ TEXT = {
         "all_notices": "📢 সব নোটিশ ({n})",
         "footer_rights": "© প্রভু জগদ্বন্ধু কলেজ | একাডেমিক রিপোজিটরি ব্যবস্থাপনা",
         "footer_by": "সৃষ্টি ও রক্ষণাবেক্ষণ: <strong>Dr. Kisor Mukhopadhyay</strong>, অ্যাসোসিয়েট প্রফেসর, পদার্থবিদ্যা বিভাগ, প্রভু জগদ্বন্ধু কলেজ",
-        # faculty upload login
         "faculty_login_head": "🔐 অনুষদ লগইন প্রয়োজন",
         "faculty_login_sub": "নিরাপদ সামগ্রী আপলোড পোর্টাল অ্যাক্সেস করতে পাসওয়ার্ড দিন।",
         "faculty_pw": "পাসওয়ার্ড",
@@ -209,7 +206,6 @@ TEXT = {
         "faculty_wrong": "পাসওয়ার্ড সঠিক নয়।",
         "faculty_logged_in": "✅ অনুষদ হিসেবে লগইন করা হয়েছে",
         "faculty_logout": "লগ আউট",
-        # admin
         "admin_head": "🔐 অ্যাডমিন ড্যাশবোর্ড",
         "admin_setup": "অ্যাডমিন পাসওয়ার্ড এখনও সেট করা হয়নি। Streamlit secrets-এ এটি যোগ করুন (.streamlit/secrets.toml, অথবা Streamlit Cloud → Settings → Secrets):",
         "admin_pw": "অ্যাডমিন পাসওয়ার্ড",
@@ -419,7 +415,7 @@ div[data-testid="stLinkButton"] a:hover { transform: translateY(-2px); box-shado
 .notice-list li { margin: 0.35rem 0; }
 
 /* ---------- STAT TILES ---------- */
-.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 0.4rem 0 1.2rem 0; }
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 0.4rem 0 1.2rem 0; }
 .stat-tile {
     background: var(--surface); border: 1px solid var(--border); border-left: 5px solid var(--accent, #2563EB);
     border-radius: 14px; padding: 1rem 1.2rem; display: flex; align-items: center; gap: 0.9rem;
@@ -467,10 +463,6 @@ div[data-testid="stLinkButton"] a:hover { transform: translateY(-2px); box-shado
 /* ---------- ADMIN ---------- */
 .admin-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1rem 1.2rem; box-shadow: 0 4px 12px var(--shadow); margin-bottom: 1rem; }
 .stApp .admin-panel h4 { margin: 0 0 0.6rem 0; font-size: 1rem; color: var(--text); }
-.admin-table-wrap { overflow-x: auto; }
-.admin-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
-.admin-table th { text-align: left; padding: 0.55rem 0.7rem; background: var(--hover-bg); color: var(--text); font-weight: 700; }
-.admin-table td { padding: 0.5rem 0.7rem; border-bottom: 1px solid var(--border); color: var(--text); }
 .issue-list { margin: 0; padding-left: 1.1rem; color: var(--text); font-size: 0.9rem; }
 .issue-list li { margin: 0.3rem 0; }
 .ok-text { color: #059669; font-weight: 700; }
@@ -524,18 +516,14 @@ def extract_drive_id(value):
     if not value or pd.isna(value):
         return ""
     val_str = str(value).strip()
-
     match_d = re.search(r'/d/([a-zA-Z0-9_-]+)', val_str)
     if match_d:
         return match_d.group(1)
-
     match_id = re.search(r'id=([a-zA-Z0-9_-]+)', val_str)
     if match_id:
         return match_id.group(1)
-
     if re.match(r'^[a-zA-Z0-9_-]{25,}$', val_str):
         return val_str
-
     return val_str
 
 @st.cache_data(ttl=60)
@@ -602,6 +590,8 @@ def cat_label(value):
             return t("syllabus")
         if "study" in low:
             return t("study_material")
+        if "assignment" in low:
+            return t("assignment")
     return value
 
 def esc(v):
@@ -923,7 +913,6 @@ def render_admin(df, cols, notices_count):
     )
     st.markdown(f'<div class="admin-panel"><h4>{t("adm_attention")}</h4>{issue_html}</div>', unsafe_allow_html=True)
 
-    # --- RECENT UPLOADS & REMOVE BUTTON TABLE ---
     st.markdown(f'<div class="admin-panel"><h4>{t("adm_recent")}</h4>', unsafe_allow_html=True)
     recent = df.assign(_dt=parsed).sort_values("_dt", ascending=False, na_position="last").head(20)
     for idx, r in recent.iterrows():
@@ -984,7 +973,6 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-# --- ANNOUNCEMENTS ---
 notices = get_notices(load_announcements(), st.session_state.get("lang", "en"))
 render_notices(notices)
 
@@ -1030,6 +1018,7 @@ with tab_browse:
         total_docs = len(df_files)
         syllabus_docs = int(df_files[cat_col].astype(str).str.contains("syllabus", case=False, na=False).sum()) if cat_col else 0
         study_docs = int(df_files[cat_col].astype(str).str.contains("study", case=False, na=False).sum()) if cat_col else 0
+        assignment_docs = int(df_files[cat_col].astype(str).str.contains("assignment", case=False, na=False).sum()) if cat_col else 0
         dept_counts = {}
         if dept_col:
             for d in DEPARTMENT_FOLDERS:
@@ -1042,6 +1031,7 @@ with tab_browse:
 <div class="stat-tile" style="--accent:#2563EB; animation-delay:0s;"><div class="stat-icon">📚</div><div><div class="stat-num">{total_docs}</div><div class="stat-label">{t("total_docs")}</div></div></div>
 <div class="stat-tile" style="--accent:#F59E0B; animation-delay:0.08s;"><div class="stat-icon">📘</div><div><div class="stat-num">{syllabus_docs}</div><div class="stat-label">{t("syllabi")}</div></div></div>
 <div class="stat-tile" style="--accent:#10B981; animation-delay:0.16s;"><div class="stat-icon">📝</div><div><div class="stat-num">{study_docs}</div><div class="stat-label">{t("study_materials")}</div></div></div>
+<div class="stat-tile" style="--accent:#D97706; animation-delay:0.20s;"><div class="stat-icon">📋</div><div><div class="stat-num">{assignment_docs}</div><div class="stat-label">{t("assignments")}</div></div></div>
 <div class="stat-tile" style="--accent:#7C3AED; animation-delay:0.24s;"><div class="stat-icon">🏫</div><div><div class="stat-num">{len(dept_counts)}</div><div class="stat-label">{t("depts_contrib")}</div></div></div>
 </div>
 """, unsafe_allow_html=True)
@@ -1057,8 +1047,8 @@ with tab_browse:
     f_col1, f_col2, f_col3, f_col4 = st.columns([1.1, 1.4, 1.6, 1.1])
     with f_col1:
         selected_category = st.selectbox(
-            t("category"), ["All", "Syllabus", "Study Material"],
-            format_func=lambda x: {"All": t("all"), "Syllabus": t("syllabus"), "Study Material": t("study_material")}[x],
+            t("category"), ["All", "Syllabus", "Study Material", "Assignment"],
+            format_func=lambda x: {"All": t("all"), "Syllabus": t("syllabus"), "Study Material": t("study_material"), "Assignment": t("assignment")}[x],
         )
     with f_col2:
         selected_dept = st.selectbox(
